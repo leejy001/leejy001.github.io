@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import LoginModal from "../components/auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT_REQUEST } from "../redux/types";
+import { LOGOUT_REQUEST, POST_WRITE_REQUEST } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
 
 const AppNavbar = () => {
@@ -36,7 +36,11 @@ const AppNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const addPostClick = () => {};
+  const addPostClick = () => {
+    dispatch({
+      type: POST_WRITE_REQUEST,
+    });
+  };
 
   const guestLink = (
     <Fragment>
@@ -69,7 +73,7 @@ const AppNavbar = () => {
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
-            <Link>
+            <Link to="/#">
               <Button outline color="light" className="px-3 mx-3" block>
                 <strong>{user ? `Welcome ${user.name}` : ""}</strong>
               </Button>

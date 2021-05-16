@@ -21,3 +21,31 @@
   height: 20rem;
   object-fit: cover;
 }
+
+// CKEditor5 Setting____________________________________________________
+.ck {
+  .ck-editor {
+    min-width: 100%;
+  }
+}
+
+.ck-editor__editable {
+  max-height: 80rem;
+  min-height: 20rem;
+  min-width: 100rem;
+}
+
+.ck-editor__editable_inline {
+  max-height: 80rem;
+  min-height: 20rem;
+  min-width: 100%;
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+textarea {
+  resize: none;
+}

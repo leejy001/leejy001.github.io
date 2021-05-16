@@ -16,15 +16,15 @@ const MyRouter = () => (
     <Header />
     <Container id="main-body">
       <Switch>
-        <Route patch="/" export component={PostCardList} />
-        <Route patch="/post" export component={PostWrite} />
-        <Route patch="/post/:id" export component={PostDetail} />
+        <Route path="/" exact component={PostCardList} />
+        <Route path="/post" exact component={PostWrite} />
+        <Route path="/post/:id" exact component={PostDetail} />
         <Route
-          patch="/post/category/:categoryName"
-          export
+          path="/post/category/:categoryName"
+          exact
           component={CategoryResult}
         />
-        <Route patch="/search/:searchTerm" export component={Search} />
+        <Route path="/search/:searchTerm" exact component={Search} />
         <Redirect from="*" to="/" />
       </Switch>
     </Container>
