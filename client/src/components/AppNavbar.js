@@ -14,6 +14,7 @@ import LoginModal from "../components/auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGOUT_REQUEST, POST_WRITE_REQUEST } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
+import SearchInput from "./search/SearchInput";
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -110,6 +111,7 @@ const AppNavbar = () => {
             navbar
             style={{ justifyContent: "flex-end" }}
           >
+            <SearchInput isOpen={isOpen} />
             <Nav className="nav-right ml-auto d-flex" navbar>
               {isAuthenticated ? authLink : guestLink}
             </Nav>

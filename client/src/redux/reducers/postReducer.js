@@ -164,6 +164,29 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case SEARCH_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        searchBy: action.payload,
+        loading: true,
+      };
+
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        searchBy: action.payload,
+        searchResult: action.payload,
+        loading: false,
+      };
+
+    case SEARCH_FAILURE:
+      return {
+        ...state,
+        searchResult: action.payload,
+        loading: false,
+      };
+
     default:
       return state;
   }
