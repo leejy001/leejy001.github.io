@@ -7,7 +7,7 @@ import { GrowingSpinner } from "../../components/spinner/Spinner";
 import PostCardOne from "../../components/post/PostCardOne";
 
 const PostCardList = () => {
-  const { posts } = useSelector((state) => state.post);
+  const { posts, loading, postCount } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {

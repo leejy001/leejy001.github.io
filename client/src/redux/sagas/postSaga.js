@@ -11,6 +11,15 @@ import {
   POST_DETAIL_LOADING_SUCCESS,
   POST_DETAIL_LOADING_FAILURE,
   POST_DETAIL_LOADING_REQUEST,
+  POST_DELETE_SUCCESS,
+  POST_DELETE_FAILURE,
+  POST_DELETE_REQUEST,
+  POST_EDIT_LOADING_SUCCESS,
+  POST_EDIT_LOADING_FAILURE,
+  POST_EDIT_LOADING_REQUEST,
+  POST_EDIT_UPLOADING_SUCCESS,
+  POST_EDIT_UPLOADING_FAILURE,
+  POST_EDIT_UPLOADING_REQUEST,
 } from "../types";
 
 // All posts load
@@ -112,34 +121,104 @@ const DeletePostAPI = (payload) => {
     },
   };
   const token = payload.token;
-
   if (token) {
     config.headers["x-auth-token"] = token;
   }
 
-  return axios.get(`/api/post/${payload}`);
+  return axios.delete(`/api/post/${payload.id}`, config);
 };
 
 function* DeletePost(action) {
   try {
-    console.log(action, "DeletePost function");
     const result = yield call(DeletePostAPI, action.payload);
-    console.log(result, "post_detail_saga_data");
+    console.log(result, "DeletePost");
     yield put({
-      type: POST_DETAIL_LOADING_SUCCESS,
+      type: POST_DELETE_SUCCESS,
+      payload: result.data,
+    });
+    yield put(push("/"));
+  } catch (e) {
+    yield put({
+      type: POST_DELETE_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchDeletePost() {
+  yield takeEvery(POST_DELETE_REQUEST, DeletePost);
+}
+
+// Post Edit Load
+const PostEditLoadAPI = (payload) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+
+  return axios.get(`/api/post/${payload.id}/edit`, config);
+};
+
+function* PostEditLoad(action) {
+  try {
+    const result = yield call(PostEditLoadAPI, action.payload);
+    console.log(result, "PostEditLoad");
+    yield put({
+      type: POST_EDIT_LOADING_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
     yield put({
-      type: POST_DETAIL_LOADING_FAILURE,
+      type: POST_EDIT_LOADING_FAILURE,
       payload: e,
     });
     yield put(push("/"));
   }
 }
 
-function* watchDeletePost() {
-  yield takeEvery(POST_DETAIL_LOADING_REQUEST, DeletePost);
+function* watchPostEditLoad() {
+  yield takeEvery(POST_EDIT_LOADING_REQUEST, PostEditLoad);
+}
+
+// Post Edit Upload
+const PostEditUploadAPI = (payload) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = payload.token;
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+
+  return axios.post(`/api/post/${payload.id}/edit`, payload, config);
+};
+
+function* PostEditUpload(action) {
+  try {
+    const result = yield call(PostEditUploadAPI, action.payload);
+    console.log(result, "PostEditUpload");
+    yield put({
+      type: POST_EDIT_UPLOADING_SUCCESS,
+      payload: result.data,
+    });
+    yield put(push(`/post/${result.data._id}`));
+  } catch (e) {
+    yield put({
+      type: POST_EDIT_UPLOADING_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchPostEditUpload() {
+  yield takeEvery(POST_EDIT_UPLOADING_REQUEST, PostEditUpload);
 }
 
 export default function* postSaga() {
@@ -147,5 +226,8 @@ export default function* postSaga() {
     fork(watchLoadPosts),
     fork(watchuploadPosts),
     fork(watchLoadPostDetail),
+    fork(watchDeletePost),
+    fork(watchPostEditLoad),
+    fork(watchPostEditUpload),
   ]);
 }

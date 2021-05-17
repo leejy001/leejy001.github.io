@@ -105,8 +105,12 @@ const AppNavbar = () => {
             LAB 207 Blog
           </Link>
           <NavbarToggler onClick={handleToggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto d-flex justify-content-around" navbar>
+          <Collapse
+            isOpen={isOpen}
+            navbar
+            style={{ justifyContent: "flex-end" }}
+          >
+            <Nav className="nav-right ml-auto d-flex" navbar>
               {isAuthenticated ? authLink : guestLink}
             </Nav>
           </Collapse>

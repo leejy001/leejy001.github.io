@@ -49,3 +49,11 @@ html {
 textarea {
   resize: none;
 }
+
+.my_category {
+  display: inline-block;
+  width: auto;
+  &:last-child {
+    margin-bottom: 0.25rem;
+  }
+}

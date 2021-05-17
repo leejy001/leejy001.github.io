@@ -60,7 +60,7 @@ router.get("/user", auth, async (req, res) => {
     if (!user) throw Error("유저가 존재하지 않습니다");
     res.json(user);
   } catch (e) {
-    console.log(e);
+    console.log(e, "no user");
     res.status(400).json({ msg: e.message });
   }
 });
