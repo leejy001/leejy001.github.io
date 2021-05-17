@@ -52,8 +52,10 @@ router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
 // api/post
 router.get("/", async (req, res) => {
   const postFindResult = await Post.find();
-  console.log(postFindResult, "All Post Get");
-  res.json(postFindResult);
+  const categoryFindResult = await Category.find();
+  const result = { postFindResult, categoryFindResult };
+  console.log(result, "All Post Get");
+  res.json(result);
 });
 
 // @routes  Post api/post
@@ -169,7 +171,7 @@ router.get("/:id/edit", auth, async (req, res, next) => {
 router.post("/:id/edit", auth, async (req, res, next) => {
   console.log(req, "api/post/:id/edit");
   const {
-    body: { title, contents, fileUrl, category, id },
+    body: { title, contents, fileUrl, id },
   } = req;
 
   try {
@@ -179,7 +181,6 @@ router.post("/:id/edit", auth, async (req, res, next) => {
         title,
         contents,
         fileUrl,
-        // category,
         date: moment().format("YYYY-MM-DD hh:mm:ss"),
       },
       { new: true } // new: true값을 줘야 업데이트 적용
@@ -236,6 +237,27 @@ router.post("/:id/comments", async (req, res, next) => {
       },
     });
     res.json(newComment);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
+// Category Search
+
+router.get("/category/:categoryName", async (req, res, next) => {
+  try {
+    const result = await Category.findOne(
+      {
+        categoryName: {
+          $regex: req.params.categoryName,
+          $options: "i",
+        },
+      },
+      "posts"
+    ).populate({ path: "posts" });
+    console.log(result, "Category Find Result");
+    res.send(result);
   } catch (e) {
     console.log(e);
     next(e);
