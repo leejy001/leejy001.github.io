@@ -12,7 +12,11 @@ import {
 import { Link } from "react-router-dom";
 import LoginModal from "../components/auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT_REQUEST, POST_WRITE_REQUEST } from "../redux/types";
+import {
+  LOGOUT_REQUEST,
+  POST_EDIT_LOADING_REQUEST,
+  POST_WRITE_REQUEST,
+} from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
 import SearchInput from "./search/SearchInput";
 
@@ -22,6 +26,7 @@ const AppNavbar = () => {
     (state) => state.auth
   );
   console.log(userRole, "userRole");
+  console.log(user, "Name");
 
   const dispatch = useDispatch();
   // 메모이제이션된 콜백 반환
@@ -40,6 +45,12 @@ const AppNavbar = () => {
   const addPostClick = () => {
     dispatch({
       type: POST_WRITE_REQUEST,
+    });
+  };
+
+  const passwordEditClick = () => {
+    dispatch({
+      type: POST_EDIT_LOADING_REQUEST,
     });
   };
 
@@ -74,7 +85,7 @@ const AppNavbar = () => {
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
-            <Link to="/#">
+            <Link to={`/user/${user.name}/profile`} onClick={passwordEditClick}>
               <Button outline color="light" className="px-3 mx-3" block>
                 <strong>{user ? `Welcome ${user.name}` : ""}</strong>
               </Button>
