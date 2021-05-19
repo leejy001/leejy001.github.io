@@ -17,6 +17,7 @@ const PostCardOne = ({ posts }) => {
     <Fragment>
       {Array.isArray(posts)
         ? posts.map(({ _id, title, fileUrl, comments, views }) => {
+            console.log(fileUrl, "fileUrl");
             return (
               <div key={_id} className="col-md-4">
                 <Link

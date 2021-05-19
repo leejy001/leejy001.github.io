@@ -54,7 +54,16 @@ const PostEdit = () => {
       let whereImg_end = "";
       let ext_name_find = "";
       let result_Img_Url = "";
-      const ext_name = ["jpeg", "png", "jpg", "gif"];
+      const ext_name = [
+        "JPEG",
+        "jpeg",
+        "PNG",
+        "png",
+        "JPG",
+        "jpg",
+        "GIF",
+        "gif",
+      ];
 
       for (let i = 0; i < ext_name.length; i++) {
         if (data.match(ext_name[i])) {
@@ -66,7 +75,7 @@ const PostEdit = () => {
       console.log(ext_name_find);
       console.log(whereImg_end);
 
-      if (ext_name_find === "jpeg") {
+      if (ext_name_find === "jpeg" || ext_name_find === "JPEG") {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 4);
       } else {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 3);

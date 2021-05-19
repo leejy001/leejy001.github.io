@@ -42,23 +42,33 @@ const PostWrite = () => {
     console.log(data);
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");
-      console.log(whereImg_start);
+      console.log(whereImg_start, "whereImg_start");
       let whereImg_end = "";
       let ext_name_find = "";
       let result_Img_Url = "";
-      const ext_name = ["jpeg", "png", "jpg", "gif"];
+      const ext_name = [
+        "JPEG",
+        "jpeg",
+        "PNG",
+        "png",
+        "JPG",
+        "jpg",
+        "GIF",
+        "gif",
+      ];
 
       for (let i = 0; i < ext_name.length; i++) {
+        console.log(ext_name[i]);
         if (data.match(ext_name[i])) {
-          console.log(data.indexOf(`${ext_name[i]}`));
+          console.log(data.indexOf(`${ext_name[i]}`), "indexOf");
           ext_name_find = ext_name[i];
           whereImg_end = data.indexOf(`${ext_name[i]}`);
         }
       }
-      console.log(ext_name_find);
-      console.log(whereImg_end);
+      console.log(ext_name_find, "ext_name_find");
+      console.log(whereImg_end, "whereImg_end");
 
-      if (ext_name_find === "jpeg") {
+      if (ext_name_find === "jpeg" || ext_name_find === "JPEG") {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 4);
       } else {
         result_Img_Url = data.substring(whereImg_start + 10, whereImg_end + 3);

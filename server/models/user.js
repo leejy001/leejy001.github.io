@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["MainJuin", "SubJuin", "User"],
+    enum: ["Admin", "Writer", "User"],
     default: "User",
   },
   register_date: {
@@ -29,18 +29,18 @@ const UserSchema = new mongoose.Schema({
     {
       post_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "posts",
+        ref: "post",
       },
       comment_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "comments",
+        ref: "comment",
       },
     },
   ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "posts",
+      ref: "post",
     },
   ],
 });
