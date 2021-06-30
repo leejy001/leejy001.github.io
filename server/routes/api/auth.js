@@ -70,7 +70,7 @@ router.post("/googlelogin", (req, res) => {
       if (email_verified) {
         User.findOne({ email }).then((user) => {
           if (!user) {
-            const password = email+JWT_SECRET
+            const password = email;
             const newUser = new User({
               name,
               email,
@@ -89,7 +89,7 @@ router.post("/googlelogin", (req, res) => {
                       id: user.id,
                       name: user.name,
                       email: user.email,
-                      role: user.role
+                      role: user.role,
                     },
                   });
                 }
@@ -108,7 +108,7 @@ router.post("/googlelogin", (req, res) => {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    role: user.role
+                    role: user.role,
                   },
                 });
               }
