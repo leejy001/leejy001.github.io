@@ -3,7 +3,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import auth from "../../middleware/auth.js";
 import config from "../../config/index.js";
-const { JWT_SECRET } = config;
+const { JWT_SECRET, GOOGLE_ID } = config;
+
+import { OAuth2Client } from "google-auth-library";
 
 // Model
 import User from "../../models/user.js";
@@ -48,6 +50,73 @@ router.post("/", (req, res) => {
       );
     });
   });
+});
+
+const client = new OAuth2Client(GOOGLE_ID);
+
+// @routes  Post api/auth/googlelogin
+// @desc    Auth user
+// @access  public
+router.post("/googlelogin", (req, res) => {
+  const { tokenId } = req.body;
+
+  client
+    .verifyIdToken({
+      idToken: tokenId,
+      audience: GOOGLE_ID,
+    })
+    .then((response) => {
+      const { name, email, email_verified } = response.payload;
+      if (email_verified) {
+        User.findOne({ email }).then((user) => {
+          if (!user) {
+            const password = email+JWT_SECRET
+            const newUser = new User({
+              name,
+              email,
+              password,
+            });
+            newUser.save().then((user) => {
+              jwt.sign(
+                { id: user.id },
+                JWT_SECRET,
+                { expiresIn: 3600 },
+                (err, token) => {
+                  if (err) throw err;
+                  res.json({
+                    token,
+                    user: {
+                      id: user.id,
+                      name: user.name,
+                      email: user.email,
+                      role: user.role
+                    },
+                  });
+                }
+              );
+            });
+          } else {
+            jwt.sign(
+              { id: user.id },
+              JWT_SECRET,
+              { expiresIn: "2 days" },
+              (err, token) => {
+                if (err) throw err;
+                res.json({
+                  token,
+                  user: {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role
+                  },
+                });
+              }
+            );
+          }
+        });
+      }
+    });
 });
 
 router.post("/logout", (req, res) => {

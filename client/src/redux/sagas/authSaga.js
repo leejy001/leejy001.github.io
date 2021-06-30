@@ -1,24 +1,27 @@
 import axios from "axios";
 import { all, call, put, takeEvery, fork } from "redux-saga/effects";
 import {
-  CLEAR_ERROR_FAILURE,
   CLEAR_ERROR_REQUEST,
   CLEAR_ERROR_SUCCESS,
-  LOGIN_FAILURE,
+  CLEAR_ERROR_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGOUT_FAILURE,
+  LOGIN_FAILURE,
+  GOOGLE_LOGIN_REQUEST,
+  GOOGLE_LOGIN_SUCCESS,
+  GOOGLE_LOGIN_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  PASSWORD_EDIT_UPLOADING_FAILURE,
-  PASSWORD_EDIT_UPLOADING_REQUEST,
-  PASSWORD_EDIT_UPLOADING_SUCCESS,
-  REGISTER_FAILURE,
+  LOGOUT_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  USER_LOADING_FAILURE,
+  REGISTER_FAILURE,
   USER_LOADING_REQUEST,
   USER_LOADING_SUCCESS,
+  USER_LOADING_FAILURE,
+  PASSWORD_EDIT_UPLOADING_REQUEST,
+  PASSWORD_EDIT_UPLOADING_SUCCESS,
+  PASSWORD_EDIT_UPLOADING_FAILURE,
 } from "../types";
 
 // LOGIN_____________________________________________________________
@@ -44,6 +47,31 @@ function* loginUser(action) {
 
 function* watchloginUser() {
   yield takeEvery(LOGIN_REQUEST, loginUser);
+}
+
+// GOOGLE_LOGIN_______________________________________________________
+const googleLoginUserAPI = (googleLoginData) => {
+  console.log(googleLoginData, "googleLoginData");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  return axios.post("api/auth/googlelogin", googleLoginData, config);
+};
+
+function* googleLoginUser(action) {
+  try {
+    const result = yield call(googleLoginUserAPI, action.payload);
+    console.log(result);
+    yield put({ type: GOOGLE_LOGIN_SUCCESS, payload: result.data });
+  } catch (e) {
+    yield put({ type: GOOGLE_LOGIN_FAILURE, payload: e.response });
+  }
+}
+
+function* watchgoogleLoginUser() {
+  yield takeEvery(GOOGLE_LOGIN_REQUEST, googleLoginUser);
 }
 
 // LOGOUT_____________________________________________________________
@@ -164,6 +192,7 @@ function* watchEditPassword() {
 export default function* authSaga() {
   yield all([
     fork(watchloginUser),
+    fork(watchgoogleLoginUser),
     fork(watchlogoutUser),
     fork(watchregisterUser),
     fork(watchclearError),

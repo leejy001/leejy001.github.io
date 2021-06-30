@@ -12,14 +12,20 @@ import {
   ModalHeader,
   NavLink,
 } from "reactstrap";
-import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
+import { GoogleLogin } from "react-google-login";
+import GoogleButton from 'react-google-button'
+import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST, GOOGLE_LOGIN_REQUEST } from "../../redux/types";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false);
   const [localMsg, setLocalMsg] = useState("");
   const [form, setValues] = useState({ email: "", password: "" });
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const { errorMsg } = useSelector((state) => state.auth);
+
   useEffect(
     (e) => {
       try {
@@ -30,27 +36,46 @@ const LoginModal = () => {
     },
     [errorMsg]
   );
+
   const handelToggle = () => {
-    dispath({
+    dispatch({
       type: CLEAR_ERROR_REQUEST,
     });
     setModal(!modal);
   };
+
   const onChange = (e) => {
     setValues({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = form;
     const user = { email, password };
     console.log(user);
-    dispath({
+    dispatch({
       type: LOGIN_REQUEST,
       payload: user,
     });
+  };
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const tokenId = res?.tokenId;
+    try {
+      await dispatch({ type: GOOGLE_LOGIN_REQUEST, payload: { result, tokenId } });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(res);
+  };
+
+  const googleFailure = (err) => {
+    console.log(err);
+    console.log("Google Sign In was unsuccessful...");
   };
 
   return (
@@ -80,9 +105,20 @@ const LoginModal = () => {
                 placeholder="Password를 입력하세요."
                 onChange={onChange}
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button color="dark" style={{ width:"100%", height:"50px", marginTop: "20px" }} block>
                 Login
               </Button>
+              <GoogleLogin
+                clientId={process.env.REACT_APP_GOOGLE_ID}
+                render={renderProps => (
+                  <GoogleButton  onClick={renderProps.onClick} style={{width:"100%", marginTop: "10px"}} disabled={renderProps.disabled}/>
+                )}
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                cookiePolicy={"single_host_origin"}
+              >
+                  <span style={{width:"100%"}}>구글로 로그인 하기</span>
+              </GoogleLogin>
             </FormGroup>
           </Form>
         </ModalBody>
