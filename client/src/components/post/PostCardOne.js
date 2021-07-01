@@ -3,20 +3,20 @@ import {
   Card,
   CardImg,
   CardTitle,
+  CardText,
   CardBody,
-  Button,
+  CardFooter,
   Row,
-  Badge,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMouse } from "@fortawesome/free-solid-svg-icons";
+import { faMouse, faComment } from "@fortawesome/free-solid-svg-icons";
 
 const PostCardOne = ({ posts }) => {
   return (
     <Fragment>
       {Array.isArray(posts)
-        ? posts.map(({ _id, title, fileUrl, comments, views }) => {
+        ? posts.map(({ _id, title, fileUrl, cardcontent, comments, views }) => {
             console.log(fileUrl, "fileUrl");
             return (
               <div key={_id} className="col-md-4">
@@ -24,23 +24,40 @@ const PostCardOne = ({ posts }) => {
                   to={`/post/${_id}`}
                   className="text-dark text-decoration-none"
                 >
-                  <Card className="mb-3">
-                    <CardImg top alt="Image" src={fileUrl} />
+                  <Card className="mb-3" style={{ height: "340px" }}>
+                    {fileUrl === "none" ? (
+                      ""
+                    ) : (
+                      <CardImg top alt="Image" src={fileUrl} />
+                    )}
                     <CardBody>
-                      <CardTitle className="text-truncate d-flex justify-content-between">
-                        <span className="text-truncate">{title}</span>
-                        <span>
+                      <CardTitle className="text-truncate">
+                        <span
+                          className="text-truncate"
+                          style={{ fontSize: "25px", fontWeight: "bold" }}
+                        >
+                          {title}
+                        </span>
+                      </CardTitle>
+                      <CardText className="text-truncate">
+                        <span className="text-truncate">{cardcontent}</span>
+                      </CardText>
+                    </CardBody>
+                    <CardFooter>
+                      <Row>
+                        <div>
                           <FontAwesomeIcon icon={faMouse} />
                           &nbsp;&nbsp;
                           <span>{views}</span>
-                        </span>
-                      </CardTitle>
-                      <Row>
-                        <Button color="primary" className="p-2 btn-block">
-                          More <Badge color="light">{comments.length}</Badge>
-                        </Button>
+                          <FontAwesomeIcon
+                            icon={faComment}
+                            style={{ marginLeft: "10px" }}
+                          />
+                          &nbsp;&nbsp;
+                          <span>{comments.length}</span>
+                        </div>
                       </Row>
-                    </CardBody>
+                    </CardFooter>
                   </Card>
                 </Link>
               </div>

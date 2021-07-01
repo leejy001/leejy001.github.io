@@ -17,16 +17,21 @@ import { POST_EDIT_UPLOADING_REQUEST } from "../../redux/types";
 
 const PostEdit = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const [form, setValues] = useState({ title: "", contents: "", fileUrl: "" });
+  const [form, setValues] = useState({
+    title: "",
+    contents: "",
+    fileUrl: "",
+    cardcontent: "",
+  });
   const { postDetail } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     await e.preventDefault();
-    const { title, contents, fileUrl } = form;
+    const { title, contents, fileUrl, cardcontent } = form;
     const token = localStorage.getItem("token");
     const id = postDetail._id;
-    const body = { title, contents, fileUrl, token, id };
+    const body = { title, contents, fileUrl, cardcontent, token, id };
     dispatch({
       type: POST_EDIT_UPLOADING_REQUEST,
       payload: body,
@@ -47,7 +52,15 @@ const PostEdit = () => {
 
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
+    let content = "";
     console.log(data);
+    if (data && data.match("<p")) {
+      const whereContent_start = data.indexOf(">");
+      let whereContent_end = data.indexOf("</p>");
+      content = data.substring(whereContent_start + 1, whereContent_end);
+      console.log(content, "content");
+    }
+
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");
       console.log(whereImg_start);
@@ -85,12 +98,14 @@ const PostEdit = () => {
       setValues({
         ...form,
         fileUrl: result_Img_Url,
+        cardcontent: content,
         contents: data,
       });
     } else {
       setValues({
         ...form,
         fileUrl: process.env.REACT_APP_BASIC_IMAGE_URL,
+        cardcontent: content,
         contents: data,
       });
     }

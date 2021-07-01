@@ -74,11 +74,13 @@ router.get("/skip/:skip", async (req, res) => {
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
     console.log("req", req);
-    const { title, contents, fileUrl, creator, category } = req.body;
+    const { title, contents, fileUrl, cardcontent, creator, category } =
+      req.body;
     const newPost = await Post.create({
       title,
       contents,
       fileUrl,
+      cardcontent,
       creator: req.user.id,
       date: moment().format("YYYY-MM-DD hh:mm:ss"),
     });
@@ -181,7 +183,7 @@ router.get("/:id/edit", auth, async (req, res, next) => {
 router.post("/:id/edit", auth, async (req, res, next) => {
   console.log(req, "api/post/:id/edit");
   const {
-    body: { title, contents, fileUrl, id },
+    body: { title, contents, fileUrl, cardcontent, id },
   } = req;
 
   try {
@@ -191,6 +193,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
         title,
         contents,
         fileUrl,
+        cardcontent,
         date: moment().format("YYYY-MM-DD hh:mm:ss"),
       },
       { new: true } // new: true값을 줘야 업데이트 적용

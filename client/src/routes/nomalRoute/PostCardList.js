@@ -69,10 +69,12 @@ const PostCardList = () => {
   return (
     <Fragment>
       <Helmet title="Home" />
-      <Row className="border-bottom border-top border-primary py-2 mb-3">
+      <Row className="border-bottom border-top border-primary py-2 mb-3 mx-5">
         <Category posts={categoryFindResult} />
       </Row>
-      <Row>{posts ? <PostCardOne posts={posts} /> : GrowingSpinner}</Row>
+      <Row className="mx-5">
+        {posts ? <PostCardOne posts={posts} /> : GrowingSpinner}
+      </Row>
       <div ref={lastPostElementRef}> {loading && GrowingSpinner}</div>
       {loading ? (
         ""

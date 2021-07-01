@@ -23,6 +23,7 @@ import TableToolbar from "@ckeditor/ckeditor5-table/src/tabletoolbar";
 import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformation";
 import Indent from "@ckeditor/ckeditor5-indent/src/indent";
 import IndentBlock from "@ckeditor/ckeditor5-indent/src/indentblock";
+import LineHeight from "ckeditor5-line-height-plugin/src/lineheight";
 
 /* import Base64UploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter"; */
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
@@ -59,6 +60,7 @@ export const editorConfiguration = {
     Table,
     TableToolbar,
     TextTransformation,
+    LineHeight,
   ],
 
   toolbar: [
@@ -80,6 +82,7 @@ export const editorConfiguration = {
     "bulletedList",
     "numberedList",
     "blockQuote",
+    "lineHeight",
     "|",
     "link",
     "insertTable",
@@ -128,6 +131,10 @@ export const editorConfiguration = {
 
   alignment: {
     options: ["justify", "left", "center", "right"],
+  },
+
+  lineHeight: {
+    options: [0.5, 1, 1.5, 2, 2.5],
   },
 
   table: {

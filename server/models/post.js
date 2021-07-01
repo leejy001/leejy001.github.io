@@ -12,13 +12,17 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  cardcontent: {
+    type: String,
+    default: "",
+  },
   views: {
     type: Number,
     default: -2,
   },
   fileUrl: {
     type: String,
-    default: "https://source.unsplash.com/random/301x201",
+    default: "none",
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
