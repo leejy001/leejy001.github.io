@@ -23,15 +23,14 @@ const PostWrite = () => {
     title: "",
     contents: "",
     fileUrl: "",
-    cardcontent: "",
   });
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     await e.preventDefault();
-    const { title, contents, fileUrl, cardcontent, category } = form;
+    const { title, contents, fileUrl, category } = form;
     const token = localStorage.getItem("token");
-    const body = { title, contents, fileUrl, cardcontent, category, token };
+    const body = { title, contents, fileUrl, category, token };
     dispatch({
       type: POST_UPLOADING_REQUEST,
       payload: body,
@@ -44,14 +43,7 @@ const PostWrite = () => {
 
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
-    let content = "";
     console.log(data);
-    if (data && data.match("<p")) {
-      const whereContent_start = data.indexOf(">");
-      let whereContent_end = data.indexOf("</p>");
-      content = data.substring(whereContent_start + 1, whereContent_end);
-      console.log(content, "content");
-    }
 
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");
@@ -91,14 +83,12 @@ const PostWrite = () => {
       setValues({
         ...form,
         fileUrl: result_Img_Url,
-        cardcontent: content,
         contents: data,
       });
     } else {
       setValues({
         ...form,
         fileUrl: process.env.REACT_APP_BASIC_IMAGE_URL,
-        cardcontent: content,
         contents: data,
       });
     }

@@ -1,7 +1,7 @@
-import moment from "moment";
 import mongoose from "mongoose";
 
 // create schema
+
 const CommentSchema = new mongoose.Schema({
   contents: {
     type: String,
@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: moment().format("YYYY-MM-DD hh:mm:ss"),
+    default: new Date(),
   },
   post: {
     type: mongoose.Schema.Types.ObjectId,

@@ -72,9 +72,9 @@ const PostCardList = () => {
       <Row className="border-bottom border-top border-primary py-2 mb-3 mx-5">
         <Category posts={categoryFindResult} />
       </Row>
-      <Row className="mx-5">
+      <div className="card-container">
         {posts ? <PostCardOne posts={posts} /> : GrowingSpinner}
-      </Row>
+      </div>
       <div ref={lastPostElementRef}> {loading && GrowingSpinner}</div>
       {loading ? (
         ""

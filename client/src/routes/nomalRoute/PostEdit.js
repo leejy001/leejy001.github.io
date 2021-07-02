@@ -21,17 +21,16 @@ const PostEdit = () => {
     title: "",
     contents: "",
     fileUrl: "",
-    cardcontent: "",
   });
   const { postDetail } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     await e.preventDefault();
-    const { title, contents, fileUrl, cardcontent } = form;
+    const { title, contents, fileUrl } = form;
     const token = localStorage.getItem("token");
     const id = postDetail._id;
-    const body = { title, contents, fileUrl, cardcontent, token, id };
+    const body = { title, contents, fileUrl, token, id };
     dispatch({
       type: POST_EDIT_UPLOADING_REQUEST,
       payload: body,
@@ -98,14 +97,12 @@ const PostEdit = () => {
       setValues({
         ...form,
         fileUrl: result_Img_Url,
-        cardcontent: content,
         contents: data,
       });
     } else {
       setValues({
         ...form,
         fileUrl: process.env.REACT_APP_BASIC_IMAGE_URL,
-        cardcontent: content,
         contents: data,
       });
     }

@@ -5,7 +5,6 @@ import User from "../../models/user.js";
 import Category from "../../models/category.js";
 import Comment from "../../models/comment.js";
 import auth from "../../middleware/auth.js";
-import moment from "moment";
 
 const router = express.Router();
 
@@ -74,15 +73,13 @@ router.get("/skip/:skip", async (req, res) => {
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
     console.log("req", req);
-    const { title, contents, fileUrl, cardcontent, creator, category } =
-      req.body;
+    const { title, contents, fileUrl, creator, category } = req.body;
     const newPost = await Post.create({
       title,
       contents,
       fileUrl,
-      cardcontent,
       creator: req.user.id,
-      date: moment().format("YYYY-MM-DD hh:mm:ss"),
+      date: new Date(),
     });
 
     const findResult = await Category.findOne({
@@ -183,7 +180,7 @@ router.get("/:id/edit", auth, async (req, res, next) => {
 router.post("/:id/edit", auth, async (req, res, next) => {
   console.log(req, "api/post/:id/edit");
   const {
-    body: { title, contents, fileUrl, cardcontent, id },
+    body: { title, contents, fileUrl, id },
   } = req;
 
   try {
@@ -193,8 +190,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
         title,
         contents,
         fileUrl,
-        cardcontent,
-        date: moment().format("YYYY-MM-DD hh:mm:ss"),
+        date: new Date(),
       },
       { new: true } // new: true값을 줘야 업데이트 적용
     );
@@ -232,7 +228,7 @@ router.post("/:id/comments", async (req, res, next) => {
     creator: req.body.userId,
     creatorName: req.body.userName,
     post: req.body.id,
-    date: moment().format("YYYY-MM-DD hh:mm:ss"),
+    date: new Date(),
   });
   console.log(newComment, "newComment");
   try {

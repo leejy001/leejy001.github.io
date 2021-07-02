@@ -1,7 +1,10 @@
-import moment from "moment";
 import mongoose from "mongoose";
 
 // create schema
+const curTime = new Date();
+const utc = curTime.getTime() + curTime.getTimezoneOffset() * 60 * 1000;
+const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -11,10 +14,6 @@ const PostSchema = new mongoose.Schema({
   contents: {
     type: String,
     required: true,
-  },
-  cardcontent: {
-    type: String,
-    default: "",
   },
   views: {
     type: Number,
@@ -30,7 +29,7 @@ const PostSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: moment().format("YYYY-MM-DD hh:mm:ss"),
+    default: new Date(),
   },
   comments: [
     {
