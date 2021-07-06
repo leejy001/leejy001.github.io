@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { POST_LOADING_REQUEST } from "../../redux/types";
 import { Helmet } from "react-helmet";
-import { Alert, Row, Collapse } from "reactstrap";
+import { Alert, Collapse } from "reactstrap";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import PostCardOne from "../../components/post/PostCardOne";
 import Category from "../../components/post/Category";
@@ -18,12 +18,14 @@ const PostCardList = () => {
   const categoryToggle = () => {
     if (isSearchInputOpen) {
       searchInputToggle();
+    } else {
     }
     setIsCategoryOpen(!isCategoryOpen);
   };
   const searchInputToggle = () => {
     if (isCategoryOpen) {
       categoryToggle();
+    } else {
     }
     setIsSearchInputOpen(!isSearchInputOpen);
   };
@@ -84,7 +86,7 @@ const PostCardList = () => {
   return (
     <Fragment>
       <Helmet title="Home" />
-      <Row id="tab-row" className="d-flex">
+      <div id="tab-row" className="d-flex">
         <button id="tab-button" onClick={categoryToggle}>
           category
         </button>
@@ -92,11 +94,11 @@ const PostCardList = () => {
           search
         </button>
         <button id="tab-button">about</button>
-      </Row>
+      </div>
       <Collapse isOpen={isCategoryOpen}>
-        <Row id="tab-row">
+        <div id="tab-row" className="d-flex">
           <Category posts={categoryFindResult} />
-        </Row>
+        </div>
       </Collapse>
       <Collapse isOpen={isSearchInputOpen}>
         <SearchInput />

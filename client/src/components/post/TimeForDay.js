@@ -23,15 +23,14 @@ const TimeForDay = ({ date }) => {
   const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
   const [curDate, setCurDate] = useState(new Date(utc + KR_TIME_DIFF));
   const [time, setTime] = useState("");
-
   useInterval(() => {
     setCurDate(new Date(utc + KR_TIME_DIFF));
-    console.log(curDate);
   }, 60000);
 
   useEffect(() => {
-    const creatTime = new Date(date);
-    const utc = creatTime.getTime() + creatTime.getTimezoneOffset() * 60 * 1000;
+    const createTime = new Date(date);
+    const utc =
+      createTime.getTime() + createTime.getTimezoneOffset() * 60 * 1000;
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     const creatAt = new Date(utc + KR_TIME_DIFF);
 
@@ -47,12 +46,14 @@ const TimeForDay = ({ date }) => {
         setTime(`${betweenTimeHour}시간전`);
       } else {
         const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-        if (betweenTimeDay < 30) {
+        if (betweenTimeDay < 7) {
           setTime(`${betweenTimeDay}일전`);
-        } else if (betweenTimeDay < 365) {
-          setTime(`${curDate.getMonth() - creatAt.getMonth()}달전`);
+        } else if (betweenTimeDay === 7) {
+          setTime("일주일전");
         } else {
-          setTime(`${Math.floor(betweenTimeDay / 365)}년전`);
+          setTime(
+            `${createTime.getFullYear()}년 ${createTime.getMonth()}월 ${createTime.getDay()}일`
+          );
         }
       }
     }

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Badge, Button, Col } from "reactstrap";
 
 const Category = ({ posts }) => {
-  console.log(posts);
   return (
     <Col>
       {Array.isArray(posts)

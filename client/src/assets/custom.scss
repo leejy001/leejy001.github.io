@@ -20,7 +20,7 @@
 
 #main-container {
   min-height: 90vh;
-  max-width: 95vh;
+  max-width: 110vh;
 }
 
 #tab-button {
@@ -40,7 +40,6 @@
 
 #tab-row {
   border-bottom: medium solid lightblue;
-  padding-left: 20px;
 }
 
 #tab-search {
@@ -67,12 +66,11 @@
 .card-container {
   margin: 0;
   padding: 0;
-  width: 50vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: repeat(auto-fill, 250px);
   grid-auto-rows: 10px;
   justify-content: center;
 }
@@ -90,7 +88,7 @@
   text-align: left;
   word-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 
@@ -107,7 +105,7 @@
   text-align: left;
   word-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 
@@ -153,10 +151,47 @@ textarea {
   #nav-container {
     width: 800px;
   }
+  #main-container {
+    width: 650px;
+  }
+  .card-contents-A {
+    width: 200px;
+  }
+  .card-contents-B {
+    width: 200px;
+  }
 }
 
 @media (min-width: 1440px) {
   #nav-container {
-    width: 850px;
+    width: 800px;
+  }
+  #main-container {
+    width: 800px;
+  }
+  .card-contents-A {
+    width: 200px;
+  }
+  .card-contents-B {
+    width: 200px;
+  }
+}
+
+@media (min-width: 2000px) {
+  #nav-container {
+    width: 900px;
+  }
+  #main-container {
+    width: 900px;
+  }
+  .card-contents-A {
+    width: 250px;
+  }
+  .card-contents-B {
+    width: 250px;
+  }
+  .card-container {
+    width: 900px;
+    grid-template-columns: repeat(auto-fill, 300px);
   }
 }

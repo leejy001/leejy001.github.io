@@ -36,8 +36,6 @@ const AppNavbar = () => {
     setIsOpen(false);
     const updateScroll = () => {
       setScrollPosition(window.scrollY);
-      console.log(scrollPosition);
-      console.log(window.scrollY);
     };
     window.addEventListener("scroll", updateScroll);
   }, [user, scrollPosition]);
@@ -59,7 +57,7 @@ const AppNavbar = () => {
   };
 
   const guestLink = (
-    <Fragment style={{ justifyContent: "flex-end" }}>
+    <Fragment>
       <NavItem>
         <RegisterModal />
       </NavItem>

@@ -45,7 +45,7 @@ const PostCardOne = ({ posts }) => {
                             </span>
                           </CardTitle>
                           <CardText
-                            style={{ maxWidth: "350px", height: "auto" }}
+                            style={{ maxWidth: "300px", height: "auto" }}
                           >
                             <span className="card-contents-A">
                               {stripHTMLtag(contents)}
@@ -100,7 +100,10 @@ const PostCardOne = ({ posts }) => {
                             </span>
                           </CardTitle>
                           <CardText
-                            style={{ maxWidth: "350px", height: "auto" }}
+                            style={{
+                              maxWidth: "350px",
+                              height: "auto",
+                            }}
                           >
                             <span className="card-contents-B">
                               {stripHTMLtag(contents)}
