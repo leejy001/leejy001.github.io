@@ -2,16 +2,31 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { POST_LOADING_REQUEST } from "../../redux/types";
 import { Helmet } from "react-helmet";
-import { Alert, Row } from "reactstrap";
+import { Alert, Row, Collapse } from "reactstrap";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import PostCardOne from "../../components/post/PostCardOne";
 import Category from "../../components/post/Category";
+import SearchInput from "../../components/search/SearchInput";
 
 const PostCardList = () => {
   const { posts, categoryFindResult, loading, postCount } = useSelector(
     (state) => state.post
   );
   const dispatch = useDispatch();
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
+  const categoryToggle = () => {
+    if (isSearchInputOpen) {
+      searchInputToggle();
+    }
+    setIsCategoryOpen(!isCategoryOpen);
+  };
+  const searchInputToggle = () => {
+    if (isCategoryOpen) {
+      categoryToggle();
+    }
+    setIsSearchInputOpen(!isSearchInputOpen);
+  };
 
   useEffect(() => {
     dispatch({ type: POST_LOADING_REQUEST, payload: 0 });
@@ -69,9 +84,23 @@ const PostCardList = () => {
   return (
     <Fragment>
       <Helmet title="Home" />
-      <Row className="border-bottom border-top border-primary py-2 mb-3 mx-5">
-        <Category posts={categoryFindResult} />
+      <Row id="tab-row" className="d-flex">
+        <button id="tab-button" onClick={categoryToggle}>
+          category
+        </button>
+        <button id="tab-button" onClick={searchInputToggle}>
+          search
+        </button>
+        <button id="tab-button">about</button>
       </Row>
+      <Collapse isOpen={isCategoryOpen}>
+        <Row id="tab-row">
+          <Category posts={categoryFindResult} />
+        </Row>
+      </Collapse>
+      <Collapse isOpen={isSearchInputOpen}>
+        <SearchInput />
+      </Collapse>
       <div className="card-container">
         {posts ? <PostCardOne posts={posts} /> : GrowingSpinner}
       </div>

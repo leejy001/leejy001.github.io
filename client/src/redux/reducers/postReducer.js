@@ -36,7 +36,7 @@ const initialState = {
   searchResult: "",
 };
 
-export default function (state = initialState, action) {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_LOADING_REQUEST:
       return {
@@ -191,4 +191,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default postReducer;

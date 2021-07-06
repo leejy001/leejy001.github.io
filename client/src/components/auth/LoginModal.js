@@ -13,11 +13,15 @@ import {
   NavLink,
 } from "reactstrap";
 import { GoogleLogin } from "react-google-login";
-import GoogleButton from 'react-google-button'
-import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST, GOOGLE_LOGIN_REQUEST } from "../../redux/types";
-import dotenv from "dotenv"
+import GoogleButton from "react-google-button";
+import {
+  CLEAR_ERROR_REQUEST,
+  LOGIN_REQUEST,
+  GOOGLE_LOGIN_REQUEST,
+} from "../../redux/types";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false);
@@ -66,7 +70,10 @@ const LoginModal = () => {
     const result = res?.profileObj;
     const tokenId = res?.tokenId;
     try {
-      await dispatch({ type: GOOGLE_LOGIN_REQUEST, payload: { result, tokenId } });
+      await dispatch({
+        type: GOOGLE_LOGIN_REQUEST,
+        payload: { result, tokenId },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +87,7 @@ const LoginModal = () => {
 
   return (
     <div>
-      <NavLink onClick={handelToggle} href="#">
+      <NavLink onClick={handelToggle} href="#" style={{ color: "white" }}>
         Login
       </NavLink>
       <Modal isOpen={modal} toggle={handelToggle}>
@@ -105,19 +112,27 @@ const LoginModal = () => {
                 placeholder="Password를 입력하세요."
                 onChange={onChange}
               />
-              <Button color="dark" style={{ width:"100%", height:"50px", marginTop: "20px" }} block>
+              <Button
+                color="dark"
+                style={{ width: "100%", height: "50px", marginTop: "20px" }}
+                block
+              >
                 Login
               </Button>
               <GoogleLogin
                 clientId={process.env.REACT_APP_GOOGLE_ID}
-                render={renderProps => (
-                  <GoogleButton  onClick={renderProps.onClick} style={{width:"100%", marginTop: "10px"}} disabled={renderProps.disabled}/>
+                render={(renderProps) => (
+                  <GoogleButton
+                    onClick={renderProps.onClick}
+                    style={{ width: "100%", marginTop: "10px" }}
+                    disabled={renderProps.disabled}
+                  />
                 )}
                 onSuccess={googleSuccess}
                 onFailure={googleFailure}
                 cookiePolicy={"single_host_origin"}
               >
-                  <span style={{width:"100%"}}>구글로 로그인 하기</span>
+                <span style={{ width: "100%" }}>구글로 로그인 하기</span>
               </GoogleLogin>
             </FormGroup>
           </Form>

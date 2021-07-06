@@ -31,6 +31,7 @@ const PostWrite = () => {
     const { title, contents, fileUrl, category } = form;
     const token = localStorage.getItem("token");
     const body = { title, contents, fileUrl, category, token };
+    console.log(contents);
     dispatch({
       type: POST_UPLOADING_REQUEST,
       payload: body,
@@ -92,6 +93,7 @@ const PostWrite = () => {
         contents: data,
       });
     }
+    console.log(data);
   };
 
   return (

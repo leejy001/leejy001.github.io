@@ -21,10 +21,9 @@ const PostCardOne = ({ posts }) => {
         ? posts.map(
             ({ _id, title, fileUrl, contents, comments, views, date }) => {
               return (
-                <>
+                <Fragment key={_id}>
                   {fileUrl === "none" ? (
                     <Card
-                      key={_id}
                       style={{
                         margin: "15px 10px",
                         padding: "0",
@@ -74,7 +73,6 @@ const PostCardOne = ({ posts }) => {
                     </Card>
                   ) : (
                     <Card
-                      key={_id}
                       style={{
                         margin: "15px 10px",
                         padding: "0",
@@ -127,7 +125,7 @@ const PostCardOne = ({ posts }) => {
                       </Row>
                     </Card>
                   )}
-                </>
+                </Fragment>
               );
             }
           )

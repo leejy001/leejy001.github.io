@@ -18,15 +18,13 @@ import {
   POST_WRITE_REQUEST,
 } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
-import SearchInput from "./search/SearchInput";
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const { isAuthenticated, user, userRole } = useSelector(
     (state) => state.auth
   );
-  console.log(userRole, "userRole");
-  console.log(user, "Name");
 
   const dispatch = useDispatch();
   // 메모이제이션된 콜백 반환
@@ -36,7 +34,13 @@ const AppNavbar = () => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [user]);
+    const updateScroll = () => {
+      setScrollPosition(window.scrollY);
+      console.log(scrollPosition);
+      console.log(window.scrollY);
+    };
+    window.addEventListener("scroll", updateScroll);
+  }, [user, scrollPosition]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -55,7 +59,7 @@ const AppNavbar = () => {
   };
 
   const guestLink = (
-    <Fragment>
+    <Fragment style={{ justifyContent: "flex-end" }}>
       <NavItem>
         <RegisterModal />
       </NavItem>
@@ -69,11 +73,13 @@ const AppNavbar = () => {
     <Fragment>
       <NavItem>
         {userRole === "Admin" ? (
-          <Form className="col mt-2">
+          <Form className="col">
             <Link
               to="/post"
-              className="btn btn-success block text-white px-3"
+              className="btn btn-success block text-white px-3 btn-sm"
               onClick={addPostClick}
+              size="sm"
+              style={{ fontSize: "9px", height: "25px" }}
             >
               Add Post
             </Link>
@@ -82,16 +88,30 @@ const AppNavbar = () => {
           ""
         )}
       </NavItem>
-      <NavItem className="d-flex justify-content-center">
-        <Form className="col mt-2">
+      <NavItem>
+        <Form className="col">
           {user && user.name ? (
             <Link to={`/user/${user.name}/profile`} onClick={passwordEditClick}>
-              <Button outline color="light" className="px-3 mx-3" block>
+              <Button
+                outline
+                color="light"
+                className="px-2 mx-3"
+                size="sm"
+                block
+                style={{ fontSize: "7px", height: "25px" }}
+              >
                 <strong>{user ? `Welcome ${user.name}` : ""}</strong>
               </Button>
             </Link>
           ) : (
-            <Button outline color="light" className="px-3" block>
+            <Button
+              outline
+              color="light"
+              className="px-3"
+              size="sm"
+              block
+              style={{ fontSize: "9px", height: "25px" }}
+            >
               <strong>유저를 찾을 수 없습니다.</strong>
             </Button>
           )}
@@ -100,7 +120,13 @@ const AppNavbar = () => {
       <NavItem>
         <Form className="col">
           <Link onClick={onLogout} to="/">
-            <Button outline color="light" className="mt-2" block>
+            <Button
+              outline
+              color="light"
+              size="sm"
+              block
+              style={{ fontSize: "10px", height: "25px" }}
+            >
               Logout
             </Button>
           </Link>
@@ -111,24 +137,31 @@ const AppNavbar = () => {
 
   return (
     <Fragment>
-      <Navbar color="dark" dark expand="lg" className="sticky-top">
-        <Container>
-          <Link to="/" className="text-white text-decoration-none">
-            LAB 207 Blog
-          </Link>
-          <NavbarToggler onClick={handleToggle} />
-          <Collapse
-            isOpen={isOpen}
-            navbar
-            style={{ justifyContent: "flex-end" }}
-          >
-            <SearchInput isOpen={isOpen} />
-            <Nav className="nav-right ml-auto d-flex" navbar>
-              {isAuthenticated ? authLink : guestLink}
-            </Nav>
-          </Collapse>
+      <div
+        className="fixed-top"
+        id={scrollPosition < 100 ? "" : "change-navbar"}
+      >
+        <Container id="nav-container">
+          <Navbar className="main-navbar" expand="lg">
+            <Link to="/" className="text-white text-decoration-none">
+              LEE Blog
+            </Link>
+            <NavbarToggler
+              onClick={handleToggle}
+              style={{ borderColor: "black" }}
+            />
+            <Collapse
+              isOpen={isOpen}
+              navbar
+              style={{ justifyContent: "flex-end" }}
+            >
+              <Nav className="nav-right ml-auto d-flex" navbar>
+                {isAuthenticated ? authLink : guestLink}
+              </Nav>
+            </Collapse>
+          </Navbar>
         </Container>
-      </Navbar>
+      </div>
     </Fragment>
   );
 };

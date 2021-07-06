@@ -19,27 +19,33 @@ import {
 const MyRouter = () => (
   <Fragment>
     <AppNavbar />
-    <Header />
-    <Container id="main-body">
-      <Switch>
-        <Route path="/" exact component={PostCardList} />
-        <Route path="/post" exact component={PostWrite} />
-        <Route path="/post/:id" exact component={PostDetail} />
-        <EditProtectedRoute path="/post/:id/edit" exact component={PostEdit} />
-        <Route
-          path="/post/category/:categoryName"
-          exact
-          component={CategoryResult}
-        />
-        <Route path="/search/:searchTerm" exact component={Search} />
-        <ProfileProtectedRoute
-          path="/user/:userName/profile"
-          exact
-          component={Profile}
-        />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </Container>
+    <div id="all">
+      <Header />
+      <Container id="main-container">
+        <Switch>
+          <Route path="/" exact component={PostCardList} />
+          <Route path="/post" exact component={PostWrite} />
+          <Route path="/post/:id" exact component={PostDetail} />
+          <EditProtectedRoute
+            path="/post/:id/edit"
+            exact
+            component={PostEdit}
+          />
+          <Route
+            path="/post/category/:categoryName"
+            exact
+            component={CategoryResult}
+          />
+          <Route path="/search/:searchTerm" exact component={Search} />
+          <ProfileProtectedRoute
+            path="/user/:userName/profile"
+            exact
+            component={Profile}
+          />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </Container>
+    </div>
     <Footer />
   </Fragment>
 );

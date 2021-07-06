@@ -31,7 +31,7 @@ const SearchInput = () => {
 
   return (
     <Fragment>
-      <Form onSubmit={onSubmit} className="col mt-2 mx-3">
+      <Form id="tab-search" onSubmit={onSubmit}>
         <Input name="searchBy" onChange={onChange} innerRef={resetValue} />
       </Form>
     </Fragment>
