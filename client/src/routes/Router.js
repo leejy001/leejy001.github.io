@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AppNavbar from "../components/AppNavbar";
-import { Container } from "reactstrap";
 import { Redirect, Route, Switch } from "react-router";
 import PostCardList from "./nomalRoute/PostCardList";
 import PostWrite from "./nomalRoute/PostWrite";
@@ -21,7 +20,7 @@ const MyRouter = () => (
     <AppNavbar />
     <div id="all">
       <Header />
-      <Container id="main-container">
+      <div>
         <Switch>
           <Route path="/" exact component={PostCardList} />
           <Route path="/post" exact component={PostWrite} />
@@ -44,7 +43,7 @@ const MyRouter = () => (
           />
           <Redirect from="*" to="/" />
         </Switch>
-      </Container>
+      </div>
     </div>
     <Footer />
   </Fragment>

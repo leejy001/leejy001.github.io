@@ -23,6 +23,7 @@ const PostEdit = () => {
     fileUrl: "",
   });
   const { postDetail } = useSelector((state) => state.post);
+  console.log(postDetail.contents);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
@@ -31,6 +32,7 @@ const PostEdit = () => {
     const token = localStorage.getItem("token");
     const id = postDetail._id;
     const body = { title, contents, fileUrl, token, id };
+    console.log(contents);
     dispatch({
       type: POST_EDIT_UPLOADING_REQUEST,
       payload: body,
@@ -51,14 +53,6 @@ const PostEdit = () => {
 
   const getDataFromCKEditor = (event, editor) => {
     const data = editor.getData();
-    let content = "";
-    console.log(data);
-    if (data && data.match("<p")) {
-      const whereContent_start = data.indexOf(">");
-      let whereContent_end = data.indexOf("</p>");
-      content = data.substring(whereContent_start + 1, whereContent_end);
-      console.log(content, "content");
-    }
 
     if (data && data.match("<img src=")) {
       const whereImg_start = data.indexOf("<img src=");
@@ -111,9 +105,22 @@ const PostEdit = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <Form onSubmit={onSubmit}>
-          <FormGroup className="mb-3">
-            <Label for="title">Title</Label>
+        <Form
+          onSubmit={onSubmit}
+          style={{
+            paddingTop: "300px",
+            paddingBottom: "42px",
+            width: "800px",
+            margin: "0 auto",
+            textAlign: "center",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          <FormGroup className="mb-2">
+            <Label className="mb-1" for="title" style={{ color: "white" }}>
+              Title
+            </Label>
             <Input
               defaultValue={postDetail.title}
               type="text"
@@ -123,8 +130,10 @@ const PostEdit = () => {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup className="mb-3">
-            <Label for="content">Content</Label>
+          <FormGroup className="mb-2">
+            <Label className="mb-1" for="content" style={{ color: "white" }}>
+              Content
+            </Label>
             <CKEditor
               editor={ClassicEditor}
               config={editorConfiguration}
@@ -133,6 +142,7 @@ const PostEdit = () => {
               onBlur={getDataFromCKEditor}
             />
             <Button
+              style={{ margin: "0 auto" }}
               color="success"
               block
               className="mt-3 col-md-2 offset-md-10 mb-3"

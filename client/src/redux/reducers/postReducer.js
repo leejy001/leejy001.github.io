@@ -20,6 +20,9 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
+  POST_DETAIL_CLEAR_REQUEST,
+  POST_DETAIL_CLEAR_SUCCESS,
+  POST_DETAIL_CLEAR_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -99,6 +102,25 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+
+    case POST_DETAIL_CLEAR_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case POST_DETAIL_CLEAR_SUCCESS:
+      return {
+        ...state,
+        postDetail: "",
+        loading: false,
+      };
+
+    case POST_DETAIL_CLEAR_FAILURE:
+      return {
+        ...state,
         loading: false,
       };
 

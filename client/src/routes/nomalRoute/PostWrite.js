@@ -99,9 +99,21 @@ const PostWrite = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <Form onSubmit={onSubmit}>
-          <FormGroup className="mb-3">
-            <Label for="title">Title</Label>
+        <Form
+          onSubmit={onSubmit}
+          style={{
+            width: "800px",
+            margin: "0 auto",
+            textAlign: "center",
+            color: "white",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          <FormGroup className="mb-2">
+            <Label className="mb-1" for="title">
+              Title
+            </Label>
             <Input
               type="text"
               name="title"
@@ -110,8 +122,10 @@ const PostWrite = () => {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup className="mb-3">
-            <Label for="category">Category</Label>
+          <FormGroup className="mb-2">
+            <Label className="mb-1" for="category">
+              Category
+            </Label>
             <Input
               type="text"
               name="category"
@@ -120,8 +134,10 @@ const PostWrite = () => {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup className="mb-3">
-            <Label for="content">Content</Label>
+          <FormGroup className="mb-2">
+            <Label className="mb-1" for="content">
+              Content
+            </Label>
             <CKEditor
               editor={ClassicEditor}
               config={editorConfiguration}

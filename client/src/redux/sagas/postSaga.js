@@ -26,6 +26,9 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
+  POST_DETAIL_CLEAR_SUCCESS,
+  POST_DETAIL_CLEAR_FAILURE,
+  POST_DETAIL_CLEAR_REQUEST,
 } from "../types";
 
 // All posts load
@@ -116,6 +119,24 @@ function* loadPostDetail(action) {
 
 function* watchLoadPostDetail() {
   yield takeEvery(POST_DETAIL_LOADING_REQUEST, loadPostDetail);
+}
+
+// Post Detail Clear
+function* loadPostDetailClear() {
+  try {
+    yield put({
+      type: POST_DETAIL_CLEAR_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: POST_DETAIL_CLEAR_FAILURE,
+    });
+    yield put(push("/"));
+  }
+}
+
+function* watchLoadPostDetailClear() {
+  yield takeEvery(POST_DETAIL_CLEAR_REQUEST, loadPostDetailClear);
 }
 
 // Post Delete
@@ -283,6 +304,7 @@ export default function* postSaga() {
     fork(watchLoadPosts),
     fork(watchuploadPosts),
     fork(watchLoadPostDetail),
+    fork(watchLoadPostDetailClear),
     fork(watchDeletePost),
     fork(watchPostEditLoad),
     fork(watchPostEditUpload),

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SEARCH_REQUEST } from "../../redux/types";
 import PostCardOne from "../../components/post/PostCardOne";
+import { Container } from "reactstrap";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -21,15 +22,17 @@ const Search = () => {
 
   return (
     <Fragment>
-      <div id="tab-row" className="d-flex">
-        <h3 style={{ color: "white" }}>&nbsp;검색결과: "{searchTerm}"</h3>
-        <h4 style={{ color: "white", marginTop: "5px" }}>
-          &nbsp;&nbsp;{searchResult.length} Post
-        </h4>
-      </div>
-      <div className="card-container">
-        <PostCardOne posts={searchResult} />
-      </div>
+      <Container id="main-container">
+        <div id="tab-row" className="d-flex">
+          <h3 style={{ color: "white" }}>&nbsp;검색결과: "{searchTerm}"</h3>
+          <h4 style={{ color: "white", marginTop: "5px" }}>
+            &nbsp;&nbsp;{searchResult.length} Post
+          </h4>
+        </div>
+        <div className="card-container">
+          <PostCardOne posts={searchResult} />
+        </div>
+      </Container>
     </Fragment>
   );
 };

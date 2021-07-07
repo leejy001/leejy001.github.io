@@ -137,7 +137,7 @@ const AppNavbar = () => {
     <Fragment>
       <div
         className="fixed-top"
-        id={scrollPosition < 100 ? "" : "change-navbar"}
+        id={scrollPosition < 150 ? "" : "change-navbar"}
       >
         <Container id="nav-container">
           <Navbar className="main-navbar" expand="lg">

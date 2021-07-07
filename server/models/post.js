@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 // create schema
-const curTime = new Date();
-const utc = curTime.getTime() + curTime.getTimezoneOffset() * 60 * 1000;
-const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,

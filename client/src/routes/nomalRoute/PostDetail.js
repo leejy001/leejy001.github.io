@@ -4,12 +4,16 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
   POST_DELETE_REQUEST,
+  POST_DETAIL_CLEAR_REQUEST,
   POST_DETAIL_LOADING_REQUEST,
   USER_LOADING_REQUEST,
 } from "../../redux/types";
-import { Col, Button, Row, Container } from "reactstrap";
+import { Button, Row, Container, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faHome,
+  faTrash,
+  faPen,
   faPencilAlt,
   faCommentDots,
   faMouse,
@@ -25,6 +29,7 @@ const PostDetail = (req) => {
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
+  const date = new Date(postDetail.date);
   const { userId, userName } = useSelector((state) => state.auth);
   const { comments } = useSelector((state) => state.comment);
   console.log(req);
@@ -49,96 +54,94 @@ const PostDetail = (req) => {
     });
   };
 
+  const onHomeClick = () => {
+    dispatch({
+      type: POST_DETAIL_CLEAR_REQUEST,
+    });
+  };
+
   const EditButton = (
     <Fragment>
-      <Row className="d-flex justify-content-center pb-3">
-        <Col className="col-md-3 mr-md-3">
-          <Link
-            to="/"
-            className="btn btn-primary btn-block"
-            style={{ width: "100%" }}
-          >
-            Home
-          </Link>
-        </Col>
-        <Col className="col-md-3 mr-md-3">
-          <Link
-            to={`/post/${req.match.params.id}/edit`}
-            className="btn btn-success"
-            style={{ width: "100%" }}
-          >
-            Edit Post
-          </Link>
-        </Col>
-        <Col className="col-md-3">
-          <Button
-            className="btn-block btn-danger"
-            style={{ width: "100%" }}
-            onClick={onDeleteClick}
-          >
-            Delete
-          </Button>
-        </Col>
-      </Row>
+      <div
+        style={{
+          width: "55px",
+          height: "200px",
+        }}
+      >
+        <Link
+          to="/"
+          className="btn btn-primary btn-block"
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+          onClick={onHomeClick}
+        >
+          <FontAwesomeIcon icon={faHome} />
+        </Link>
+        <Link
+          to={`/post/${req.match.params.id}/edit`}
+          className="btn btn-success btn-block mb-2 mt-2"
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+        >
+          <FontAwesomeIcon icon={faPen} />
+        </Link>
+        <Button
+          className="btn-block btn-danger"
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+          onClick={onDeleteClick}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
+      </div>
     </Fragment>
   );
 
   const HomeButton = (
     <Fragment>
-      <Row className="d-flex justify-content-center pb-3">
-        <Col className="col-sm-12 com-md-3">
-          <Link
-            to="/"
-            className="btn btn-primary btn-block"
-            style={{ width: "100%" }}
-          >
-            Home
-          </Link>
-        </Col>
-      </Row>
+      <div
+        style={{
+          width: "55px",
+          height: "200px",
+        }}
+      >
+        <Link
+          to="/"
+          className="btn btn-primary btn-block"
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+          onClick={onHomeClick}
+        >
+          <FontAwesomeIcon icon={faHome} />
+        </Link>
+      </div>
     </Fragment>
   );
 
   const Body = (
     <>
-      {userId === creatorId ? EditButton : HomeButton}
-      <Row className="border-bottom border-top border-primary p-3 mb-3 d-flex justify-content-between">
-        {(() => {
-          if (postDetail && postDetail.creator) {
-            return (
-              <Fragment>
-                <div style={{ fontWeight: "bold", fontSize: "large" }}>
-                  <span style={{ marginRight: "0.75rem" }}>
-                    <Button color="info">
-                      {postDetail.category.categoryName}
-                    </Button>
-                  </span>
-                  {postDetail.title}
-                </div>
-                <div style={{ textAlign: "end" }}>
-                  {postDetail.creator.name}
-                </div>
-              </Fragment>
-            );
-          }
-        })()}
-      </Row>
+      <div style={{ position: "fixed", left: "20%", top: "40%" }}>
+        {userId === creatorId ? EditButton : HomeButton}
+      </div>
       {postDetail && postDetail.comments ? (
         <Fragment>
-          <div className="d-flex justify-content-end align-items-baseline small">
-            <FontAwesomeIcon icon={faPencilAlt} />
-            &nbsp;
-            <span>{postDetail.date}</span>
-            &nbsp;&nbsp;
-            <FontAwesomeIcon icon={faCommentDots} />
-            &nbsp;
-            <span>{postDetail.comments.length}</span>
-            &nbsp;&nbsp;
-            <FontAwesomeIcon icon={faMouse} />
-            &nbsp;
-            <span>{postDetail.views}</span>
-          </div>
-          <Row className="mb-3">
+          <Row className="mb-3" style={{ height: "400px" }}>
             <CKEditor
               editor={BalloonEditor}
               data={postDetail.contents}
@@ -188,12 +191,65 @@ const PostDetail = (req) => {
     </>
   );
 
-  console.log(comments, "Comments");
   return (
-    <div>
-      <Helmet title={`Post | ${title}`} />{" "}
-      {loading === true ? GrowingSpinner : Body}
-    </div>
+    <>
+      <div id="page-post-header" className="fixed-top">
+        {postDetail ? (
+          <Row
+            style={{
+              backgroundColor: "rgba(0,0,0,0.1)",
+              paddingBottom: "29px",
+            }}
+          >
+            <Col md="6" sm="auto" className="text-center m-auto mt-5">
+              <h1 style={{ fontWeight: "bold" }}>{postDetail.title}</h1>
+              <span>{postDetail.category.categoryName}</span>
+            </Col>
+            <div
+              className="d-flex justify-content-center align-items-baseline"
+              style={{ marginTop: "30px" }}
+            >
+              <div>{postDetail.creator.name} &nbsp;</div>
+              <div className="small">
+                <FontAwesomeIcon icon={faPencilAlt} />
+                &nbsp;
+                <span>{`${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDay()}일`}</span>
+                &nbsp;&nbsp;
+                <FontAwesomeIcon icon={faCommentDots} />
+                &nbsp;
+                <span>{postDetail.comments.length}</span>
+                &nbsp;&nbsp;
+                <FontAwesomeIcon icon={faMouse} />
+                &nbsp;
+                <span>{postDetail.views}</span>
+              </div>
+            </div>
+          </Row>
+        ) : (
+          ""
+        )}
+      </div>
+      <div
+        style={{
+          width: "100%",
+          paddingTop: "250px",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            backgroundColor: "white",
+            zIndex: "100",
+            marginBottom: "-20px",
+          }}
+        >
+          <Container id="main-container">
+            <Helmet title={`Post | ${title}`} />{" "}
+            {loading === true ? GrowingSpinner : Body}
+          </Container>
+        </div>
+      </div>
+    </>
   );
 };
 

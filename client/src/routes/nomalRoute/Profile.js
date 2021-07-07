@@ -65,7 +65,7 @@ const Profile = () => {
       <Helmet title={`Profile | ${userName}님의 프로필`} />
       <Col sm="12" md={{ size: 6, offset: 3 }}>
         <Card>
-          <CardHeader>
+          <CardHeader style={{ margin: "0 auto", backgroundColor: "white" }}>
             <strong>Edit Password</strong>
           </CardHeader>
           <CardBody>
@@ -109,7 +109,7 @@ const Profile = () => {
               <Button
                 color="success"
                 block
-                className="mt-4 mb-4 col-md-3 offset-9"
+                className="mt-4 mb-4 col-md-4 offset-4"
               >
                 제출하기
               </Button>
