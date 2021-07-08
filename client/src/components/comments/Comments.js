@@ -1,9 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import {
-  COMMENT_LOADING_REQUEST,
-  COMMENT_UPLOADING_REQUEST,
-} from "../../redux/types";
+import { COMMENT_UPLOADING_REQUEST } from "../../redux/types";
 import { Button, Form, FormGroup, Input, Row } from "reactstrap";
 
 const Comments = ({ id, userName, userId }) => {
@@ -40,13 +37,6 @@ const Comments = ({ id, userName, userId }) => {
     });
     console.log(form.contents);
   };
-
-  useEffect(() => {
-    dispatch({
-      type: COMMENT_LOADING_REQUEST,
-      payload: id,
-    });
-  }, [dispatch, id]);
 
   return (
     <>

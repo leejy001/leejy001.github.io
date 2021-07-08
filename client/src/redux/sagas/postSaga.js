@@ -14,9 +14,6 @@ import {
   POST_DELETE_SUCCESS,
   POST_DELETE_FAILURE,
   POST_DELETE_REQUEST,
-  POST_EDIT_LOADING_SUCCESS,
-  POST_EDIT_LOADING_FAILURE,
-  POST_EDIT_LOADING_REQUEST,
   POST_EDIT_UPLOADING_SUCCESS,
   POST_EDIT_UPLOADING_FAILURE,
   POST_EDIT_UPLOADING_REQUEST,
@@ -175,42 +172,6 @@ function* watchDeletePost() {
   yield takeEvery(POST_DELETE_REQUEST, DeletePost);
 }
 
-// Post Edit Load
-const PostEditLoadAPI = (payload) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const token = payload.token;
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
-
-  return axios.get(`/api/post/${payload.id}/edit`, config);
-};
-
-function* PostEditLoad(action) {
-  try {
-    const result = yield call(PostEditLoadAPI, action.payload);
-    console.log(result, "PostEditLoad");
-    yield put({
-      type: POST_EDIT_LOADING_SUCCESS,
-      payload: result.data,
-    });
-  } catch (e) {
-    yield put({
-      type: POST_EDIT_LOADING_FAILURE,
-      payload: e,
-    });
-    yield put(push("/"));
-  }
-}
-
-function* watchPostEditLoad() {
-  yield takeEvery(POST_EDIT_LOADING_REQUEST, PostEditLoad);
-}
-
 // Post Edit Upload
 const PostEditUploadAPI = (payload) => {
   const config = {
@@ -306,7 +267,6 @@ export default function* postSaga() {
     fork(watchLoadPostDetail),
     fork(watchLoadPostDetailClear),
     fork(watchDeletePost),
-    fork(watchPostEditLoad),
     fork(watchPostEditUpload),
     fork(watchCategoryFind),
     fork(watchSearchResult),

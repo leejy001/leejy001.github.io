@@ -8,9 +8,6 @@ import {
   POST_DETAIL_LOADING_REQUEST,
   POST_DETAIL_LOADING_SUCCESS,
   POST_DETAIL_LOADING_FAILURE,
-  POST_EDIT_LOADING_FAILURE,
-  POST_EDIT_LOADING_REQUEST,
-  POST_EDIT_LOADING_SUCCESS,
   POST_EDIT_UPLOADING_REQUEST,
   POST_EDIT_UPLOADING_SUCCESS,
   POST_EDIT_UPLOADING_FAILURE,
@@ -121,27 +118,6 @@ const postReducer = (state = initialState, action) => {
     case POST_DETAIL_CLEAR_FAILURE:
       return {
         ...state,
-        loading: false,
-      };
-
-    case POST_EDIT_LOADING_REQUEST:
-      return {
-        ...state,
-        posts: [],
-        loading: true,
-      };
-
-    case POST_EDIT_LOADING_SUCCESS:
-      return {
-        ...state,
-        postDetail: action.payload,
-        loading: false,
-      };
-
-    case POST_EDIT_LOADING_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
         loading: false,
       };
 

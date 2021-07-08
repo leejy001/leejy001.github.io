@@ -22,7 +22,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
-import Comments from "../../components/comments/Comments";
+import CommentList from "../../components/comments/CommentList";
 
 const PostDetail = (req) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const PostDetail = (req) => {
   );
   const date = new Date(postDetail.date);
   const { userId, userName } = useSelector((state) => state.auth);
-  const { comments } = useSelector((state) => state.comment);
+
   console.log(req);
   useEffect(() => {
     dispatch({
@@ -141,7 +141,7 @@ const PostDetail = (req) => {
       </div>
       {postDetail && postDetail.comments ? (
         <Fragment>
-          <Row className="mb-3" style={{ height: "400px" }}>
+          <Row className="mb-3">
             <CKEditor
               editor={BalloonEditor}
               data={postDetail.contents}
@@ -150,39 +150,11 @@ const PostDetail = (req) => {
             />
           </Row>
           <Row>
-            <Container className="mb-3 border border-blue rounded">
-              {Array.isArray(comments)
-                ? comments.map(
-                    ({ contents, creator, date, _id, creatorName }) => (
-                      <div key={_id}>
-                        <Row className="justify-content-between p-2">
-                          <div className="font-weight-bold">
-                            {creatorName ? creatorName : creator}
-                          </div>
-                          <div className="text-small">
-                            <span className="font-weight-bold">
-                              {date.split(" ")[0]}
-                            </span>
-                            <span className="font-weight-light">
-                              {" "}
-                              {date.split(" ")[1]}
-                            </span>
-                          </div>
-                        </Row>
-                        <Row className="p-2">
-                          <div>{contents}</div>
-                        </Row>
-                        <hr />
-                      </div>
-                    )
-                  )
-                : "Creator"}
-              <Comments
-                id={req.match.params.id}
-                userId={userId}
-                userName={userName}
-              />
-            </Container>
+            <CommentList
+              id={req.match.params.id}
+              userId={userId}
+              userName={userName}
+            />
           </Row>
         </Fragment>
       ) : (
@@ -213,7 +185,9 @@ const PostDetail = (req) => {
               <div className="small">
                 <FontAwesomeIcon icon={faPencilAlt} />
                 &nbsp;
-                <span>{`${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDay()}일`}</span>
+                <span>{`${date.getFullYear()}년 ${
+                  date.getMonth() + 1
+                }월 ${date.getDay()}일`}</span>
                 &nbsp;&nbsp;
                 <FontAwesomeIcon icon={faCommentDots} />
                 &nbsp;

@@ -14,7 +14,7 @@ import LoginModal from "../components/auth/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   LOGOUT_REQUEST,
-  POST_EDIT_LOADING_REQUEST,
+  PASSWORD_EDIT_LOADING_REQUEST,
   POST_WRITE_REQUEST,
 } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
@@ -52,7 +52,7 @@ const AppNavbar = () => {
 
   const passwordEditClick = () => {
     dispatch({
-      type: POST_EDIT_LOADING_REQUEST,
+      type: PASSWORD_EDIT_LOADING_REQUEST,
     });
   };
 

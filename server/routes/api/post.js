@@ -166,17 +166,6 @@ router.delete("/:id", auth, async (req, res) => {
 // @desc    Edit Post
 // @access  Private
 
-router.get("/:id/edit", auth, async (req, res, next) => {
-  try {
-    const post = await (
-      await Post.findById(req.params.id)
-    ).populated("creator", "name");
-    res.json(post);
-  } catch (e) {
-    console.error(e);
-  }
-});
-
 router.post("/:id/edit", auth, async (req, res, next) => {
   console.log(req, "api/post/:id/edit");
   const {
@@ -204,7 +193,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
 
 // Comments Route
 
-// @routes  get api/post/comments
+// @routes  get api/get/:id/comments
 // @desc    Get All Comments
 // @access  Public
 
@@ -220,6 +209,10 @@ router.get("/:id/comments", async (req, res) => {
     console.log(e);
   }
 });
+
+// @routes  api/post/:id/comments
+// @desc    Create Comment
+// @access  Private
 
 router.post("/:id/comments", async (req, res, next) => {
   console.log(req, "comments");
@@ -250,6 +243,57 @@ router.post("/:id/comments", async (req, res, next) => {
     console.log(e);
     next(e);
   }
+});
+
+// @routes  get api/post/:id/comments/:commentId/edit
+// @desc    Edit Comment
+// @access  Private
+
+router.post("/:id/comments/:commentId/edit", auth, async (req, res, next) => {
+  console.log(req.body, "/:id/comments/:commentId/edit");
+  const contents = req.body.newContents;
+
+  try {
+    await Comment.findByIdAndUpdate(
+      req.body.commentId,
+      {
+        contents,
+      },
+      { new: true } // new: true값을 줘야 업데이트 적용
+    );
+    const comment = await Post.findById(req.body.id).populate({
+      path: "comments",
+    });
+    const result = comment.comments;
+    return res.json(result);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
+// @routes  api/post/:id/comments/:commentId/
+// @desc    Delete Comment
+// @access  Private
+
+router.delete("/:id/comments/:commentId/", auth, async (req, res) => {
+  console.log(req.params);
+  await Post.findByIdAndUpdate(req.params.id, {
+    $pull: {
+      comments: req.params.commentId,
+    },
+  });
+  await Comment.deleteMany({ _id: req.params.commentId });
+  await User.findByIdAndUpdate(req.user.id, {
+    $pull: {
+      comments: { comment_id: req.params.commentId },
+    },
+  });
+  const comment = await Post.findById(req.params.id).populate({
+    path: "comments",
+  });
+  const result = comment.comments;
+  return res.json(result);
 });
 
 // Category Search
