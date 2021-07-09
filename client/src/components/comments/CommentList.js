@@ -17,7 +17,6 @@ function CommentList({ id, userId, userName }) {
       type: COMMENT_LOADING_REQUEST,
       payload: id,
     });
-    console.log("dasdas");
   }, [dispatch, id]);
 
   const onCommentDelete = (commentId) => {

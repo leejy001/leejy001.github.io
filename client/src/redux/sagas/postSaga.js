@@ -26,6 +26,9 @@ import {
   POST_DETAIL_CLEAR_SUCCESS,
   POST_DETAIL_CLEAR_FAILURE,
   POST_DETAIL_CLEAR_REQUEST,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_LIST_FAILURE,
+  CATEGORY_LIST_REQUEST,
 } from "../types";
 
 // All posts load
@@ -233,6 +236,32 @@ function* watchCategoryFind() {
   yield takeEvery(CATEGORY_FIND_REQUEST, CategoryFind);
 }
 
+// Category List
+const CategoryListAPI = (payload) => {
+  console.log(payload);
+  return axios.get(`/api/post/${payload}/category`);
+};
+
+function* CategoryList(action) {
+  try {
+    const result = yield call(CategoryListAPI, action.payload);
+    console.log(result, "CategoryList");
+    yield put({
+      type: CATEGORY_LIST_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: CATEGORY_LIST_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchCategoryList() {
+  yield takeEvery(CATEGORY_LIST_REQUEST, CategoryList);
+}
+
 // Search
 const SearchResultAPI = (payload) => {
   return axios.get(`/api/search/${encodeURIComponent(payload)}`);
@@ -269,6 +298,7 @@ export default function* postSaga() {
     fork(watchDeletePost),
     fork(watchPostEditUpload),
     fork(watchCategoryFind),
+    fork(watchCategoryList),
     fork(watchSearchResult),
   ]);
 }

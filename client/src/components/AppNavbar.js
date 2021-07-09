@@ -18,6 +18,8 @@ import {
   POST_WRITE_REQUEST,
 } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,9 +93,9 @@ const AppNavbar = () => {
           {user && user.name ? (
             <Link to={`/user/${user.name}/profile`} onClick={passwordEditClick}>
               <Button
+                className="user-button"
                 outline
                 color="light"
-                className="px-2 mx-3"
                 size="sm"
                 block
                 style={{ fontSize: "7px", height: "25px" }}
@@ -103,9 +105,9 @@ const AppNavbar = () => {
             </Link>
           ) : (
             <Button
+              className="user-button"
               outline
               color="light"
-              className="px-3"
               size="sm"
               block
               style={{ fontSize: "9px", height: "25px" }}
@@ -137,7 +139,7 @@ const AppNavbar = () => {
     <Fragment>
       <div
         className="fixed-top"
-        id={scrollPosition < 150 ? "" : "change-navbar"}
+        id={scrollPosition < 150 ? "basic-navbar" : "change-navbar"}
       >
         <Container id="nav-container">
           <Navbar className="main-navbar" expand="lg">
@@ -146,8 +148,10 @@ const AppNavbar = () => {
             </Link>
             <NavbarToggler
               onClick={handleToggle}
-              style={{ borderColor: "black" }}
-            />
+              style={{ borderColor: "gray", color: "gray" }}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </NavbarToggler>
             <Collapse
               isOpen={isOpen}
               navbar

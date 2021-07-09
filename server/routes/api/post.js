@@ -297,13 +297,34 @@ router.delete("/:id/comments/:commentId/", auth, async (req, res) => {
 });
 
 // Category Search
-
 router.get("/category/:categoryName", async (req, res, next) => {
   try {
     const result = await Category.findOne(
       {
         categoryName: {
           $regex: req.params.categoryName,
+          $options: "i",
+        },
+      },
+      "posts"
+    ).populate({ path: "posts" });
+    console.log(result, "Category Find Result");
+    res.send(result);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
+// Category list
+router.get("/:id/category", async (req, res, next) => {
+  console.log(req.params.id, "req.body.id");
+  try {
+    const post = await Post.findById(req.params.id).populate("category");
+    const result = await Category.findOne(
+      {
+        categoryName: {
+          $regex: post.category.categoryName,
           $options: "i",
         },
       },

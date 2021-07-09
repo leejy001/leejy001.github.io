@@ -14,6 +14,9 @@ import {
   CATEGORY_FIND_REQUEST,
   CATEGORY_FIND_SUCCESS,
   CATEGORY_FIND_FAILURE,
+  CATEGORY_LIST_REQUEST,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_LIST_FAILURE,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_FAILURE,
@@ -157,6 +160,27 @@ const postReducer = (state = initialState, action) => {
       };
 
     case CATEGORY_FIND_FAILURE:
+      return {
+        ...state,
+        categoryFindResult: action.payload,
+        loading: false,
+      };
+
+    case CATEGORY_LIST_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        loading: true,
+      };
+
+    case CATEGORY_LIST_SUCCESS:
+      return {
+        ...state,
+        categoryFindResult: action.payload,
+        loading: false,
+      };
+
+    case CATEGORY_LIST_FAILURE:
       return {
         ...state,
         categoryFindResult: action.payload,

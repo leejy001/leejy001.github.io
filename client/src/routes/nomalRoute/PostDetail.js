@@ -7,6 +7,7 @@ import {
   POST_DETAIL_CLEAR_REQUEST,
   POST_DETAIL_LOADING_REQUEST,
   USER_LOADING_REQUEST,
+  CATEGORY_LIST_REQUEST,
 } from "../../redux/types";
 import { Button, Row, Container, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,6 +24,7 @@ import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor"
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import CommentList from "../../components/comments/CommentList";
+import CategoryList from "../../components/post/CategoryList";
 
 const PostDetail = (req) => {
   const dispatch = useDispatch();
@@ -31,8 +33,6 @@ const PostDetail = (req) => {
   );
   const date = new Date(postDetail.date);
   const { userId, userName } = useSelector((state) => state.auth);
-
-  console.log(req);
   useEffect(() => {
     dispatch({
       type: POST_DETAIL_LOADING_REQUEST,
@@ -41,6 +41,10 @@ const PostDetail = (req) => {
     dispatch({
       type: USER_LOADING_REQUEST,
       payload: localStorage.getItem("token"),
+    });
+    dispatch({
+      type: CATEGORY_LIST_REQUEST,
+      payload: req.match.params.id,
     });
   }, [dispatch, req.match.params.id]);
 
@@ -64,7 +68,7 @@ const PostDetail = (req) => {
     <Fragment>
       <div
         style={{
-          width: "55px",
+          width: "50px",
           height: "200px",
         }}
       >
@@ -113,8 +117,7 @@ const PostDetail = (req) => {
     <Fragment>
       <div
         style={{
-          width: "55px",
-          height: "200px",
+          width: "50px",
         }}
       >
         <Link
@@ -136,7 +139,7 @@ const PostDetail = (req) => {
 
   const Body = (
     <>
-      <div style={{ position: "fixed", left: "20%", top: "40%" }}>
+      <div className="side-button">
         {userId === creatorId ? EditButton : HomeButton}
       </div>
       {postDetail && postDetail.comments ? (
@@ -151,11 +154,13 @@ const PostDetail = (req) => {
           </Row>
           <Row>
             <CommentList
+              key={req.match.params.id}
               id={req.match.params.id}
               userId={userId}
               userName={userName}
             />
           </Row>
+          <CategoryList />
         </Fragment>
       ) : (
         <h1>hi</h1>

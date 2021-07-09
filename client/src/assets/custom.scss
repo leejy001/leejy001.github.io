@@ -48,6 +48,7 @@
 
 #tab-row {
   border-bottom: medium solid lightblue;
+  justify-content: center;
 }
 
 #tab-search {
@@ -117,6 +118,29 @@
   -webkit-box-orient: vertical;
 }
 
+.card-contents-C {
+  display: inline-block;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: normal;
+  line-height: 1.2;
+  max-height: 7.2em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.side-button {
+  position: fixed;
+  left: 20%;
+  top: 40%;
+}
+
 // CKEditor5 Setting____________________________________________________
 .ck {
   .ck-editor {
@@ -155,6 +179,83 @@ textarea {
 
 // Media______________________________________________________
 
+@media (min-width: 320px) {
+  #nav-container {
+    width: 300px;
+  }
+  #main-container {
+    width: 300px;
+  }
+  #tab-row {
+    font-size: small;
+  }
+  #basic-navbar {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .card-contents-A {
+    width: 200px;
+  }
+  .card-contents-B {
+    width: 200px;
+  }
+  .side-button {
+    visibility: hidden;
+  }
+  .card-bottom-row {
+    font-size: x-small;
+  }
+  .user-button {
+    padding: 0px 3px;
+    margin: 5px 0px;
+  }
+}
+
+@media (min-width: 425px) {
+  #nav-container {
+    width: 400px;
+  }
+  #main-container {
+    width: 400px;
+  }
+  .card-contents-A {
+    width: 200px;
+  }
+  .card-contents-B {
+    width: 200px;
+  }
+  .side-button {
+    visibility: hidden;
+  }
+  .card-bottom-row {
+    font-size: x-small;
+  }
+  #tab-row {
+    font-size: medium;
+  }
+}
+
+@media (min-width: 768px) {
+  #nav-container {
+    width: 700px;
+  }
+  #main-container {
+    width: 550px;
+  }
+  .card-contents-A {
+    width: 200px;
+  }
+  .card-contents-B {
+    width: 200px;
+  }
+  .side-button {
+    left: 5%;
+    visibility: visible;
+  }
+  .card-bottom-row {
+    font-size: x-small;
+  }
+}
+
 @media (min-width: 1024px) {
   #nav-container {
     width: 800px;
@@ -162,11 +263,23 @@ textarea {
   #main-container {
     width: 650px;
   }
+  #basic-navbar {
+    background-color: rgba(0, 0, 0, 0);
+  }
   .card-contents-A {
     width: 200px;
   }
   .card-contents-B {
     width: 200px;
+  }
+  .side-button {
+    left: 8%;
+  }
+  .card-bottom-row {
+    font-size: small;
+  }
+  .user-button {
+    margin: 0px 5px;
   }
 }
 
@@ -182,6 +295,12 @@ textarea {
   }
   .card-contents-B {
     width: 200px;
+  }
+  .side-button {
+    left: 12%;
+  }
+  .card-bottom-row {
+    font-size: medium;
   }
 }
 
@@ -201,5 +320,8 @@ textarea {
   .card-container {
     width: 900px;
     grid-template-columns: repeat(auto-fill, 300px);
+  }
+  .side-button {
+    left: 20%;
   }
 }

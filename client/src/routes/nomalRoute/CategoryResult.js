@@ -11,6 +11,8 @@ const CategoryResult = () => {
   const { categoryFindResult } = useSelector((state) => state.post);
   const posts = categoryFindResult.posts;
 
+  console.log(categoryName);
+
   useEffect(() => {
     dispatch({
       type: CATEGORY_FIND_REQUEST,
