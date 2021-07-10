@@ -113,12 +113,14 @@ const PostEdit = () => {
             width: "800px",
             margin: "0 auto",
             textAlign: "center",
-            fontSize: "20px",
-            fontWeight: "bold",
           }}
         >
           <FormGroup className="mb-2">
-            <Label className="mb-1" for="title" style={{ color: "white" }}>
+            <Label
+              className="mb-1"
+              for="title"
+              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+            >
               Title
             </Label>
             <Input
@@ -131,7 +133,11 @@ const PostEdit = () => {
             />
           </FormGroup>
           <FormGroup className="mb-2">
-            <Label className="mb-1" for="content" style={{ color: "white" }}>
+            <Label
+              className="mb-1"
+              for="content"
+              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+            >
               Content
             </Label>
             <CKEditor

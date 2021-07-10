@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import config from "./config/index.js";
+import path from "path";
 // Routes
 import postRoutes from "./routes/api/post.js";
 import userRoutes from "./routes/api/user.js";
@@ -13,6 +14,8 @@ import searchRoutes from "./routes/api/search.js";
 
 const app = express();
 const { MONGO_URI } = config;
+
+const prod = precess.env.NODE_ENV === "production";
 
 app.use(hpp());
 app.use(helmet());
@@ -37,5 +40,12 @@ app.use("/api/post", postRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/search", searchRoutes);
+
+if (prod) {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  });
+}
 
 export default app;

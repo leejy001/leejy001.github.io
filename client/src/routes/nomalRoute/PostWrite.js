@@ -106,13 +106,14 @@ const PostWrite = () => {
             width: "800px",
             margin: "0 auto",
             textAlign: "center",
-            color: "white",
-            fontSize: "20px",
-            fontWeight: "bold",
           }}
         >
           <FormGroup className="mb-2">
-            <Label className="mb-1" for="title">
+            <Label
+              className="mb-1"
+              for="title"
+              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+            >
               Title
             </Label>
             <Input
@@ -124,7 +125,11 @@ const PostWrite = () => {
             />
           </FormGroup>
           <FormGroup className="mb-2">
-            <Label className="mb-1" for="category">
+            <Label
+              className="mb-1"
+              for="category"
+              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+            >
               Category
             </Label>
             <Input
@@ -136,7 +141,11 @@ const PostWrite = () => {
             />
           </FormGroup>
           <FormGroup className="mb-2">
-            <Label className="mb-1" for="content">
+            <Label
+              className="mb-1"
+              for="content"
+              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+            >
               Content
             </Label>
             <CKEditor
