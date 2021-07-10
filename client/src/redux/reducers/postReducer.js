@@ -23,6 +23,9 @@ import {
   POST_DETAIL_CLEAR_REQUEST,
   POST_DETAIL_CLEAR_SUCCESS,
   POST_DETAIL_CLEAR_FAILURE,
+  PROFILE_LOADING_REQUEST,
+  PROFILE_LOADING_SUCCESS,
+  PROFILE_LOADING_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -207,6 +210,26 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResult: action.payload,
+        loading: false,
+      };
+
+    case PROFILE_LOADING_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        loading: true,
+      };
+
+    case PROFILE_LOADING_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case PROFILE_LOADING_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
 

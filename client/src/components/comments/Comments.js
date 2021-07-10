@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { COMMENT_UPLOADING_REQUEST } from "../../redux/types";
-import { Button, Form, FormGroup, Input, Row } from "reactstrap";
+import { Button, Form, Input, Row } from "reactstrap";
 
 const Comments = ({ id, userName, userId }) => {
   const dispatch = useDispatch();
@@ -41,27 +41,19 @@ const Comments = ({ id, userName, userId }) => {
   return (
     <>
       <Form onSubmit={onSubmit}>
-        <FormGroup>
-          <Row className="p-2">
-            <div className="font-weight-bold m-1">Make Comment </div>
-            <div className="my-1" />
-            <Input
-              innerRef={resetValue}
-              type="textarea"
-              name="contents"
-              id="contents"
-              onChange={onChange}
-              placeholder="Comment"
-            />
-            <Button
-              color="primary"
-              block
-              className="mt-2 offset-md-10 col-md-2 "
-            >
-              Submit
-            </Button>
-          </Row>
-        </FormGroup>
+        <Row className="p-2">
+          <Input
+            innerRef={resetValue}
+            type="textarea"
+            name="contents"
+            id="contents"
+            onChange={onChange}
+            placeholder="댓글을 달아주세요"
+          />
+          <Button color="primary" block className="mt-2 offset-md-10 col-md-2 ">
+            Submit
+          </Button>
+        </Row>
       </Form>
     </>
   );

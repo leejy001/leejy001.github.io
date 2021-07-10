@@ -49,7 +49,16 @@ const RegisterModal = () => {
 
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#" style={{ color: "white" }}>
+      <NavLink
+        onClick={handleToggle}
+        href="#"
+        style={{
+          color: "white",
+          fontSize: "14px",
+          height: "26px",
+          padding: "0px 10px",
+        }}
+      >
         Register
       </NavLink>
       <Modal isOpen={modal} toggle={handleToggle}>

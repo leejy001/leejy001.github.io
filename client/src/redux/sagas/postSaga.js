@@ -29,6 +29,9 @@ import {
   CATEGORY_LIST_SUCCESS,
   CATEGORY_LIST_FAILURE,
   CATEGORY_LIST_REQUEST,
+  PROFILE_LOADING_SUCCESS,
+  PROFILE_LOADING_FAILURE,
+  PROFILE_LOADING_REQUEST,
 } from "../types";
 
 // All posts load
@@ -289,6 +292,24 @@ function* watchSearchResult() {
   yield takeEvery(SEARCH_REQUEST, SearchResult);
 }
 
+// Profile loading
+function* ProfileLoading() {
+  try {
+    yield put({
+      type: PROFILE_LOADING_SUCCESS,
+    });
+  } catch (e) {
+    yield put({
+      type: PROFILE_LOADING_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchProfileLoading() {
+  yield takeEvery(PROFILE_LOADING_REQUEST, ProfileLoading);
+}
+
 export default function* postSaga() {
   yield all([
     fork(watchLoadPosts),
@@ -300,5 +321,6 @@ export default function* postSaga() {
     fork(watchCategoryFind),
     fork(watchCategoryList),
     fork(watchSearchResult),
+    fork(watchProfileLoading),
   ]);
 }

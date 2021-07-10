@@ -87,7 +87,16 @@ const LoginModal = () => {
 
   return (
     <div>
-      <NavLink onClick={handelToggle} href="#" style={{ color: "white" }}>
+      <NavLink
+        onClick={handelToggle}
+        href="#"
+        style={{
+          color: "white",
+          fontSize: "14px",
+          height: "26px",
+          padding: "0px",
+        }}
+      >
         Login
       </NavLink>
       <Modal isOpen={modal} toggle={handelToggle}>

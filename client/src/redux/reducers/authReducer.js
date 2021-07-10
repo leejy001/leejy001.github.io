@@ -117,7 +117,6 @@ const authReducer = (state = initialState, action) => {
     case PASSWORD_EDIT_LOADING_REQUEST:
       return {
         ...state,
-        posts: [],
         isLoading: true,
       };
     case PASSWORD_EDIT_LOADING_SUCCESS:

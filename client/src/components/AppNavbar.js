@@ -16,6 +16,7 @@ import {
   LOGOUT_REQUEST,
   PASSWORD_EDIT_LOADING_REQUEST,
   POST_WRITE_REQUEST,
+  PROFILE_LOADING_REQUEST,
 } from "../redux/types";
 import RegisterModal from "./auth/RegisterModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,6 +56,9 @@ const AppNavbar = () => {
   const passwordEditClick = () => {
     dispatch({
       type: PASSWORD_EDIT_LOADING_REQUEST,
+    });
+    dispatch({
+      type: PROFILE_LOADING_REQUEST,
     });
   };
 

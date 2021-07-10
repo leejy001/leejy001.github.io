@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -18,6 +18,7 @@ import {
   faPencilAlt,
   faCommentDots,
   faMouse,
+  faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
@@ -25,6 +26,7 @@ import { editorConfiguration } from "../../components/editor/EditorConfig";
 import { GrowingSpinner } from "../../components/spinner/Spinner";
 import CommentList from "../../components/comments/CommentList";
 import CategoryList from "../../components/post/CategoryList";
+import ScrollProgressRead from "react-scroll-progress-read";
 
 const PostDetail = (req) => {
   const dispatch = useDispatch();
@@ -33,6 +35,34 @@ const PostDetail = (req) => {
   );
   const date = new Date(postDetail.date);
   const { userId, userName } = useSelector((state) => state.auth);
+  const [scrollY, setScrollY] = useState(0);
+  const [topBtn, setTopBtn] = useState(false);
+
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    if (scrollY > 200) {
+      setTopBtn(true);
+    } else {
+      setTopBtn(false);
+    }
+  };
+
+  const handleTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setScrollY(0);
+    setTopBtn(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleFollow);
+    return () => {
+      window.removeEventListener("scroll", handleFollow);
+    };
+  });
+
   useEffect(() => {
     dispatch({
       type: POST_DETAIL_LOADING_REQUEST,
@@ -98,7 +128,7 @@ const PostDetail = (req) => {
           <FontAwesomeIcon icon={faPen} />
         </Link>
         <Button
-          className="btn-block btn-danger"
+          className="btn-block btn-danger mb-2 mt-2"
           style={{
             width: "50px",
             height: "50px",
@@ -108,6 +138,18 @@ const PostDetail = (req) => {
           onClick={onDeleteClick}
         >
           <FontAwesomeIcon icon={faTrash} />
+        </Button>
+        <Button
+          className={topBtn ? "topBtn active" : "topBtn"}
+          onClick={handleTop}
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowUp} />
         </Button>
       </div>
     </Fragment>
@@ -133,24 +175,52 @@ const PostDetail = (req) => {
         >
           <FontAwesomeIcon icon={faHome} />
         </Link>
+        <Button
+          className={topBtn ? "topBtn-active mb-2 mt-2" : "topBtn mb-2 mt-2"}
+          onClick={handleTop}
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "65px",
+            fontSize: "23px",
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowUp} />
+        </Button>
       </div>
     </Fragment>
   );
 
   const Body = (
     <>
+      <div
+        className={scrollY < 150 ? "no-progress-bar" : "progress-bar"}
+        style={{
+          position: "fixed",
+          left: "0",
+          marginTop: "-211px",
+          height: "10px",
+          backgroundColor: "rgba(0,0,0,0)",
+          zIndex: "101",
+        }}
+      >
+        <ScrollProgressRead target="read-content" />
+      </div>
       <div className="side-button">
         {userId === creatorId ? EditButton : HomeButton}
       </div>
       {postDetail && postDetail.comments ? (
         <Fragment>
-          <Row className="mb-3">
-            <CKEditor
-              editor={BalloonEditor}
-              data={postDetail.contents}
-              config={editorConfiguration}
-              disabled="true"
-            />
+          <Row className="mb-3" style={{ paddingTop: "20px" }}>
+            <div id="read-content" style={{ height: "auto" }}>
+              <CKEditor
+                editor={BalloonEditor}
+                data={postDetail.contents}
+                config={editorConfiguration}
+                disabled="true"
+                style={{ overflowStyle: "hidden" }}
+              />
+            </div>
           </Row>
           <Row>
             <CommentList
@@ -212,6 +282,7 @@ const PostDetail = (req) => {
         style={{
           width: "100%",
           paddingTop: "250px",
+          height: "auto",
         }}
       >
         <div
@@ -220,9 +291,10 @@ const PostDetail = (req) => {
             backgroundColor: "white",
             zIndex: "100",
             marginBottom: "-20px",
+            height: "auto",
           }}
         >
-          <Container id="main-container">
+          <Container id="main-container" style={{ height: "auto" }}>
             <Helmet title={`Post | ${title}`} />{" "}
             {loading === true ? GrowingSpinner : Body}
           </Container>

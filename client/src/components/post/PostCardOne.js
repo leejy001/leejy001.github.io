@@ -27,8 +27,10 @@ const PostCardOne = ({ posts }) => {
                       style={{
                         margin: "15px 10px",
                         padding: "0",
-                        borderRadius: "16px",
+                        borderRadius: "10px",
                         gridRowEnd: "span 33",
+                        boxShadow:
+                          "0 30px 60px -12px rgba(50, 50, 93, 0.25),0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025)",
                       }}
                     >
                       <Link
@@ -59,13 +61,13 @@ const PostCardOne = ({ posts }) => {
                           &nbsp;&nbsp;
                           <FontAwesomeIcon icon={faMouse} />
                           &nbsp;
-                          <span style={{ marginTop: "-2px" }}>{views}</span>
+                          <span style={{ marginTop: "-4px" }}>{views}</span>
                           <FontAwesomeIcon
                             icon={faComment}
                             style={{ marginLeft: "10px" }}
                           />
                           &nbsp;
-                          <span style={{ marginTop: "-2px" }}>
+                          <span style={{ marginTop: "-4px" }}>
                             {comments.length}
                           </span>
                         </div>
@@ -76,8 +78,10 @@ const PostCardOne = ({ posts }) => {
                       style={{
                         margin: "15px 10px",
                         padding: "0",
-                        borderRadius: "16px",
+                        borderRadius: "10px",
                         gridRowEnd: "span 45",
+                        boxShadow:
+                          "0 30px 60px -12px rgba(50, 50, 93, 0.25),0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025)",
                       }}
                     >
                       <Link
@@ -88,7 +92,7 @@ const PostCardOne = ({ posts }) => {
                           top
                           alt="Image"
                           src={fileUrl}
-                          style={{ borderRadius: "16px" }}
+                          style={{ borderRadius: "10px 10px 0px 0px" }}
                         />
                         <CardBody style={{ height: "165px" }}>
                           <CardTitle className="text-truncate">
@@ -117,13 +121,15 @@ const PostCardOne = ({ posts }) => {
                           &nbsp;&nbsp;
                           <FontAwesomeIcon icon={faMouse} />
                           &nbsp;&nbsp;
-                          <span>{views}</span>
+                          <span style={{ marginTop: "-4px" }}>{views}</span>
                           <FontAwesomeIcon
                             icon={faComment}
                             style={{ marginLeft: "10px" }}
                           />
                           &nbsp;&nbsp;
-                          <span>{comments.length}</span>
+                          <span style={{ marginTop: "-4px" }}>
+                            {comments.length}
+                          </span>
                         </div>
                       </Row>
                     </Card>

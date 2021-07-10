@@ -135,10 +135,84 @@
   -webkit-box-orient: vertical;
 }
 
+// Page Detail__________________________________________________________
 .side-button {
   position: fixed;
   left: 20%;
   top: 40%;
+}
+
+.comment-item {
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+
+.comment-bubble {
+  background-color: white;
+  margin: 5px;
+  padding: 5px 20px 0px 20px;
+  border-radius: 0px 20px 20px 20px;
+  min-width: 100px;
+  width: auto;
+  min-height: 30px;
+  height: auto;
+}
+
+.my-comment-bubble {
+  background-color: yellow;
+  margin: 5px;
+  padding: 5px 5px 0px 20px;
+  border-radius: 20px 0px 20px 20px;
+  min-width: 100px;
+  width: auto;
+  min-height: 50px;
+  height: auto;
+}
+
+.time-for-day {
+  font-size: small;
+  margin-top: 15px;
+}
+
+.time-for-day-top {
+  font-size: small;
+}
+
+.topBtn {
+  visibility: hidden;
+  animation: fadeout 1s;
+}
+
+.topBtn-active {
+  visibility: visible;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.no-progress-bar {
+  visibility: hidden;
+}
+
+.progress-bar {
+  visibility: visible;
 }
 
 // CKEditor5 Setting____________________________________________________
@@ -149,13 +223,11 @@
 }
 
 .ck-editor__editable {
-  max-height: 80rem;
   min-height: 20rem;
   min-width: 100rem;
 }
 
 .ck-editor__editable_inline {
-  max-height: 80rem;
   min-height: 20rem;
   min-width: 100%;
 }
@@ -208,6 +280,12 @@ textarea {
     padding: 0px 3px;
     margin: 5px 0px;
   }
+  .time-for-day-top {
+    visibility: visible;
+  }
+  .time-for-day {
+    visibility: hidden;
+  }
 }
 
 @media (min-width: 425px) {
@@ -253,6 +331,12 @@ textarea {
   }
   .card-bottom-row {
     font-size: x-small;
+  }
+  .time-for-day-top {
+    visibility: hidden;
+  }
+  .time-for-day {
+    visibility: visible;
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   COMMENT_LOADING_REQUEST,
@@ -6,11 +6,18 @@ import {
 } from "../../redux/types";
 import CommentItem from "./CommentItem";
 import Comments from "../../components/comments/Comments";
-import { Container } from "reactstrap";
+import { Collapse, Container } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
 function CommentList({ id, userId, userName }) {
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.comment);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const setToggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     dispatch({
@@ -31,24 +38,56 @@ function CommentList({ id, userId, userName }) {
   };
 
   return (
-    <Container className="mb-3 border border-blue rounded">
-      {Array.isArray(comments)
-        ? comments.map(({ contents, creator, date, _id, creatorName }) => (
-            <CommentItem
-              key={_id}
-              id={id}
-              commentId={_id}
-              creatorName={creatorName}
-              creator={creator}
-              date={date}
-              contents={contents}
-              userId={userId}
-              onCommentDelete={onCommentDelete}
-            />
-          ))
-        : "Creator"}
-      <Comments id={id} userId={userId} userName={userName} />
-    </Container>
+    <>
+      <div className="d-flex justify-content-end">
+        <button
+          onClick={setToggle}
+          style={{
+            backgroundColor: "white",
+            width: "auto",
+            border: "1px solid lightgray",
+            borderRadius: "20px",
+            color: "gray",
+            padding: "5px 20px",
+            fontWeight: "bold",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faCommentDots}
+            style={{ marginRight: "5px" }}
+          />
+          댓글 보기
+        </button>
+      </div>
+      <Collapse isOpen={isOpen}>
+        <Container
+          className="mb-3 border border-blue rounded"
+          style={{
+            justifyContent: "center",
+            backgroundColor: "lightBlue",
+            marginTop: "10px",
+            paddingTop: "10px",
+          }}
+        >
+          {Array.isArray(comments)
+            ? comments.map(({ contents, creator, date, _id, creatorName }) => (
+                <CommentItem
+                  key={_id}
+                  id={id}
+                  commentId={_id}
+                  creatorName={creatorName}
+                  creator={creator}
+                  date={date}
+                  contents={contents}
+                  userId={userId}
+                  onCommentDelete={onCommentDelete}
+                />
+              ))
+            : "Creator"}
+          <Comments id={id} userId={userId} userName={userName} />
+        </Container>
+      </Collapse>
+    </>
   );
 }
 

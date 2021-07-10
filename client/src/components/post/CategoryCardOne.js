@@ -21,7 +21,7 @@ function CategoryCardOne({ posts, id }) {
         ? // post Model 내부에 있는 값을 _id를 key로 해서 반환해준다.
           posts.map(
             ({ _id, title, fileUrl, contents, comments, views, date }) => {
-              if (id !== posts._id) {
+              if (id !== _id) {
                 return (
                   <div key={_id} className="col-md-4">
                     <Link
@@ -56,7 +56,7 @@ function CategoryCardOne({ posts, id }) {
                               </span>
                             </div>
                           </div>
-                          <Row>
+                          <Row className="card-bottom-row">
                             <div
                               className="d-flex"
                               style={{ padding: "0px 30px" }}
@@ -92,9 +92,9 @@ function CategoryCardOne({ posts, id }) {
                         >
                           <div
                             style={{
-                              height: "259px",
-                              borderRadius: "8px",
-                              backgroundColor: "rgba( 255, 255, 255, 0.5 )",
+                              height: "256px",
+                              borderRadius: "7px",
+                              backgroundColor: "rgba( 255, 255, 255, 0.8 )",
                             }}
                           >
                             <div
@@ -153,7 +153,7 @@ function CategoryCardOne({ posts, id }) {
                   </div>
                 );
               } else {
-                return <div></div>;
+                return <div key={_id}></div>;
               }
             }
           )
