@@ -179,12 +179,12 @@
   font-size: small;
 }
 
-.topBtn {
+.side-button.topBtn {
   visibility: hidden;
   animation: fadeout 1s;
 }
 
-.topBtn-active {
+.side-button.topBtn-active {
   visibility: visible;
   animation: fadein 1s;
 }

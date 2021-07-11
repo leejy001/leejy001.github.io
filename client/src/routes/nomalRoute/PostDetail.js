@@ -99,7 +99,7 @@ const PostDetail = (req) => {
       <div
         style={{
           width: "50px",
-          height: "200px",
+          height: "300px",
         }}
       >
         <Link
@@ -128,7 +128,7 @@ const PostDetail = (req) => {
           <FontAwesomeIcon icon={faPen} />
         </Link>
         <Button
-          className="btn-block btn-danger mb-2 mt-2"
+          className="btn-block btn-danger"
           style={{
             width: "50px",
             height: "50px",
@@ -140,7 +140,7 @@ const PostDetail = (req) => {
           <FontAwesomeIcon icon={faTrash} />
         </Button>
         <Button
-          className={topBtn ? "topBtn active" : "topBtn"}
+          className={topBtn ? "topBtn active mb-2 mt-2" : "topBtn mb-2 mt-2"}
           onClick={handleTop}
           style={{
             width: "50px",
@@ -160,6 +160,7 @@ const PostDetail = (req) => {
       <div
         style={{
           width: "50px",
+          height: "auto",
         }}
       >
         <Link
@@ -176,7 +177,7 @@ const PostDetail = (req) => {
           <FontAwesomeIcon icon={faHome} />
         </Link>
         <Button
-          className={topBtn ? "topBtn-active mb-2 mt-2" : "topBtn mb-2 mt-2"}
+          className={topBtn ? "topBtn active mb-2 mt-2" : "topBtn mb-2 mt-2"}
           onClick={handleTop}
           style={{
             width: "50px",
