@@ -5,7 +5,7 @@ import User from "../../models/user.js";
 import Category from "../../models/category.js";
 import Comment from "../../models/comment.js";
 import auth from "../../middleware/auth.js";
-
+import "@babel/polyfill";
 const router = express.Router();
 
 import multer from "multer";
