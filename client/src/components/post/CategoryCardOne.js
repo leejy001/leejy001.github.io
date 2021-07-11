@@ -42,7 +42,7 @@ function CategoryCardOne({ posts, id }) {
                             <div className="text-truncate">
                               <span
                                 className="text-truncate"
-                                style={{ fontSize: "25px", fontWeight: "bold" }}
+                                style={{ fontSize: "15px", fontWeight: "bold" }}
                               >
                                 {title}
                               </span>
@@ -108,7 +108,7 @@ function CategoryCardOne({ posts, id }) {
                                 <span
                                   className="text-truncate"
                                   style={{
-                                    fontSize: "25px",
+                                    fontSize: "15px",
                                     fontWeight: "bold",
                                   }}
                                 >

@@ -102,7 +102,6 @@ const PostWrite = () => {
         <Form
           onSubmit={onSubmit}
           style={{
-            paddingTop: "150px",
             width: "800px",
             margin: "0 auto",
             textAlign: "center",

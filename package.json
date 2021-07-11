@@ -1,34 +1,41 @@
 {
-  "name": "server",
+  "name": "leejyblog",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "nodemon ./server/server.js",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+    "dev": "nodemon ./server/server.js --exec babel-node --ignore './client'"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.906.0",
+    "aws-sdk": "^2.932.0",
+    "babel-node": "0.0.1-security",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
-    "dotenv": "^9.0.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "google-auth-library": "^7.1.2",
+    "google-auth-library": "^7.3.0",
     "helmet": "^4.6.0",
+    "history": "^4.10.1",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.8",
+    "mongoose": "^5.12.14",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.5",
+    "babel-loader": "^8.1.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7"
-  },
-  "type": "module",
-  "description": ""
+  }
 }

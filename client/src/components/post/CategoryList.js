@@ -9,7 +9,11 @@ const CategoryList = () => {
 
   return (
     <Fragment>
-      <div id="tab-row" className="d-flex" style={{ width: "100%" }}>
+      <div
+        id="tab-row"
+        className="d-flex"
+        style={{ width: "100%", marginBottom: "50px" }}
+      >
         <div style={{ color: "black", fontWeight: "bold" }}>
           &nbsp;카테고리 "{postDetail.category.categoryName}"와 연관된 글
         </div>

@@ -41,7 +41,7 @@ const PostCardOne = ({ posts }) => {
                           <CardTitle className="text-truncate">
                             <span
                               className="text-truncate"
-                              style={{ fontSize: "25px", fontWeight: "bold" }}
+                              style={{ fontSize: "15px", fontWeight: "bold" }}
                             >
                               {title}
                             </span>
@@ -98,7 +98,7 @@ const PostCardOne = ({ posts }) => {
                           <CardTitle className="text-truncate">
                             <span
                               className="text-truncate"
-                              style={{ fontSize: "25px", fontWeight: "bold" }}
+                              style={{ fontSize: "15px", fontWeight: "bold" }}
                             >
                               {title}
                             </span>

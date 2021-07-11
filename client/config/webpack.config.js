@@ -30,7 +30,8 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 const postcssNormalize = require("postcss-normalize");
 
 const appPackageJson = require(paths.appPackageJson);
-// CKEditor5 Setting__________________________________________________________________________________________
+
+//SB_CKEditor5 Setting
 const { styles } = require("@ckeditor/ckeditor5-dev-utils");
 const CKEditorWebpackPlugin = require("@ckeditor/ckeditor5-dev-webpack-plugin");
 
@@ -210,9 +211,12 @@ module.exports = function (webpackEnv) {
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
+      //***************** */
       chunkFilename: isEnvProduction
         ? "static/js/[name].[contenthash:8].chunk.js"
         : isEnvDevelopment && "static/js/[name].chunk.js",
+
+      //***************** */
       // webpack uses `publicPath` to determine where the app is being served from.
       // It requires a trailing slash, or the file assets will get an incorrect path.
       // We inferred the "public path" (such as / or /my-project) from homepage.
@@ -424,7 +428,6 @@ module.exports = function (webpackEnv) {
                       },
                     },
                   ],
-                  ["transform-remove-console", { exclude: ["error", "warn"] }],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve("react-refresh/babel"),
@@ -465,7 +468,7 @@ module.exports = function (webpackEnv) {
                 inputSourceMap: shouldUseSourceMap,
               },
             },
-            // CKEditor5 Setting_______________________________________________________________________________
+            //SB_CKEditor5 Setting
             {
               test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
               use: ["raw-loader"],
@@ -505,11 +508,12 @@ module.exports = function (webpackEnv) {
             // By default we support CSS Modules with the extension .module.css
             {
               test: cssRegex,
-              // CKEditor5 Setting_______________________________________________________________________________
+              //SB_CKEditor5 Setting
               exclude: [
                 cssModuleRegex,
                 /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
               ],
+
               use: getStyleLoaders({
                 importLoaders: 1,
                 sourceMap: isEnvProduction
@@ -526,7 +530,7 @@ module.exports = function (webpackEnv) {
             // using the extension .module.css
             {
               test: cssModuleRegex,
-              // CKEditor5 Setting_______________________________________________________________________________
+              //SB_CKEditor5 Setting
               exclude: [/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/],
               use: getStyleLoaders({
                 importLoaders: 1,
@@ -588,7 +592,7 @@ module.exports = function (webpackEnv) {
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
 
-              // CKEditor5 Setting________________________________________________________________________________
+              //SB_CKEditor5 Setting
               exclude: [
                 /\.(js|mjs|jsx|ts|tsx)$/,
                 /\.html$/,
@@ -596,6 +600,7 @@ module.exports = function (webpackEnv) {
                 /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
                 /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
               ],
+
               options: {
                 name: "static/media/[name].[hash:8].[ext]",
               },
