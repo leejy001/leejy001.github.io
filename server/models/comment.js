@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import moment from "moment";
 // create schema
 
 const CommentSchema = new mongoose.Schema({
@@ -15,11 +14,18 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
+  replyTo: {
+    type: String,
+    default: "none",
+  },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
   creatorName: { type: String },
+  creatorImg: {
+    type: String,
+  },
 });
 
 const Comment = mongoose.model("comment", CommentSchema);

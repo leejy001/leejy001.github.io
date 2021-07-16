@@ -38,7 +38,7 @@ const uploadS3 = multer({
 // @routes  Post api/post/image
 // @desc    Create a Post
 // @access  Private
-router.post("/image", uploadS3.array("upload", 5), async (req, res, next) => {
+router.post("/image", uploadS3.array("upload", 15), async (req, res, next) => {
   try {
     console.log(req.files.map((v) => v.location));
     res.json({ uploaded: true, url: req.files.map((v) => v.location) });
@@ -220,6 +220,8 @@ router.post("/:id/comments", async (req, res, next) => {
     contents: req.body.contents,
     creator: req.body.userId,
     creatorName: req.body.userName,
+    creatorImg: req.body.userImg,
+    replyTo: req.body.replyTo,
     post: req.body.id,
     date: new Date(),
   });

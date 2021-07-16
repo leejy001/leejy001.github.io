@@ -34,7 +34,7 @@ const PostDetail = (req) => {
     (state) => state.post
   );
   const date = new Date(postDetail.date);
-  const { userId, userName } = useSelector((state) => state.auth);
+  const { userId, userName, userImg } = useSelector((state) => state.auth);
   const [scrollY, setScrollY] = useState(0);
   const [topBtn, setTopBtn] = useState(false);
 
@@ -229,6 +229,7 @@ const PostDetail = (req) => {
               id={req.match.params.id}
               userId={userId}
               userName={userName}
+              userImg={userImg}
             />
           </Row>
           <CategoryList />
@@ -263,7 +264,7 @@ const PostDetail = (req) => {
                 &nbsp;
                 <span>{`${date.getFullYear()}년 ${
                   date.getMonth() + 1
-                }월 ${date.getDay()}일`}</span>
+                }월 ${date.getDate()}일`}</span>
                 &nbsp;&nbsp;
                 <FontAwesomeIcon icon={faCommentDots} />
                 &nbsp;

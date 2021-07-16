@@ -45,6 +45,7 @@ router.post("/", (req, res) => {
       name,
       email,
       password,
+      image: `http://gravatar.com/avatar/${email}?d=identicon`,
     });
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -59,7 +60,12 @@ router.post("/", (req, res) => {
               if (err) throw err;
               res.json({
                 token,
-                user: { id: user.id, name: user.name, email: user.email },
+                user: {
+                  id: user.id,
+                  name: user.name,
+                  email: user.email,
+                  image: user.image,
+                },
               });
             }
           );

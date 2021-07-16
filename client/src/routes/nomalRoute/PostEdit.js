@@ -10,7 +10,7 @@ import {
   Progress,
 } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
+import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import MyInit from "../../components/editor/UploadAdapter";
 import { POST_EDIT_UPLOADING_REQUEST } from "../../redux/types";
@@ -110,7 +110,7 @@ const PostEdit = () => {
           style={{
             paddingTop: "300px",
             paddingBottom: "42px",
-            width: "800px",
+            width: "770px",
             margin: "0 auto",
             textAlign: "center",
           }}
@@ -140,13 +140,15 @@ const PostEdit = () => {
             >
               Content
             </Label>
-            <CKEditor
-              editor={ClassicEditor}
-              config={editorConfiguration}
-              data={postDetail.contents}
-              onReady={MyInit}
-              onBlur={getDataFromCKEditor}
-            />
+            <div style={{ backgroundColor: "white" }}>
+              <CKEditor
+                editor={BalloonEditor}
+                config={editorConfiguration}
+                data={postDetail.contents}
+                onReady={MyInit}
+                onBlur={getDataFromCKEditor}
+              />
+            </div>
             <Button
               style={{ margin: "0 auto" }}
               color="success"

@@ -10,7 +10,7 @@ import {
   Progress,
 } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
+import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 import MyInit from "../../components/editor/UploadAdapter";
 import dotenv from "dotenv";
@@ -102,7 +102,7 @@ const PostWrite = () => {
         <Form
           onSubmit={onSubmit}
           style={{
-            width: "800px",
+            width: "770px",
             margin: "0 auto",
             textAlign: "center",
           }}
@@ -147,12 +147,14 @@ const PostWrite = () => {
             >
               Content
             </Label>
-            <CKEditor
-              editor={ClassicEditor}
-              config={editorConfiguration}
-              onReady={MyInit}
-              onBlur={getDataFromCKEditor}
-            />
+            <div style={{ backgroundColor: "white" }}>
+              <CKEditor
+                editor={BalloonEditor}
+                config={editorConfiguration}
+                onReady={MyInit}
+                onBlur={getDataFromCKEditor}
+              />
+            </div>
             <Button
               color="success"
               block

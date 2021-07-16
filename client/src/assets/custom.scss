@@ -148,35 +148,10 @@
   padding: 5px;
 }
 
-.comment-bubble {
-  background-color: white;
-  margin: 5px;
-  padding: 5px 20px 0px 20px;
-  border-radius: 0px 20px 20px 20px;
-  min-width: 100px;
-  width: auto;
-  min-height: 30px;
-  height: auto;
-}
-
-.my-comment-bubble {
-  background-color: yellow;
-  margin: 5px;
-  padding: 5px 5px 0px 20px;
-  border-radius: 20px 0px 20px 20px;
-  min-width: 100px;
-  width: auto;
-  min-height: 50px;
-  height: auto;
-}
-
 .time-for-day {
   font-size: small;
-  margin-top: 15px;
-}
-
-.time-for-day-top {
-  font-size: small;
+  margin-top: 10px;
+  padding-left: 5px;
 }
 
 .side-button.topBtn {
@@ -232,6 +207,11 @@
   min-width: 100%;
 }
 
+.ck-editor__contents {
+  margin: 5px;
+  background-color: blue;
+}
+
 html {
   width: 100vw;
   overflow-x: hidden;
@@ -280,12 +260,6 @@ textarea {
     padding: 0px 3px;
     margin: 5px 0px;
   }
-  .time-for-day-top {
-    visibility: visible;
-  }
-  .time-for-day {
-    visibility: hidden;
-  }
 }
 
 @media (min-width: 425px) {
@@ -331,12 +305,6 @@ textarea {
   }
   .card-bottom-row {
     font-size: x-small;
-  }
-  .time-for-day-top {
-    visibility: hidden;
-  }
-  .time-for-day {
-    visibility: visible;
   }
 }
 

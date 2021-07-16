@@ -21,14 +21,12 @@ const PostCardList = () => {
   const categoryToggle = () => {
     if (isSearchInputOpen) {
       searchInputToggle();
-    } else {
     }
     setIsCategoryOpen(!isCategoryOpen);
   };
   const searchInputToggle = () => {
     if (isCategoryOpen) {
       categoryToggle();
-    } else {
     }
     setIsSearchInputOpen(!isSearchInputOpen);
   };

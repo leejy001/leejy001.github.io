@@ -33,6 +33,7 @@ const initialState = {
   userId: "",
   userName: "",
   userRole: "",
+  userImg: "",
   errorMsg: "",
   successMsg: "",
   previousMatchMsg: "",
@@ -60,6 +61,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         userId: action.payload.user.id,
         userRole: action.payload.user.role,
+        userImg: action.payload.user.image,
         userName: action.payload.user.name,
         errorMsg: "",
       };
@@ -72,6 +74,7 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         isLoading: false,
         userRole: null,
+        userImg: null,
         errorMsg: "",
       };
     case REGISTER_FAILURE:
@@ -88,6 +91,7 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         isLoading: false,
         userRole: null,
+        userImg: null,
         errorMsg: action.payload.data.msg,
       };
     case USER_LOADING_REQUEST:
@@ -104,6 +108,7 @@ const authReducer = (state = initialState, action) => {
         userId: action.payload._id,
         userName: action.payload.name,
         userRole: action.payload.role,
+        userImg: action.payload.image,
       };
     case USER_LOADING_FAILURE:
       return {

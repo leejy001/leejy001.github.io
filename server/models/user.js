@@ -21,6 +21,9 @@ const UserSchema = new mongoose.Schema({
     enum: ["Admin", "User"],
     default: "User",
   },
+  image: {
+    type: String,
+  },
   register_date: {
     type: Date,
     default: moment().format("YYYY-MM-DD hh:mm:ss"),

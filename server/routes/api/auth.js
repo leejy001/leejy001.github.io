@@ -44,6 +44,7 @@ router.post("/", (req, res) => {
               name: user.name,
               email: user.email,
               role: user.role,
+              image: user.image,
             },
           });
         }
@@ -66,7 +67,7 @@ router.post("/googlelogin", (req, res) => {
       audience: GOOGLE_ID,
     })
     .then((response) => {
-      const { name, email, email_verified } = response.payload;
+      const { name, email, email_verified, picture } = response.payload;
       if (email_verified) {
         User.findOne({ email }).then((user) => {
           if (!user) {
@@ -75,6 +76,7 @@ router.post("/googlelogin", (req, res) => {
               name,
               email,
               password,
+              picture,
             });
             newUser.save().then((user) => {
               jwt.sign(
@@ -90,6 +92,7 @@ router.post("/googlelogin", (req, res) => {
                       name: user.name,
                       email: user.email,
                       role: user.role,
+                      image: user.picture,
                     },
                   });
                 }
@@ -109,6 +112,7 @@ router.post("/googlelogin", (req, res) => {
                     name: user.name,
                     email: user.email,
                     role: user.role,
+                    image: user.picture,
                   },
                 });
               }

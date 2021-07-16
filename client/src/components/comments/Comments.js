@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { COMMENT_UPLOADING_REQUEST } from "../../redux/types";
 import { Button, Form, Input, Row } from "reactstrap";
 
-const Comments = ({ id, userName, userId }) => {
+const Comments = ({ id, userName, userId, userImg }) => {
+  console.log(userImg);
   const dispatch = useDispatch();
   const [form, setValues] = useState({ contents: "" });
 
@@ -17,6 +18,8 @@ const Comments = ({ id, userName, userId }) => {
       id,
       userId,
       userName,
+      userImg,
+      replyTo: "none",
     };
 
     console.log(body);

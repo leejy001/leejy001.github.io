@@ -5,6 +5,7 @@ import Italic from "@ckeditor/ckeditor5-basic-styles/src/italic";
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline";
 import Strikethrough from "@ckeditor/ckeditor5-basic-styles/src/strikethrough";
 import Code from "@ckeditor/ckeditor5-basic-styles/src/code";
+import CodeBlock from "@ckeditor/ckeditor5-code-block/src/codeblock";
 import BlockQuote from "@ckeditor/ckeditor5-block-quote/src/blockquote";
 import Link from "@ckeditor/ckeditor5-link/src/link";
 import MediaEmbed from "@ckeditor/ckeditor5-media-embed/src/mediaembed";
@@ -37,6 +38,7 @@ export const editorConfiguration = {
     Paragraph,
     Bold,
     Code,
+    CodeBlock,
     Italic,
     Heading,
     Indent,
@@ -69,6 +71,7 @@ export const editorConfiguration = {
     "underline",
     "strikethrough",
     "code",
+    "codeBlock",
     "|",
     "fontSize",
     "fontColor",
@@ -80,7 +83,6 @@ export const editorConfiguration = {
     "bulletedList",
     "numberedList",
     "blockQuote",
-    "lineHeight",
     "|",
     "link",
     "insertTable",
@@ -117,6 +119,25 @@ export const editorConfiguration = {
         title: "헤더3",
         class: "ck-heading_heading3",
       },
+    ],
+  },
+
+  codeBlock: {
+    language: [
+      { language: "plaintext", label: "Plain text" }, // The default language.
+      { language: "c", label: "C" },
+      { language: "cs", label: "C#" },
+      { language: "cpp", label: "C++" },
+      { language: "css", label: "CSS" },
+      { language: "diff", label: "Diff" },
+      { language: "html", label: "HTML" },
+      { language: "java", label: "Java" },
+      { language: "javascript", label: "JavaScript" },
+      { language: "php", label: "PHP" },
+      { language: "python", label: "Python" },
+      { language: "ruby", label: "Ruby" },
+      { language: "typescript", label: "TypeScript" },
+      { language: "xml", label: "XML" },
     ],
   },
 
