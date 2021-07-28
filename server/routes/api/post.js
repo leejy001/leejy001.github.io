@@ -53,12 +53,18 @@ router.post("/image", uploadS3.array("upload", 15), async (req, res, next) => {
 // @access  Public
 router.get("/skip/:skip", async (req, res) => {
   try {
-    const postCount = await Post.countDocuments();
+    const postCount = await Post.countDocuments()
+      .where("label")
+      .equals("nomal");
     const postFindResult = await Post.find()
+      .where("label")
+      .equals("nomal")
       .skip(Number(req.params.skip))
       .limit(6)
       .sort({ date: -1 });
-    const categoryFindResult = await Category.find();
+    const categoryFindResult = await Category.find()
+      .where("label")
+      .equals("nomal");
     const result = { postCount, postFindResult, categoryFindResult };
     res.json(result);
   } catch (e) {
@@ -73,9 +79,10 @@ router.get("/skip/:skip", async (req, res) => {
 router.post("/", auth, uploadS3.none(), async (req, res, next) => {
   try {
     console.log("req", req);
-    const { title, contents, fileUrl, creator, category } = req.body;
+    const { title, label, contents, fileUrl, creator, category } = req.body;
     const newPost = await Post.create({
       title,
+      label,
       contents,
       fileUrl,
       creator: req.user.id,
@@ -91,6 +98,7 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
     if (isNullOrUndefined(findResult)) {
       const newCategory = await Category.create({
         categoryName: category,
+        label: label,
       });
       await Post.findByIdAndUpdate(newPost._id, {
         $push: { category: newCategory._id },
@@ -179,7 +187,7 @@ router.post("/:id/edit", auth, async (req, res, next) => {
         title,
         contents,
         fileUrl,
-        date: new Date(),
+        createDate: new Date(),
       },
       { new: true } // new: true값을 줘야 업데이트 적용
     );

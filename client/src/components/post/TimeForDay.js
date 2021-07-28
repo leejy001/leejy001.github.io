@@ -52,7 +52,7 @@ const TimeForDay = ({ date }) => {
           setTime("일주일전");
         } else {
           setTime(
-            `${createTime.getFullYear()}년 ${createTime.getMonth()}월 ${createTime.getDay()}일`
+            `${createTime.getFullYear()}년 ${createTime.getMonth()}월 ${createTime.getDate()}일`
           );
         }
       }

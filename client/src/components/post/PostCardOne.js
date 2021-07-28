@@ -55,18 +55,19 @@ const PostCardOne = ({ posts }) => {
                           </CardText>
                         </CardBody>
                       </Link>
-                      <Row>
-                        <div className="d-flex" style={{ padding: "0px 30px" }}>
+                      <Row className="card-bottom-row">
+                        <div className="d-flex" style={{ paddingLeft: "25px" }}>
                           <TimeForDay date={date} />
                           &nbsp;&nbsp;
-                          <FontAwesomeIcon icon={faMouse} />
-                          &nbsp;
+                          <FontAwesomeIcon
+                            icon={faMouse}
+                            style={{ marginRight: "3px" }}
+                          />
                           <span style={{ marginTop: "-4px" }}>{views}</span>
                           <FontAwesomeIcon
                             icon={faComment}
-                            style={{ marginLeft: "10px" }}
+                            style={{ marginLeft: "10px", marginRight: "3px" }}
                           />
-                          &nbsp;
                           <span style={{ marginTop: "-4px" }}>
                             {comments.length}
                           </span>
@@ -115,18 +116,19 @@ const PostCardOne = ({ posts }) => {
                           </CardText>
                         </CardBody>
                       </Link>
-                      <Row>
-                        <div className="d-flex" style={{ paddingLeft: "30px" }}>
+                      <Row className="card-bottom-row">
+                        <div className="d-flex" style={{ paddingLeft: "25px" }}>
                           <TimeForDay date={date} />
                           &nbsp;&nbsp;
-                          <FontAwesomeIcon icon={faMouse} />
-                          &nbsp;&nbsp;
+                          <FontAwesomeIcon
+                            icon={faMouse}
+                            style={{ marginRight: "3px" }}
+                          />
                           <span style={{ marginTop: "-4px" }}>{views}</span>
                           <FontAwesomeIcon
                             icon={faComment}
-                            style={{ marginLeft: "10px" }}
+                            style={{ marginLeft: "10px", marginRight: "3px" }}
                           />
-                          &nbsp;&nbsp;
                           <span style={{ marginTop: "-4px" }}>
                             {comments.length}
                           </span>

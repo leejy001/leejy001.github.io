@@ -7,6 +7,10 @@ const PostSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  label: {
+    type: String,
+    required: true,
+  },
   contents: {
     type: String,
     required: true,
@@ -24,6 +28,10 @@ const PostSchema = new mongoose.Schema({
     ref: "category",
   },
   date: {
+    type: String,
+    default: new Date(),
+  },
+  editDate: {
     type: String,
     default: new Date(),
   },

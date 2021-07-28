@@ -41,6 +41,7 @@ const loadPostAPI = (payload) => {
 
 function* loadPosts(action) {
   try {
+    console.log(action.payload);
     const result = yield call(loadPostAPI, action.payload);
     console.log(result, "loadPosts");
     yield put({

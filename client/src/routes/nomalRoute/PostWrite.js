@@ -19,6 +19,7 @@ dotenv.config();
 
 const PostWrite = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const [label, setLabel] = useState("nomal");
   const [form, setValues] = useState({
     title: "",
     contents: "",
@@ -30,7 +31,7 @@ const PostWrite = () => {
     await e.preventDefault();
     const { title, contents, fileUrl, category } = form;
     const token = localStorage.getItem("token");
-    const body = { title, contents, fileUrl, category, token };
+    const body = { title, label, contents, fileUrl, category, token };
     console.log(contents);
     dispatch({
       type: POST_UPLOADING_REQUEST,
@@ -123,22 +124,60 @@ const PostWrite = () => {
               onChange={onChange}
             />
           </FormGroup>
-          <FormGroup className="mb-2">
-            <Label
-              className="mb-1"
-              for="category"
-              style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
-            >
-              Category
-            </Label>
-            <Input
-              type="text"
-              name="category"
-              id="category"
-              className="form-control"
-              onChange={onChange}
-            />
-          </FormGroup>
+          <div className="d-flex justify-content-space-between">
+            <FormGroup style={{ width: "60%" }}>
+              <Label
+                className="mb-1"
+                for="category"
+                style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}
+              >
+                Category
+              </Label>
+              <Input
+                type="text"
+                name="category"
+                id="category"
+                className="form-control"
+                onChange={onChange}
+              />
+            </FormGroup>
+            <FormGroup check className="m-4">
+              <Label
+                check
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Input
+                  type="radio"
+                  name="label"
+                  value="nomal"
+                  onChange={(e) => setLabel(e.target.value)}
+                />{" "}
+                nomal
+              </Label>
+            </FormGroup>
+            <FormGroup check className="m-4">
+              <Label
+                check
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Input
+                  type="radio"
+                  name="label"
+                  value="study"
+                  onChange={(e) => setLabel(e.target.value)}
+                />{" "}
+                study
+              </Label>
+            </FormGroup>
+          </div>
           <FormGroup className="mb-2">
             <Label
               className="mb-1"

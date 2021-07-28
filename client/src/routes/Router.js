@@ -10,6 +10,7 @@ import PostEdit from "./nomalRoute/PostEdit";
 import Search from "./nomalRoute/Search";
 import CategoryResult from "./nomalRoute/CategoryResult";
 import Profile from "./nomalRoute/Profile";
+import Study from "./nomalRoute/Study";
 import {
   EditProtectedRoute,
   ProfileProtectedRoute,
@@ -36,6 +37,7 @@ const MyRouter = () => (
             component={CategoryResult}
           />
           <Route path="/search/:searchTerm" exact component={Search} />
+          <Route path="/study" exact component={Study} />
           <ProfileProtectedRoute
             path="/user/:userName/profile"
             exact

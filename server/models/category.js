@@ -6,6 +6,9 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     default: "미분류",
   },
+  label: {
+    type: String,
+  },
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,

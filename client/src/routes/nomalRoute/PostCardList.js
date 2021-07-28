@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   POST_LOADING_REQUEST,
   POST_DETAIL_CLEAR_REQUEST,
@@ -18,6 +19,7 @@ const PostCardList = () => {
   const dispatch = useDispatch();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSearchInputOpen, setIsSearchInputOpen] = useState(false);
+
   const categoryToggle = () => {
     if (isSearchInputOpen) {
       searchInputToggle();
@@ -32,7 +34,10 @@ const PostCardList = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: POST_LOADING_REQUEST, payload: 0 });
+    dispatch({
+      type: POST_LOADING_REQUEST,
+      payload: 0,
+    });
     dispatch({
       type: POST_DETAIL_CLEAR_REQUEST,
     });
@@ -85,7 +90,7 @@ const PostCardList = () => {
     threshold: "0.5",
   });
 
-  console.log(visible, "visible", skipNumberRef.current, "skipNum");
+  //console.log(visible, "visible", skipNumberRef.current, "skipNum");
 
   return (
     <Fragment>
@@ -98,6 +103,9 @@ const PostCardList = () => {
           <button id="tab-button" onClick={searchInputToggle}>
             search
           </button>
+          <Link to="/study">
+            <button id="tab-button">study</button>
+          </Link>
           <button id="tab-button">about</button>
         </div>
         <Collapse isOpen={isCategoryOpen}>
