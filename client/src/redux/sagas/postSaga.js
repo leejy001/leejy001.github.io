@@ -32,18 +32,21 @@ import {
   PROFILE_LOADING_SUCCESS,
   PROFILE_LOADING_FAILURE,
   PROFILE_LOADING_REQUEST,
+  STUDY_CATEGORY_LOADING_SUCCESS,
+  STUDY_CATEGORY_LOADING_FAILURE,
+  STUDY_CATEGORY_LOADING_REQUEST,
 } from "../types";
 
-// All posts load
-const loadPostAPI = (payload) => {
+// nomal posts load
+const nomalLoadPostAPI = (payload) => {
   return axios.get(`/api/post/skip/${payload}`);
 };
 
-function* loadPosts(action) {
+function* nomalLoadPosts(action) {
   try {
     console.log(action.payload);
-    const result = yield call(loadPostAPI, action.payload);
-    console.log(result, "loadPosts");
+    const result = yield call(nomalLoadPostAPI, action.payload);
+    console.log(result, "nomalLoadPosts");
     yield put({
       type: POST_LOADING_SUCCESS,
       payload: result.data,
@@ -56,8 +59,34 @@ function* loadPosts(action) {
   }
 }
 
-function* watchLoadPosts() {
-  yield takeEvery(POST_LOADING_REQUEST, loadPosts);
+function* watchNomalLoadPosts() {
+  yield takeEvery(POST_LOADING_REQUEST, nomalLoadPosts);
+}
+
+// study posts load
+const studyLoadPostAPI = () => {
+  return axios.get(`/api/post/study`);
+};
+
+function* studyLoadPosts(action) {
+  try {
+    console.log(action.payload);
+    const result = yield call(studyLoadPostAPI, action.payload);
+    console.log(result, "studyLoadPosts");
+    yield put({
+      type: STUDY_CATEGORY_LOADING_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: STUDY_CATEGORY_LOADING_FAILURE,
+      payload: e,
+    });
+  }
+}
+
+function* watchStudyLoadPosts() {
+  yield takeEvery(STUDY_CATEGORY_LOADING_REQUEST, studyLoadPosts);
 }
 
 // Post upload
@@ -313,7 +342,8 @@ function* watchProfileLoading() {
 
 export default function* postSaga() {
   yield all([
-    fork(watchLoadPosts),
+    fork(watchNomalLoadPosts),
+    fork(watchStudyLoadPosts),
     fork(watchuploadPosts),
     fork(watchLoadPostDetail),
     fork(watchLoadPostDetailClear),

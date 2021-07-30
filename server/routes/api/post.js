@@ -65,11 +65,32 @@ router.get("/skip/:skip", async (req, res) => {
     const categoryFindResult = await Category.find()
       .where("label")
       .equals("nomal");
-    const result = { postCount, postFindResult, categoryFindResult };
+    const label = "nomal";
+    const result = { postCount, postFindResult, categoryFindResult, label };
     res.json(result);
   } catch (e) {
     console.log(e);
     res.json({ msg: "더 이상 포스트가 없습니다" });
+  }
+});
+
+// @routes  Get api/post/study
+// @desc    More Loading Posts
+// @access  Public
+router.get("/study", async (req, res) => {
+  try {
+    const postCount = await Post.countDocuments()
+      .where("label")
+      .equals("study");
+    const categoryFindResult = await Category.find()
+      .where("label")
+      .equals("study");
+    const label = "study";
+    const result = { postCount, categoryFindResult, label };
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+    res.json({ msg: "포스트가 존재하지 않습니다" });
   }
 });
 

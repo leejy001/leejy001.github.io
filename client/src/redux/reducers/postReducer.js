@@ -26,6 +26,9 @@ import {
   PROFILE_LOADING_REQUEST,
   PROFILE_LOADING_SUCCESS,
   PROFILE_LOADING_FAILURE,
+  STUDY_CATEGORY_LOADING_REQUEST,
+  STUDY_CATEGORY_LOADING_SUCCESS,
+  STUDY_CATEGORY_LOADING_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -40,6 +43,7 @@ const initialState = {
   title: "",
   searchBy: "",
   searchResult: "",
+  label: "",
 };
 
 const postReducer = (state = initialState, action) => {
@@ -56,10 +60,33 @@ const postReducer = (state = initialState, action) => {
         posts: [...state.posts, ...action.payload.postFindResult],
         categoryFindResult: action.payload.categoryFindResult,
         postCount: action.payload.postCount,
+        label: action.payload.label,
         loading: false,
       };
 
     case POST_LOADING_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case STUDY_CATEGORY_LOADING_REQUEST:
+      return {
+        ...state,
+        posts: [],
+        loading: true,
+      };
+
+    case STUDY_CATEGORY_LOADING_SUCCESS:
+      return {
+        ...state,
+        categoryFindResult: action.payload.categoryFindResult,
+        postCount: action.payload.postCount,
+        label: action.payload.label,
+        loading: false,
+      };
+
+    case STUDY_CATEGORY_LOADING_FAILURE:
       return {
         ...state,
         loading: false,
