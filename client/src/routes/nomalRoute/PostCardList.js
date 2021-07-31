@@ -13,7 +13,7 @@ import Category from "../../components/post/Category";
 import SearchInput from "../../components/search/SearchInput";
 
 const PostCardList = () => {
-  const { posts, categoryFindResult, loading, postCount } = useSelector(
+  const { posts, label, categoryFindResult, loading, postCount } = useSelector(
     (state) => state.post
   );
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ const PostCardList = () => {
     threshold: "0.5",
   });
 
-  //console.log(visible, "visible", skipNumberRef.current, "skipNum");
+  console.log(visible, "visible", skipNumberRef.current, "skipNum");
 
   return (
     <Fragment>
@@ -110,7 +110,7 @@ const PostCardList = () => {
         </div>
         <Collapse isOpen={isCategoryOpen}>
           <div id="tab-row" className="d-flex">
-            <Category posts={categoryFindResult} />
+            <Category posts={categoryFindResult} label={label} />
           </div>
         </Collapse>
         <Collapse isOpen={isSearchInputOpen}>

@@ -9,6 +9,9 @@ const CategorySchema = new mongoose.Schema({
   label: {
     type: String,
   },
+  img: {
+    type: String,
+  },
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,

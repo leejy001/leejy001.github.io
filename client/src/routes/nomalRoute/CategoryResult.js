@@ -2,7 +2,10 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostCardOne from "../../components/post/PostCardOne";
-import { CATEGORY_FIND_REQUEST } from "../../redux/types";
+import {
+  CATEGORY_FIND_REQUEST,
+  POST_DETAIL_CLEAR_REQUEST,
+} from "../../redux/types";
 import { Container } from "reactstrap";
 
 const CategoryResult = () => {
@@ -14,6 +17,9 @@ const CategoryResult = () => {
   console.log(categoryName);
 
   useEffect(() => {
+    dispatch({
+      type: POST_DETAIL_CLEAR_REQUEST,
+    });
     dispatch({
       type: CATEGORY_FIND_REQUEST,
       payload: categoryName,
