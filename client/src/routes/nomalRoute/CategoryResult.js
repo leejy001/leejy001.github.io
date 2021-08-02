@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import PostCardOne from "../../components/post/PostCardOne";
+import StudyCategoryContainer from "../../components/post/StudyCategoryContainer";
+
 import {
   CATEGORY_FIND_REQUEST,
   POST_DETAIL_CLEAR_REQUEST,
@@ -13,8 +14,6 @@ const CategoryResult = () => {
   let { categoryName } = useParams();
   const { categoryFindResult } = useSelector((state) => state.post);
   const posts = categoryFindResult.posts;
-
-  console.log(categoryName);
 
   useEffect(() => {
     dispatch({
@@ -40,7 +39,9 @@ const CategoryResult = () => {
           )}
         </div>
         <div className="card-container">
-          <PostCardOne posts={categoryFindResult.posts} />
+          {categoryFindResult.posts && (
+            <StudyCategoryContainer posts={categoryFindResult.posts} />
+          )}
         </div>
       </Container>
     </Fragment>

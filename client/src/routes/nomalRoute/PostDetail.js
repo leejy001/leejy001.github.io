@@ -30,11 +30,11 @@ import ScrollProgressRead from "react-scroll-progress-read";
 
 const PostDetail = (req) => {
   const dispatch = useDispatch();
-  const { postDetail, creatorId, title, loading } = useSelector(
+  const { postDetail, label, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
   const date = new Date(postDetail.date);
-  const { userId, userName, userImg } = useSelector((state) => state.auth);
+  const { userId, userName } = useSelector((state) => state.auth);
   const [scrollY, setScrollY] = useState(0);
   const [topBtn, setTopBtn] = useState(false);
 
@@ -102,19 +102,36 @@ const PostDetail = (req) => {
           height: "300px",
         }}
       >
-        <Link
-          to="/"
-          className="btn btn-primary btn-block"
-          style={{
-            width: "50px",
-            height: "50px",
-            borderRadius: "65px",
-            fontSize: "23px",
-          }}
-          onClick={onHomeClick}
-        >
-          <FontAwesomeIcon icon={faHome} />
-        </Link>
+        {postDetail &&
+          (label === "nomal" ? (
+            <Link
+              to="/"
+              className="btn btn-primary btn-block"
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "65px",
+                fontSize: "23px",
+              }}
+              onClick={onHomeClick}
+            >
+              <FontAwesomeIcon icon={faHome} />
+            </Link>
+          ) : (
+            <Link
+              to={`/post/category/${postDetail.category.categoryName}`}
+              className="btn btn-primary btn-block"
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "65px",
+                fontSize: "23px",
+              }}
+              onClick={onHomeClick}
+            >
+              <FontAwesomeIcon icon={faHome} />
+            </Link>
+          ))}
         <Link
           to={`/post/${req.match.params.id}/edit`}
           className="btn btn-success btn-block mb-2 mt-2"
@@ -229,7 +246,6 @@ const PostDetail = (req) => {
               id={req.match.params.id}
               userId={userId}
               userName={userName}
-              userImg={userImg}
             />
           </Row>
           <CategoryList />
@@ -262,9 +278,7 @@ const PostDetail = (req) => {
               <div className="small">
                 <FontAwesomeIcon icon={faPencilAlt} />
                 &nbsp;
-                <span>{`${date.getFullYear()}년 ${
-                  date.getMonth() + 1
-                }월 ${date.getDate()}일`}</span>
+                <span>{`${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`}</span>
                 &nbsp;&nbsp;
                 <FontAwesomeIcon icon={faCommentDots} />
                 &nbsp;

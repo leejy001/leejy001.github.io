@@ -10,9 +10,10 @@ import { Collapse, Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons";
 
-function CommentList({ id, userId, userName, userImg }) {
+const CommentList = ({ id }) => {
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.comment);
+  const { userId } = useSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState(false);
 
   const setToggle = () => {
@@ -95,16 +96,11 @@ function CommentList({ id, userId, userName, userImg }) {
                 )
               )
             : "Creator"}
-          <Comments
-            id={id}
-            userId={userId}
-            userName={userName}
-            userImg={userImg}
-          />
+          <Comments id={id} />
         </Container>
       </Collapse>
     </>
   );
-}
+};
 
 export default CommentList;

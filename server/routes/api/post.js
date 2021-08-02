@@ -250,7 +250,6 @@ router.post("/:id/comments", async (req, res, next) => {
     creator: req.body.userId,
     creatorName: req.body.userName,
     creatorImg: req.body.userImg,
-    replyTo: req.body.replyTo,
     post: req.body.id,
     date: new Date(),
   });

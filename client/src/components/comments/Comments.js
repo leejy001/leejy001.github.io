@@ -1,13 +1,12 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { COMMENT_UPLOADING_REQUEST } from "../../redux/types";
 import { Button, Form, Input, Row } from "reactstrap";
 
-const Comments = ({ id, userName, userId, userImg }) => {
-  console.log(userImg);
+const Comments = ({ id }) => {
   const dispatch = useDispatch();
+  const { userId, userName, userImg } = useSelector((state) => state.auth);
   const [form, setValues] = useState({ contents: "" });
-
   const onSubmit = async (e) => {
     await e.preventDefault();
     const { contents } = form;
