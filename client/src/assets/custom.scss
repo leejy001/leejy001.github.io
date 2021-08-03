@@ -135,6 +135,23 @@
   -webkit-box-orient: vertical;
 }
 
+.list-contents {
+  display: inline-block;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: normal;
+  line-height: 1.2;
+  max-height: 3.6em;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
 // Page Detail__________________________________________________________
 .side-button {
   position: fixed;

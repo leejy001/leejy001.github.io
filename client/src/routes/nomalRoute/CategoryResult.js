@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import StudyCategoryContainer from "../../components/post/StudyCategoryContainer";
@@ -38,7 +38,7 @@ const CategoryResult = () => {
             ""
           )}
         </div>
-        <div className="card-container">
+        <div>
           {categoryFindResult.posts && (
             <StudyCategoryContainer posts={categoryFindResult.posts} />
           )}

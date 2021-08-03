@@ -9,7 +9,6 @@ const StudyCategoryContainer = ({ posts }) => {
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  console.log(indexOfFirstPost, indexOfLastPost);
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -18,6 +17,7 @@ const StudyCategoryContainer = ({ posts }) => {
     <Fragment>
       <StudyPostCardOne posts={currentPosts} />
       <Pagination
+        currentPage={currentPage}
         postPerPage={postPerPage}
         totalPosts={posts.length}
         paginate={paginate}
