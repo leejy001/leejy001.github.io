@@ -5,7 +5,7 @@ import StudyPostCardOne from "./StudyPostCardOne";
 
 const StudyCategoryContainer = ({ posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const postPerPage = 3;
+  const postPerPage = 5;
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
