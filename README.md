@@ -177,6 +177,9 @@
  ┃ ┃ ┣ 📜CategoryCardOne.js
  ┃ ┃ ┣ 📜CategoryList.js
  ┃ ┃ ┣ 📜PostCardOne.js
+ ┃ ┃ ┣ 📜StudyCategory.js
+ ┃ ┃ ┣ 📜StudyCategoryContainer.js
+ ┃ ┃ ┣ 📜StudyPostCardOne.js
  ┃ ┃ ┗ 📜TimeForDay.js
  ┃ ┣ 📂search
  ┃ ┃ ┗ 📜SearchInput.js
@@ -184,7 +187,8 @@
  ┃ ┃ ┗ 📜Spinner.js
  ┃ ┣ 📜AppNavbar.js
  ┃ ┣ 📜Footer.js
- ┃ ┗ 📜Header.js
+ ┃ ┣ 📜Header.js
+ ┃ ┗ 📜Pagination.js
  ┣ 📂redux
  ┃ ┣ 📂reducers
  ┃ ┃ ┣ 📜authReducer.js
@@ -205,7 +209,8 @@
  ┃ ┃ ┣ 📜PostEdit.js
  ┃ ┃ ┣ 📜PostWrite.js
  ┃ ┃ ┣ 📜Profile.js
- ┃ ┃ ┗ 📜Search.js
+ ┃ ┃ ┣ 📜Search.js
+ ┃ ┃ ┗ 📜Study.js
  ┃ ┗ 📂protectRoute
  ┃ ┃ ┗ 📜ProtectedRoute.js
  ┃ ┗ 📜Router.js
@@ -239,3 +244,9 @@
  ┣ 📜app.js
  ┗ 📜server.js
 ```
+
+## Update
+
+- Study page 추가 (공부한 내용을 정리하고 카테고리별로 묶음)
+- Study cateory page Pagination 추가
+- 일부 디자인 변경
