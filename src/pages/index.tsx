@@ -1,8 +1,12 @@
 import React from 'react'
-import Text from 'components/Text'
+import { Link } from 'gatsby'
 
 function Index() {
-  return <Text text="Home" />
+  return (
+    <div>
+      <Link to="/Info/">To Info</Link>
+    </div>
+  )
 }
 
 export default Index

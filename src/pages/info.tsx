@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Text from 'components/Text'
 
 type InfoPageProps = {
   data: {
@@ -21,13 +20,7 @@ function InfoPage({
     },
   },
 }: InfoPageProps) {
-  return (
-    <div>
-      <Text text={title} />
-      <Text text={description} />
-      <Text text={author} />
-    </div>
-  )
+  return <div></div>
 }
 
 export default InfoPage
