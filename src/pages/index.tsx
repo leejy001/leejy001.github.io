@@ -1,21 +1,19 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
-import GlobalStyle from '../theme/GlobalStyle'
-import Introduction from 'components/Main/Introduction'
-import CategoryList from 'components/Main/CategoryList'
-import PostList from 'components/Main/PostList'
-import Footer from 'components/Common/Footer'
 import { graphql } from 'gatsby'
 import { PostItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-
-const CATEGORY_LIST = {
-  All: 5,
-  Web: 3,
-  Mobile: 2,
-}
+import quertString, { ParsedQuery } from 'query-string'
+import GlobalStyle from '../theme/GlobalStyle'
+import Introduction from 'components/Main/Introduction'
+import CategoryList, { CategoryListTypes } from 'components/Main/CategoryList'
+import PostList from 'components/Main/PostList'
+import Footer from 'components/Common/Footer'
 
 type IndexPostsType = {
+  location: {
+    search: string
+  }
   data: {
     allMarkdownRemark: {
       edges: PostItemType[]
@@ -29,6 +27,7 @@ type IndexPostsType = {
 }
 
 function Index({
+  location: { search },
   data: {
     allMarkdownRemark: { edges },
     file: {
@@ -36,12 +35,45 @@ function Index({
     },
   },
 }: IndexPostsType) {
+  const parsed: ParsedQuery<string> = quertString.parse(search)
+  console.log(search.category)
+  const selectedCategory: string =
+    typeof parsed.category !== 'string' || !parsed.category
+      ? 'All'
+      : parsed.category
+
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListTypes['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostItemType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1
+            else list[category]++
+          })
+          list['All']++
+
+          return list
+        },
+        { All: 0 },
+      ),
+    [],
+  )
   return (
     <Container>
       <GlobalStyle />
       <Introduction profileImage={gatsbyImageData} />
-      <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
-      <PostList posts={edges} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
+      <PostList selectedCategory={selectedCategory} posts={edges} />
       <Footer />
     </Container>
   )

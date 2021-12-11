@@ -1,16 +1,32 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from '@emotion/styled'
 import PostItem from './PostItem'
 import { PostItemType } from 'types/PostItem.types'
 
 type PostListType = {
+  selectedCategory: string
   posts: PostItemType[]
 }
 
-function PostList({ posts }: PostListType) {
+function PostList({ selectedCategory, posts }: PostListType) {
+  const postListData = useMemo(
+    () =>
+      posts.filter(
+        ({
+          node: {
+            frontmatter: { categories },
+          },
+        }: PostItemType) =>
+          selectedCategory !== 'All'
+            ? categories.includes(selectedCategory)
+            : true,
+      ),
+    [selectedCategory],
+  )
+
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostItemType) => (
+      {postListData.map(({ node: { id, frontmatter } }: PostItemType) => (
         <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
       ))}
     </PostListWrapper>

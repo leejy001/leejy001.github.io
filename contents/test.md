@@ -1,7 +1,7 @@
 ---
 date: '2021-12-10'
 title: 'Test'
-categories: ['Web', 'SEO', 'Frontend']
+categories: ['SEO', 'Frontend']
 summary: 'hello world'
 thumbnail: './rocket.png'
 ---

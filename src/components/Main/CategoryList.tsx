@@ -22,7 +22,7 @@ function CategoryList({ selectedCategory, categoryList }: CategoryListTypes) {
     <CategoryListWrapper>
       {Object.entries(categoryList).map(([name, count]) => (
         <CategoryItem
-          to={`/?Category=${name}`}
+          to={`/?category=${name}`}
           active={name === selectedCategory}
           key={name}
         >
