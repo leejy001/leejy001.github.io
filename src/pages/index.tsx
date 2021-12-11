@@ -1,12 +1,23 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import styled from '@emotion/styled'
+import GlobalStyle from '../theme/GlobalStyle'
+import Introduction from 'components/Main/Introduction'
+import Footer from 'components/Common/Footer'
 
 function Index() {
   return (
-    <div>
-      <Link to="/Info/">To Info</Link>
-    </div>
+    <Container>
+      <GlobalStyle />
+      <Introduction />
+      <Footer />
+    </Container>
   )
 }
 
 export default Index
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`
