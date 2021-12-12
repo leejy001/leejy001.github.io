@@ -17,9 +17,17 @@ function PostList({ selectedCategory, posts }: PostListType) {
 
   return (
     <PostListWrapper ref={itemRef}>
-      {postList.map(({ node: { id, frontmatter } }: PostItemType) => (
-        <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }
