@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react'
-import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import { PostItemType } from 'types/PostItem.types'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import quertString, { ParsedQuery } from 'query-string'
-import GlobalStyle from '../theme/GlobalStyle'
 import Introduction from 'components/Main/Introduction'
 import CategoryList, { CategoryListTypes } from 'components/Main/CategoryList'
 import PostList from 'components/Main/PostList'
-import Footer from 'components/Common/Footer'
+import Container from 'components/Common/Container'
 
 type IndexPostsType = {
   location: {
@@ -66,25 +64,17 @@ function Index({
   )
   return (
     <Container>
-      <GlobalStyle />
       <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList selectedCategory={selectedCategory} posts={edges} />
-      <Footer />
     </Container>
   )
 }
 
 export default Index
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`
 
 export const getPostList = graphql`
   query getPostList {

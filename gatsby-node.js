@@ -27,6 +27,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+// https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages
 // Generate Post Page Through Markdown Data
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
