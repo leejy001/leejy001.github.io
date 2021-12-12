@@ -36,7 +36,6 @@ function Index({
   },
 }: IndexPostsType) {
   const parsed: ParsedQuery<string> = quertString.parse(search)
-  console.log(search.category)
   const selectedCategory: string =
     typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
