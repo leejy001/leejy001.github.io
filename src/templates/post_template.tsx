@@ -3,6 +3,7 @@ import React from 'react'
 import { PostFrontmatterType } from 'types/PostItem.types'
 import Template from '../components/Common/Container'
 import PostHead from '../components/Post/PostHead'
+import PostContent from 'components/Post/PostContent'
 
 export type PostPageItemType = {
   node: {
@@ -46,6 +47,7 @@ function PostTemplate({
         categories={categories}
         thumbnail={gatsbyImageData}
       />
+      <PostContent html={html} />
     </Template>
   )
 }
