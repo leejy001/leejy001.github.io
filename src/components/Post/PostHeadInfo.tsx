@@ -36,6 +36,11 @@ const PostHeadInfoWrapper = styled.div`
   margin: 0 auto;
   padding: 60px 0;
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 40px 20px;
+  }
 `
 
 const PrevPageIcon = styled.div`
@@ -49,6 +54,12 @@ const PrevPageIcon = styled.div`
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
 `
 
 const Title = styled.div`
@@ -62,6 +73,10 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   font-size: 45px;
   font-weight: 800;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `
 
 const PostData = styled.div`
@@ -71,4 +86,11 @@ const PostData = styled.div`
   margin-top: 10px;
   font-size: 18px;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 15px;
+    font-weight: 400;
+  }
 `

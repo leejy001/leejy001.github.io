@@ -1,4 +1,5 @@
 import React, { createRef, useEffect } from 'react'
+import styled from '@emotion/styled'
 
 const src = 'https://utteranc.es/client.js'
 const repo = 'leejy001/leeblog'
@@ -37,7 +38,13 @@ function Comment() {
     element.current.appendChild(utterance)
   }, [])
 
-  return <div ref={element} />
+  return <CommentWrapper ref={element} />
 }
 
 export default Comment
+
+const CommentWrapper = styled.div`
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`
