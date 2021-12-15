@@ -40,6 +40,8 @@ function Container({
         <meta name="twitter:image" content={image} />
         <meta name="twitter:site" content="leejy001" />
         <meta name="twitter:creator" content="leejy001" />
+
+        <html lang="ko" />
       </Helmet>
       <GlobalStyle />
       {children}
@@ -50,7 +52,7 @@ function Container({
 
 export default Container
 
-const ContainerWrapper = styled.div`
+const ContainerWrapper = styled.main`
   display: flex;
   flex-direction: column;
   height: 100%;

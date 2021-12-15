@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `LeeBlog`,
     description: `주니어 프론트엔드 개발자의 기술/개발 블로그`,
-    author: `leejy001`,
-    siteUrl: 'https://my-website-link.com',
+    author: `Jun`,
+    siteUrl: 'https://leejy001.githube.io/',
   },
   plugins: [
     {
@@ -76,11 +76,17 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://my-website.com/',
+        siteUrl: 'https://leejy001.githube.io/',
         stripQueryString: true,
       },
     },
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: <https://gatsby.dev/offline>
     // `gatsby-plugin-offline`,

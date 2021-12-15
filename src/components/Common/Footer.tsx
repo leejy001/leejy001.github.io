@@ -12,7 +12,7 @@ function Footer() {
 
 export default Footer
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   display: grid;
   place-items: center;
   margin-top: auto;
