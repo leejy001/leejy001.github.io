@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby'
 import React from 'react'
+import { graphql } from 'gatsby'
 import { PostFrontmatterType } from 'types/PostItem.types'
-import Template from '../components/Common/Container'
+import Container from '../components/Common/Container'
 import PostHead from '../components/Post/PostHead'
 import PostContent from 'components/Post/PostContent'
 import Comment from 'components/Post/Comment'
@@ -19,12 +19,16 @@ type PostTemplateType = {
       edges: PostPageItemType[]
     }
   }
+  location: {
+    href: string
+  }
 }
 
 function PostTemplate({
   data: {
     allMarkdownRemark: { edges },
   },
+  location: { href },
 }: PostTemplateType) {
   const {
     node: {
@@ -36,12 +40,13 @@ function PostTemplate({
         categories,
         thumbnail: {
           childImageSharp: { gatsbyImageData },
+          publicURL,
         },
       },
     },
   } = edges[0]
   return (
-    <Template>
+    <Container title={title} description={summary} url={href} image={publicURL}>
       <PostHead
         title={title}
         date={date}
@@ -50,7 +55,7 @@ function PostTemplate({
       />
       <PostContent html={html} />
       <Comment />
-    </Template>
+    </Container>
   )
 }
 
@@ -71,6 +76,7 @@ export const queryMarkdownDataBySlug = graphql`
               childImageSharp {
                 gatsbyImageData
               }
+              publicURL
             }
           }
         }

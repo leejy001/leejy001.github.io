@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `LeeBlog`,
+    description: `주니어 프론트엔드 개발자의 기술/개발 블로그`,
+    author: `leejy001`,
+    siteUrl: 'https://my-website-link.com',
   },
   plugins: [
     {
@@ -72,6 +73,14 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://my-website.com/',
+        stripQueryString: true,
+      },
+    },
+    'gatsby-plugin-sitemap',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: <https://gatsby.dev/offline>
     // `gatsby-plugin-offline`,
