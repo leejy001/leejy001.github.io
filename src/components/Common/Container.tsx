@@ -46,7 +46,7 @@ function Container({
       </Helmet>
       <GlobalStyle />
       <Header />
-      {children}
+      <section>{children}</section>
       <Footer />
     </ContainerWrapper>
   )
@@ -58,4 +58,7 @@ const ContainerWrapper = styled.main`
   display: flex;
   flex-direction: column;
   height: 100%;
+  section {
+    padding-top: 50px;
+  }
 `

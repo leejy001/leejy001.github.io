@@ -22,7 +22,7 @@ function CategoryList({ selectedCategory, categoryList }: CategoryListTypes) {
     <CategoryListWrapper>
       {Object.entries(categoryList).map(([name, count]) => (
         <CategoryItem
-          to={`/?category=${name}`}
+          to={`/categories?category=${name}`}
           active={name === selectedCategory}
           key={name}
         >
@@ -39,7 +39,8 @@ const CategoryListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 768px;
-  margin: 100px auto 0;
+  margin: auto;
+  background-color: red;
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 50px;
