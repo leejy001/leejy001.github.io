@@ -2,13 +2,13 @@ import React from 'react'
 import { Global, css } from '@emotion/react'
 
 const defaultStyle = css`
-  @import url('<http://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap>');
+  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   }
 
   html,

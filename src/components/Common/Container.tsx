@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Helmet } from 'react-helmet'
 import GlobalStyle from '../../theme/GlobalStyle'
 import Footer from './Footer'
+import Header from './Header'
 
 type ContainerType = {
   title: string
@@ -44,6 +45,7 @@ function Container({
         <html lang="ko" />
       </Helmet>
       <GlobalStyle />
+      <Header />
       {children}
       <Footer />
     </ContainerWrapper>

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { graphql } from 'gatsby'
-import { PostItemType } from 'types/PostItem.types'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
-import PostList from 'components/Main/PostList'
 import Container from 'components/Common/Container'
+import CategoryList, { CategoryListTypes } from 'components/Main/CategoryList'
+import PostList from 'components/Main/PostList'
+import { PostItemType } from 'types/PostItem.types'
 
-type IndexPostsType = {
+type CategoriesType = {
   location: {
     search: string
   }
@@ -22,32 +22,50 @@ type IndexPostsType = {
       edges: PostItemType[]
     }
     file: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
       publicURL: string
     }
   }
 }
 
-function Index({
+function CategoriesPage({
   location: { search },
   data: {
     site: {
       siteMetadata: { title, description, siteUrl },
     },
     allMarkdownRemark: { edges },
-    file: {
-      childImageSharp: { gatsbyImageData },
-      publicURL,
-    },
+    file: { publicURL },
   },
-}: IndexPostsType) {
+}: CategoriesType) {
   const parsed: ParsedQuery<string> = queryString.parse(search)
   const selectedCategory: string =
     typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
       : parsed.category
+
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListTypes['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostItemType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1
+            else list[category]++
+          })
+          list['All']++
+
+          return list
+        },
+        { All: 0 },
+      ),
+    [],
+  )
 
   return (
     <Container
@@ -56,16 +74,19 @@ function Index({
       url={siteUrl}
       image={publicURL}
     >
-      {/* <Introduction profileImage={gatsbyImageData} /> */}
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
       <PostList selectedCategory={selectedCategory} posts={edges} />
     </Container>
   )
 }
 
-export default Index
+export default CategoriesPage
 
-export const getPostList = graphql`
-  query getPostList {
+export const getCategories = graphql`
+  query getCategories {
     site {
       siteMetadata {
         title
@@ -75,6 +96,7 @@ export const getPostList = graphql`
     }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+      filter: { frontmatter: { categories: { ne: null } } }
     ) {
       edges {
         node {
@@ -97,9 +119,6 @@ export const getPostList = graphql`
       }
     }
     file(name: { eq: "profile-image" }) {
-      childImageSharp {
-        gatsbyImageData(width: 120, height: 120)
-      }
       publicURL
     }
   }
