@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://leejy001.githube.io/sitemap/sitemap-index.xml
-Host: https://leejy001.githube.io
+Sitemap: https://leejy001.github.io/sitemap/sitemap-index.xml
+Host: https://leejy001.github.io
