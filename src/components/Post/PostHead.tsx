@@ -10,13 +10,13 @@ type GatsbyImgType = {
 }
 
 type PostHeadType = PostHeadInfoType & {
-  thumbnail: IGatsbyImageData
+  thumbnail?: IGatsbyImageData
 }
 
 function PostHead({ title, date, categories, thumbnail }: PostHeadType) {
   return (
     <PostHeadWrapper>
-      <BackgroundImage image={thumbnail} alt="thumnail" />
+      {thumbnail && <BackgroundImage image={thumbnail} alt="thumnail" />}
       <PostHeadInfo title={title} date={date} categories={categories} />
     </PostHeadWrapper>
   )

@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `LeeBlog`,
     description: `주니어 프론트엔드 개발자의 기술/개발 블로그`,
-    author: `Jun`,
+    author: `Jun (Lee Jun Yong)`,
     siteUrl: 'https://leejy001.githube.io/',
   },
   plugins: [

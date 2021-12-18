@@ -9,6 +9,7 @@ function PostItem({
   date,
   categories,
   summary,
+  showThumbnail,
   thumbnail: {
     childImageSharp: { gatsbyImageData },
   },
@@ -16,17 +17,23 @@ function PostItem({
 }: PostFrontmatterType & { link: string }) {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
-      <PostItemContent>
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-        <Category>
-          {categories.map(category => (
-            <CategoryItem key={category}>{category}</CategoryItem>
-          ))}
-        </Category>
-        <Summary>{summary}</Summary>
-      </PostItemContent>
+      <React.Fragment>
+        <ContentWrapper>
+          <PostItemContent>
+            <Title>{title}</Title>
+            <Date>{date}</Date>
+            <Category>
+              {categories.map(category => (
+                <CategoryItem key={category}>{category}</CategoryItem>
+              ))}
+            </Category>
+            <Summary>{summary}</Summary>
+          </PostItemContent>
+        </ContentWrapper>
+        {showThumbnail && (
+          <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
+        )}
+      </React.Fragment>
     </PostItemWrapper>
   )
 }
@@ -35,9 +42,9 @@ export default PostItem
 
 const PostItemWrapper = styled(Link)`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   transition: 0.3s box-shadow;
   cursor: pointer;
   &:hover {
@@ -45,10 +52,16 @@ const PostItemWrapper = styled(Link)`
   }
 `
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const ThumbnailImage = styled(GatsbyImage)`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px 10px 0 0;
+  width: 155px;
+  height: 155px;
+  margin: 10px;
+  border-radius: 0;
 `
 
 const PostItemContent = styled.div`
@@ -61,18 +74,18 @@ const PostItemContent = styled.div`
 const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  margin-bottom: 3px;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
   -webkit-line-cramp: 2;
   -webkit-box-orient: vertical;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
+  margin-bottom: 8px;
 `
 
 const Date = styled.div`
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   opacity: 0.7;
 `
@@ -88,7 +101,7 @@ const CategoryItem = styled.div`
   margin: 2.5px 5px;
   padding: 3px 5px;
   border-radius: 3px;
-  background: black;
+  background: #08c1ce;
   font-size: 14px;
   font-weight: 700;
   color: white;

@@ -3,7 +3,8 @@ date: '2021-12-18'
 title: 'Test'
 categories: ['Test', 'Markdown']
 summary: '블로그 테스트 마크다운 예제 (git)'
-thumbnail: './rocket.png'
+thumbnail: './basic.png'
+showThumbnail: false
 ---
 
 ---

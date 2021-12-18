@@ -19,7 +19,7 @@ function PostHeadInfo({ title, date, categories }: PostHeadInfoType) {
       </PrevPageIcon>
       <Title>{title}</Title>
       <PostData>
-        <div>{categories.join('/')}</div>
+        <div>{categories.join(' / ')}</div>
         <div>{date}</div>
       </PostData>
     </PostHeadInfoWrapper>
