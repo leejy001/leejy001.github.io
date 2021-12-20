@@ -3,7 +3,7 @@ module.exports = {
     title: `LeeBlog`,
     description: `주니어 프론트엔드 개발자의 기술/개발 블로그`,
     author: `Jun (Lee Jun Yong)`,
-    siteUrl: 'https://leejy001.githube.io/',
+    siteUrl: 'https://leejy001.github.io/',
   },
   plugins: [
     {
@@ -76,7 +76,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://leejy001.githube.io/',
+        siteUrl: 'https://leejy001.github.io/',
         stripQueryString: true,
       },
     },
