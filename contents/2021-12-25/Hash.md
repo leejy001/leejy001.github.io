@@ -9,7 +9,8 @@ showThumbnail: false
 
 해시 테이블을 알아보기에 앞서 테이블의 정의와 자료구조에서 테이블이 의미하는 것이 무엇인지부터 파악하자
 <br /><br />
-<img src='/images/DataStructure/Hash_Table.png' width='100%' alt='table' />
+
+<p align="center"><img src='/images/DataStructure/Hash_Table.png' width='70%' alt='table' /></p>
 <br />
 위 그림에서 보이는 것과 같이 대부분 문서 과정 중에 한번 정도는 만들 법한 '표'이며 테이블이라 한다.  
 하지만 자료구조 관점에서는 위의 구조와 비슷한 모든 표를 테이블이라 하진 않으며 표에 저장된 데이터의 형태가 다음과 같을 때에만 테이블로 구분 짓는다.
