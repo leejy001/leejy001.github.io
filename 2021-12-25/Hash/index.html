@@ -1,60 +1,19 @@
-<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.e53586a225ffdde20c86.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><meta name="generator" content="Gatsby 4.3.0"/><title data-react-helmet="true">해시 테이블 (Hash Table)</title><meta data-react-helmet="true" name="description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" property="og:description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" property="og:image" content="/static/74848a4db15c465a7396ed0808306550/basic.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" name="twitter:description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" name="twitter:image" content="/static/74848a4db15c465a7396ed0808306550/basic.png"/><meta data-react-helmet="true" name="twitter:site" content="leejy001"/><meta data-react-helmet="true" name="twitter:creator" content="leejy001"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="canonical" href="https://leejy001.github.io/2021-12-25/Hash/" data-baseprotocol="https:" data-basehost="leejy001.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link as="script" rel="preload" href="/webpack-runtime-466e565b10310289523e.js"/><link as="script" rel="preload" href="/framework-a71258511df4b73cc72c.js"/><link as="script" rel="preload" href="/app-92dfcbc735e9845ae48c.js"/><link as="script" rel="preload" href="/cb1608f2-af39fb5411818d543a01.js"/><link as="script" rel="preload" href="/a9a7754c-350385c4b181f51f5292.js"/><link as="script" rel="preload" href="/c233df5d83b349c1a317d59a000beafeb05233d4-fd8581b5b95f130d60b7.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-tsx-3a4097375651188b877a.js"/><link as="fetch" rel="preload" href="/page-data/2021-12-25/Hash/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 1w3ry3v">.css-1w3ry3v{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}.css-1w3ry3v section{padding-top:50px;}</style><main class="css-1w3ry3v e1jp4sat0"><style data-emotion="css-global 1rj6kj3">@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);*{padding:0;margin:0;box-sizing:border-box;font-family:'Spoqa Han Sans Neo','sans-serif';}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1y9hibv">.css-1y9hibv{position:fixed;background-color:white;width:100%;box-sizing:border-box;z-index:100;padding:10px 30px;font-size:20px;text-align:center;line-height:1.5;border-bottom:1px solid rgb(230, 230, 230);}</style><header class="css-1y9hibv e1ke0ojz4"><style data-emotion="css 1ykvh9j">.css-1ykvh9j{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;max-width:1024px;margin:0 auto;}@media (max-width: 1024px){.css-1ykvh9j{width:100%;}}</style><div class="css-1ykvh9j e1ke0ojz3"><style data-emotion="css 1eoy87d">.css-1eoy87d{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}</style><div class="css-1eoy87d e1ke0ojz2"><a href="/"><p>LeeBlog</p></a><a href="/categories"><style data-emotion="css ihqlqk">.css-ihqlqk{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:7px;margin-left:30px;}.css-ihqlqk p{margin-left:3px;margin-top:-1px;font-size:15px;}</style><div class="css-ihqlqk e1ke0ojz1"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bookmark" class="svg-inline--fa fa-bookmark fa-w-12 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" color="#08c1ce"><path fill="currentColor" d="M0 512V48C0 21.49 21.49 0 48 0h288c26.51 0 48 21.49 48 48v464L192 400 0 512z"></path></svg><p>카테고리</p></div></a></div><div class="css-1eoy87d e1ke0ojz2"><div class="css-0 e1ke0ojz0"><a href="https://github.com/leejy001" target="_blank" rel="noreferrer noopener"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" color="#08c1ce"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></div></div></div></header><section><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:640px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;360&#x27; width=&#x27;640&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACN0lEQVQozxXL21LaQAAA0IzTioVAks1mb9lc2GwSciEQQ4MQg0ItimDHah2r4+j0sf//A52e96NgXxDfQ5wRxi5ouB1Xj9cPzmobTitOsAkMtdftdI4/Hx1hXUvCeDxK50VecLMSWMH+kPi+xW1kE4OhBNHruJy9/x3/fG+uDvvrw6rZCEdM89Ljjo2giy0f6WNuBGZXwa6HPPd/psRApuUwiODD0/P9y/vsfHPY3uyumnZRbtfpzeX4cnVzWS+rRBY+HTuWAjmH3IGUEMdJArmUKcdEHXQh0BAAujbgVBMeILCndz6Z1MvjaD0/3bf1cporwObQ5iYm2OVVlL1mi4/7p3w6kVLG0skiKlxIzD63QBSIwLUnkYioNjR7CRkokHGL2QZCngwARjIZrdbrLE+jKJQ+i4UVCkhMlQA9DnzhsshhHuz3Ox3fHCiAMkCpZiHMHURpV+2d9Lp9Q7Og4TmOGEpuka/lpF0U66ZZ12f1JGnrclFkYRgpOiYGwiq0BCAT5O1O22z3NNq/LjeHx7uHj5fn+93Fj11xltOkqObVrJ3l2ZBnLk7wQNEsrEHUBwACCwEodatuLg+/3s6bTVvPz3KvjLHLDAJRJPxJGgkGODiJqN6krtIHSDWgqoNjVf0CALY5o1TYhENt5KNl4S1Spw74t0VZZGHg2iPpt9X4fDZZTqXS082eBk5UzcJsgYM5DwMZ1eXXdlZe1MFpyoe2WaXy9+33P/u7t8fbZl5lsRQEREz7B0ixXxVu4+fVAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/74848a4db15c465a7396ed0808306550/c0299/basic.webp 160w,/static/74848a4db15c465a7396ed0808306550/378b7/basic.webp 320w,/static/74848a4db15c465a7396ed0808306550/3c3fb/basic.webp 640w" sizes="(min-width: 640px) 640px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 640px) 640px, 100vw" decoding="async" loading="lazy" data-src="/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg" data-srcset="/static/74848a4db15c465a7396ed0808306550/c898a/basic.jpg 160w,/static/74848a4db15c465a7396ed0808306550/2278c/basic.jpg 320w,/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg 640w" alt="thumnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/74848a4db15c465a7396ed0808306550/c0299/basic.webp 160w,/static/74848a4db15c465a7396ed0808306550/378b7/basic.webp 320w,/static/74848a4db15c465a7396ed0808306550/3c3fb/basic.webp 640w" sizes="(min-width: 640px) 640px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 640px) 640px, 100vw" decoding="async" loading="lazy" src="/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg" srcSet="/static/74848a4db15c465a7396ed0808306550/c898a/basic.jpg 160w,/static/74848a4db15c465a7396ed0808306550/2278c/basic.jpg 320w,/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg 640w" alt="thumnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">해시 테이블 (Hash Table)</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>Data Structure</div><div>2021.12.25.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><p>해시 테이블에 알기 앞서 테이블의 정의와 자료구조에서 테이블이 의미하는 것이 무엇인지부터 파악하자
-<br /><br />
-<span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 492px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/f5a47/Hash_Table.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 45.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB1ElEQVQoz1VQS2sTYRSdH+ayiGB3XRW6UDcVrNiGtmK7aGmpimCtRFqh4J9QXKYpOmImjcGkSUxCOo9kkkxSMpk8Zsgk4ci50FgvHL77nXs496HMrXzG3GoMT94m8OjlDyztfcfizjfci8Tw4EDF3cgZ7ix/ESzuqnh6mMDC9jmeHSWxtKdifuMMDw9UzG+e437kK5SVNzGsHmnYPU1h6+QCL46T2Ij+xNr7BPY//cJ6NInlV3E8fh3H1scUdk5TWI9q2D7RsPZOxeYHTXTPjy8QOYxD8QceZjEdQ6+Ukb/8jfHI/0eHASZhgNtRtQz8yWdZnXH0UgzDRLfroeO6aF9f4+pKRz5fQNNx4Lpdqdl2XSC6Tkd4Xdeh64bk5FgzTQsKPzLFdIowDEWYTqfhuu6s82AwEDAmk4m8pmmi0Wj8x9FLqVar6Pf78DxPTAzDQKlUQqvVQq/Xk1qz2RQwJ2dZFiqVirw0vdHVajUotm3D932ZgKbFYhGapokB+eFwiHa7LWBOcIhCoYByuYx6vS4ctcwVx3EwHo8xGo2kwFVyuZwYkOcZODnBnKehhk1pysbkqaWXwtWCIBAzjs4bZrNZ3PDszNsQzMmxlslkZG02vs3/BZ8nfOYT2ZfAAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/a59e9/Hash_Table.webp 192w,
-/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/0ca9f/Hash_Table.webp 384w,
-/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/b025b/Hash_Table.webp 492w"
-              sizes="(max-width: 492px) 100vw, 492px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/3b721/Hash_Table.png 192w,
-/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/66595/Hash_Table.png 384w,
-/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/f5a47/Hash_Table.png 492w"
-            sizes="(max-width: 492px) 100vw, 492px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/9dfcbc9e1eb7ca96e46fe7ada2b49307/f5a47/Hash_Table.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span>
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.e53586a225ffdde20c86.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><meta name="generator" content="Gatsby 4.3.0"/><title data-react-helmet="true">해시 테이블 (Hash Table)</title><meta data-react-helmet="true" name="description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" property="og:description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" property="og:image" content="/static/74848a4db15c465a7396ed0808306550/basic.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="해시 테이블 (Hash Table)"/><meta data-react-helmet="true" name="twitter:description" content="해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자"/><meta data-react-helmet="true" name="twitter:image" content="/static/74848a4db15c465a7396ed0808306550/basic.png"/><meta data-react-helmet="true" name="twitter:site" content="leejy001"/><meta data-react-helmet="true" name="twitter:creator" content="leejy001"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="canonical" href="https://leejy001.github.io/2021-12-25/Hash/" data-baseprotocol="https:" data-basehost="leejy001.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link as="script" rel="preload" href="/webpack-runtime-466e565b10310289523e.js"/><link as="script" rel="preload" href="/framework-a71258511df4b73cc72c.js"/><link as="script" rel="preload" href="/app-92dfcbc735e9845ae48c.js"/><link as="script" rel="preload" href="/cb1608f2-af39fb5411818d543a01.js"/><link as="script" rel="preload" href="/a9a7754c-350385c4b181f51f5292.js"/><link as="script" rel="preload" href="/c233df5d83b349c1a317d59a000beafeb05233d4-fd8581b5b95f130d60b7.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-tsx-3a4097375651188b877a.js"/><link as="fetch" rel="preload" href="/page-data/2021-12-25/Hash/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 1w3ry3v">.css-1w3ry3v{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}.css-1w3ry3v section{padding-top:50px;}</style><main class="css-1w3ry3v e1jp4sat0"><style data-emotion="css-global 1rj6kj3">@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);*{padding:0;margin:0;box-sizing:border-box;font-family:'Spoqa Han Sans Neo','sans-serif';}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1y9hibv">.css-1y9hibv{position:fixed;background-color:white;width:100%;box-sizing:border-box;z-index:100;padding:10px 30px;font-size:20px;text-align:center;line-height:1.5;border-bottom:1px solid rgb(230, 230, 230);}</style><header class="css-1y9hibv e1ke0ojz4"><style data-emotion="css 1ykvh9j">.css-1ykvh9j{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;max-width:1024px;margin:0 auto;}@media (max-width: 1024px){.css-1ykvh9j{width:100%;}}</style><div class="css-1ykvh9j e1ke0ojz3"><style data-emotion="css 1eoy87d">.css-1eoy87d{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}</style><div class="css-1eoy87d e1ke0ojz2"><a href="/"><p>LeeBlog</p></a><a href="/categories"><style data-emotion="css ihqlqk">.css-ihqlqk{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:7px;margin-left:30px;}.css-ihqlqk p{margin-left:3px;margin-top:-1px;font-size:15px;}</style><div class="css-ihqlqk e1ke0ojz1"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bookmark" class="svg-inline--fa fa-bookmark fa-w-12 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" color="#08c1ce"><path fill="currentColor" d="M0 512V48C0 21.49 21.49 0 48 0h288c26.51 0 48 21.49 48 48v464L192 400 0 512z"></path></svg><p>카테고리</p></div></a></div><div class="css-1eoy87d e1ke0ojz2"><div class="css-0 e1ke0ojz0"><a href="https://github.com/leejy001" target="_blank" rel="noreferrer noopener"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" color="#08c1ce"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></div></div></div></header><section><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:640px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;360&#x27; width=&#x27;640&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACN0lEQVQozxXL21LaQAAA0IzTioVAks1mb9lc2GwSciEQQ4MQg0ItimDHah2r4+j0sf//A52e96NgXxDfQ5wRxi5ouB1Xj9cPzmobTitOsAkMtdftdI4/Hx1hXUvCeDxK50VecLMSWMH+kPi+xW1kE4OhBNHruJy9/x3/fG+uDvvrw6rZCEdM89Ljjo2giy0f6WNuBGZXwa6HPPd/psRApuUwiODD0/P9y/vsfHPY3uyumnZRbtfpzeX4cnVzWS+rRBY+HTuWAjmH3IGUEMdJArmUKcdEHXQh0BAAujbgVBMeILCndz6Z1MvjaD0/3bf1cporwObQ5iYm2OVVlL1mi4/7p3w6kVLG0skiKlxIzD63QBSIwLUnkYioNjR7CRkokHGL2QZCngwARjIZrdbrLE+jKJQ+i4UVCkhMlQA9DnzhsshhHuz3Ox3fHCiAMkCpZiHMHURpV+2d9Lp9Q7Og4TmOGEpuka/lpF0U66ZZ12f1JGnrclFkYRgpOiYGwiq0BCAT5O1O22z3NNq/LjeHx7uHj5fn+93Fj11xltOkqObVrJ3l2ZBnLk7wQNEsrEHUBwACCwEodatuLg+/3s6bTVvPz3KvjLHLDAJRJPxJGgkGODiJqN6krtIHSDWgqoNjVf0CALY5o1TYhENt5KNl4S1Spw74t0VZZGHg2iPpt9X4fDZZTqXS082eBk5UzcJsgYM5DwMZ1eXXdlZe1MFpyoe2WaXy9+33P/u7t8fbZl5lsRQEREz7B0ixXxVu4+fVAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/74848a4db15c465a7396ed0808306550/c0299/basic.webp 160w,/static/74848a4db15c465a7396ed0808306550/378b7/basic.webp 320w,/static/74848a4db15c465a7396ed0808306550/3c3fb/basic.webp 640w" sizes="(min-width: 640px) 640px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 640px) 640px, 100vw" decoding="async" loading="lazy" data-src="/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg" data-srcset="/static/74848a4db15c465a7396ed0808306550/c898a/basic.jpg 160w,/static/74848a4db15c465a7396ed0808306550/2278c/basic.jpg 320w,/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg 640w" alt="thumnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/74848a4db15c465a7396ed0808306550/c0299/basic.webp 160w,/static/74848a4db15c465a7396ed0808306550/378b7/basic.webp 320w,/static/74848a4db15c465a7396ed0808306550/3c3fb/basic.webp 640w" sizes="(min-width: 640px) 640px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 640px) 640px, 100vw" decoding="async" loading="lazy" src="/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg" srcSet="/static/74848a4db15c465a7396ed0808306550/c898a/basic.jpg 160w,/static/74848a4db15c465a7396ed0808306550/2278c/basic.jpg 320w,/static/74848a4db15c465a7396ed0808306550/0f1c0/basic.jpg 640w" alt="thumnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">해시 테이블 (Hash Table)</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>Data Structure</div><div>2021.12.25.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><p>해시 테이블을 알아보기에 앞서 테이블의 정의와 자료구조에서 테이블이 의미하는 것이 무엇인지부터 파악하자
+<br /><br /></p>
+<p align="center"><img src='/images/DataStructure/Hash_Table.png' width='70%' alt='table' /></p>
 <br />
-위 그림에서 보이는 것과 같이 대부분 문서 과정 중에 한번 정도는 만들 법한 ‘표’이며 테이블이라 한다.<br>
-하지만 자료구조 관점에서는 위의 구조와 비슷한 모든 표를 테이블이라 하진 않으며 표에 저장된 데이터의 형태가 다음과 같을 때에만 테이블로 구분 짓는다.</p>
+위 그림에서 보이는 것과 같이 대부분 문서 과정 중에 한번 정도는 만들 법한 '표'이며 테이블이라 한다.  
+하지만 자료구조 관점에서는 위의 구조와 비슷한 모든 표를 테이블이라 하진 않으며 표에 저장된 데이터의 형태가 다음과 같을 때에만 테이블로 구분 짓는다.
 <blockquote>
 <p>연관배열 구조로 이루어진 키(key)에 결과 값(value)을 저장하는 자료구조다.</p>
 </blockquote>
 <h2>여기서 연관배열 구조는 무엇일까?</h2>
 <p>연관배열 구조는 키(key) 1개와 값(value) 1개가 1:1로 연관되어 있는 구조이며 이것을 다른 말로 연상 배열, 결합형 배열, 맵(map), 사전(dictionary)로 부르기도 한다.<br>
-연관배열은 키(key)가 존재하지 않는 ‘값’은 저장할 수 없으며 모든 키는 1:1이기 때문에 중복되지 않는다.</p>
+연관배열은 키(key)가 존재하지 않는 '값'은 저장할 수 없으며 모든 키는 1:1이기 때문에 중복되지 않는다.</p>
 <p>이렇듯 테이블의 핵심은 키와 값이 하나의 쌍을 이루며 저장되는 데이터의 유형에 있다.<br>
 그런데 아까 <strong>사전(dictionary)</strong> 이라고도 하는데 사전은 단번에 원하는 단어를 찾지 못할 수 있다고도 생각하겠지만 일반적인 여러 페이지에 걸친 사전이 아닌 단 하나의 페이지에 모두 담는다면 단번에 찾을 수도 있을것이다.<br>
 사전의 단어는 키(key)가 되며 단어에 대한 설명은 값(value)이 될 것이다.
-이러한 이유로 자료구조의 ‘테이블’은 ‘사전 구조’라고도 하며 <strong>맵(map)</strong> 이라고 부르기도 한다.</p>
+이러한 이유로 자료구조의 '테이블'은 '사전 구조'라고도 하며 <strong>맵(map)</strong> 이라고 부르기도 한다.</p>
 <p>예로 어떤 회사의 직원들의 정보를 저장하고 있는데 매우 큰 테이블이 필요하다고 하자 이때 어떤 문제가 생길까?</p>
 <p><strong>1. 직원 고유번호의 범위가 배열의 인덱스 값으로 사용하기엔 부적절하다.</strong><br>
 <strong>2. 직원 고유번호의 범위를 수용 가능한 매우 큰 배열이 필요하다.</strong></p>
@@ -63,48 +22,7 @@
 <p>해시 함수는 임의의 길이의 데이터를 입력받아 일정한 길이의 비트열로 반환 시켜주는 함수이다. (이를 해싱이라 한다.)
 입력값의 길이가 달라도 출력은 항상 고정된 길이로 반환하며 동일한 값이 입력되면 언제나 동일한 출력값을 보장한다.<br>
 해시 테이블은 해시 함수를 사용하여 <strong>색인(index)</strong> 을 <strong>버킷(bucket)</strong> 이나 <strong>슬롯(slot)</strong> 의 배열로 계산한다.</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 641px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/243e6/Hash_Function.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACc0lEQVQ4y4WTWW/aQBSF+///Q1+iphtN1CwkbUWhSUjSQiBAWWzZ2I73KGCDWWwW+6vsQmkeql5p5Dvj0ad75ui8AEiShL8r3W/PRqMR7qO7/bM5//f9F9smjmNM08wA25oGM4SeSKPeJBhNdoA4wXFcLNNi8DR8Bv4DTL+O4+B53maWGHuo0zdEVFtCcyTC5ZTlesFsMUUz+kiqyIOlMFtOiFZhNngGXK0T1nHCZDpjFoYZ0BhoFIQct0Y+WxfaIXog8OCKiGYdZ65gz2XcUEH129hjZSc5Ba7iBM8fMw5+S3N8i0Inx+fWe67VU75039E17yj9tCn1+mh+m6Z2S0X4Rseq4gTqTvJqHRMnZBMuVqsN0KQoHnBa2yd3+ZKz1j49646jikP+XkEfdajJZYrVPPfqNe5E2wGX6ziDDD2fMIqy3vZNCt0cF/IRl/Ix+cYrmuot78sGpzUZM+hRFa8oVs9oG5XnwFTuPFoymc2ZRQvWa3A8kwv5Izd6nhstz7f+IZrfRXEf6Jpt9JGA4rVRvQ794U/ssbozJR0wWixwHx8ZBwGp8bZn8Kn5hqJwyHf9nJJ8kAG7uk5D66CPeohuA8GuIz01sQP1ucvRcs10HjFPJ4zBDwdcKcccV/Y4+rHHWXOflvqdXNngpCZhBT1qUpnCj1PqcpnHmb6TnAIWiyWa9sDTYJC9oer0OW+95qvwgU+tt5zc79E1qxzcmhxWBPRxhzvpilLtnIZ2gzPZuJylJEkyl5NNn0UuHFA1C9SsInW7xKV0gmg1qMse96qLH7qYAwXJ6GIOVYJo+Dwpm7j8yWmcxFkqtmsVL9Mk87/6BRMfxgPdyoyKAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/a59e9/Hash_Function.webp 192w,
-/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/0ca9f/Hash_Function.webp 384w,
-/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/828c8/Hash_Function.webp 641w"
-              sizes="(max-width: 641px) 100vw, 641px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/3b721/Hash_Function.png 192w,
-/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/66595/Hash_Function.png 384w,
-/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/243e6/Hash_Function.png 641w"
-            sizes="(max-width: 641px) 100vw, 641px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/7d0b7ecc13d82eb9688b9b3f20ac2afe/243e6/Hash_Function.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<img src='/images/DataStructure/Hash_Function.png' width='100%' alt='hash function' />
 <p>이렇게 해시 함수를 활용하여 특정 해시값을 알아내고 그 해시값을 인덱스로 변환하여 key-value 데이터를 저장하는 자료구조를 <strong>해시 테이블(Hash Table)</strong> 이라고 한다.
 <br /><br />
 해시 테이블의 구성은 아래와 같다.<br>
@@ -129,50 +47,7 @@ key 값을 그대로 저장소의 색인으로 이용시 key의 길이만큼 정
 해시 테이블에서는 충돌에 대한 문제에 크게 2가지 방법으로 해결하고 있다.</p>
 <h3>1. 분리 연결법 (Separate Chaining)</h3>
 <p>보통 체이닝 방식이라고도 하며 저장소에서 충돌이 일어나면 기존 값과 새로운 값을 연결리스트로 연결하는 방법이다.</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/51a73ef6d35619e0429390130e4e9029/5f5e5/Chaining.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 47.91666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAByElEQVQoz3WRC28SQRSF+///hjU2TU2lJhoTsSqpPFLK+7kstAjCPoDdhWVmH7OfWaqAbb2Tmcmc3Jw559yTJEk4rvSdLiEFSsUpwvMe9U//cZ2kh1IK0zQJgmAH+ust1bsatrncN3ruGtMwkVt5+PgJ2Y4wxeJYYdk2QRAhwi39WZ3OpEJ3VsUVNq5vMLXueZgPmK3GuHKxJ3umMFYJkUpYOS5KgeHM+dR8wzf9ki/6OT2jyU23j2Y16Bpl2vMSo2Xr/4QqSUhJ15sNaWSuWHHdveSq+IqPtdfcamVOv0+pj6tkS1dURjf8dPuoRO1tH9vfK9z420eFrsG19o7c6D2fO+c0Hmp8KN/TntYotLM0pyXGTu/F/FLsRCUggpDFckUQxHieSbHzlvwgQ26UYexoaL80hos2w0WTvlV5JEQhI0HwZ8cq+msZZBixcj2CUOGuLQr9DKXKGcXKKYNRlYv8mNakTr6R5XaQ4673A9sxqA2LFJpf0RcNHGEfCIUMMUwTKSMcd04uHYp2QbZ/xshs0h330O0WmlXbDUa3WoRRgAh8fLFGhP5B4dMsZCyZeEMmrr6z68nVzpKIfGTksw03u/ulSjP8DZi78yQgUhCaAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/51a73ef6d35619e0429390130e4e9029/a59e9/Chaining.webp 192w,
-/static/51a73ef6d35619e0429390130e4e9029/0ca9f/Chaining.webp 384w,
-/static/51a73ef6d35619e0429390130e4e9029/dc9b9/Chaining.webp 768w,
-/static/51a73ef6d35619e0429390130e4e9029/c340f/Chaining.webp 882w"
-              sizes="(max-width: 768px) 100vw, 768px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/51a73ef6d35619e0429390130e4e9029/3b721/Chaining.png 192w,
-/static/51a73ef6d35619e0429390130e4e9029/66595/Chaining.png 384w,
-/static/51a73ef6d35619e0429390130e4e9029/fe486/Chaining.png 768w,
-/static/51a73ef6d35619e0429390130e4e9029/5f5e5/Chaining.png 882w"
-            sizes="(max-width: 768px) 100vw, 768px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/51a73ef6d35619e0429390130e4e9029/fe486/Chaining.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<img src='/images/DataStructure/Chaining.png' width='100%' alt='chaining' />
 <p>위 사진에서 <strong>복숭아</strong> 를 저장할 때 충돌이 일어났으며 기존에 있는 <strong>바나나</strong> 다음에 연결리스트 형태로 연결한다.</p>
 <h3>Chaining의 장단점</h3>
 <p><strong>장점</strong><br>
@@ -184,144 +59,17 @@ key 값을 그대로 저장소의 색인으로 이용시 key의 길이만큼 정
 <h3>2. 개방 주소법 (Open Addressing)</h3>
 <p>충돌이 일어나면 그다음 비어있는 hash에 데이터를 저장하는 방법이다.<br>
 개방주소법의 해시 테이블은 hash와 value가 1:1관계를 유지한다.</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 652px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/b850715bea726357e223f45193069ad2/43b96/Open_Addressing.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 67.70833333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAChklEQVQ4y42UeXOaYBDG+/0/RTs90qRHTJtm0kmPmHhGExGtFVQET1RUhHhx/TpATeL0ny6zA/u++z777Lu7PAMIgoCnEtq7Nc/zcBxnt/OP71P/UJ/tHMJ3eNj3H+3wUVUVQRDYbDZ7h0PfnRI8Aj8AhixqtRojXX+IbBgGrVYLSZIYDAZPKEFLidfr9fpDBhFglJYfRLrZOmwdlzCGvbWojHKIwyzVYRahf0XfUphZOtq4jm536JsKg0WboaUysrt4vhszdLwAPwgYDHXmphlFm+pt0ncvSMkfSHVO+dE8ojUVaA765OUymvmbhlFGHgvI4xLtWQ3Xc2KGrheC+rG64T3CfDkh0zohe/uGn6UDTisH3CpXfCrqHN5o9CwJUc3xNXNCQbqiu5BjwJihH7EaDnVW63X03RmpnAlvOK++I1l4xXXxBa1ent7FT6onH+nZDardAtfCBeV2lo4pPTJ0XB/Xh43jsXV9QvzZesq1+plMI0Hh13vSpZcRoH1+Ru/jS7q2TLVzQ0q8QNRyaPP6I0MvgPvlkqE+YmFZccpGl6x4QK56RLZ+TKr8GkVNY55+Qnv3nN59k2qnwOXtOXfN9H7Kblhhx2W5WkeVjgAXQ1LNBBnpmHz5LUn5PYpZIXfX5cvlXXyHWp4fxTNupCSa+ZShD+vNlvFkElU5bJv5tEdOPCRfOSKjnZFUErRnIrnmlC+CTNeSqPWLZCrfKSnp/ZTdvz04nhgsLDsCnJkDkvVDLtsJrpQE3xqHyEaJ0Uyj3ilGKarzGj1bRlv8RptLuP7fosRjti8rd0ljKtI0RFpGBXlSiprX8RyWG5u1u2Tl3LPa2qyc2N4bvd3gx/a/P4D/lT/33RSiCgrasQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/b850715bea726357e223f45193069ad2/a59e9/Open_Addressing.webp 192w,
-/static/b850715bea726357e223f45193069ad2/0ca9f/Open_Addressing.webp 384w,
-/static/b850715bea726357e223f45193069ad2/9a7b5/Open_Addressing.webp 652w"
-              sizes="(max-width: 652px) 100vw, 652px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/b850715bea726357e223f45193069ad2/3b721/Open_Addressing.png 192w,
-/static/b850715bea726357e223f45193069ad2/66595/Open_Addressing.png 384w,
-/static/b850715bea726357e223f45193069ad2/43b96/Open_Addressing.png 652w"
-            sizes="(max-width: 652px) 100vw, 652px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/b850715bea726357e223f45193069ad2/43b96/Open_Addressing.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<img src='/images/DataStructure/Open_Addressing.png' width='100%' alt='open addressing' />
 <p>비어있는 해시를 찾는 과정은 동일해야한다.
 Open Addressing에는 3가지의 방법이 존재한다.</p>
 <h3>Linear Probing (선형 탐색)</h3>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/8e4d6fc2954e9ff83b31a9326827e9dc/78204/Linear_Probing.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 28.645833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA+klEQVQY042R607CQBCF+/5vYmJifAqNP5TWthR6b+UORRCFbnf3M9sK5RfxbM7OZOfMZibH0lpjYGJ7dMf2TSm0EG1smobdbsf34YAQgjOu+w0sc8lGdVVFLzS50fwcOWuKcsJ8saKpG677pJCXT61qv2aYOmSziGIR44ZvBMk7ySIic17w7+8Y2c/YkU0eO2Sxgxs7RMWQce6RTseEhU8t6m7Cz6+Kj1VKuUyZbUvC3CcuAmb7CdNgQPj4QDB4ws1c0tErZeoxzLx2gOkmp1wmzLclp9OxX/kWBP9Hu3JngvqjRmnV0uRSSqrNGiXlxSyjU6rX97Ez5Rce7M1DGQukzQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/8e4d6fc2954e9ff83b31a9326827e9dc/a59e9/Linear_Probing.webp 192w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/0ca9f/Linear_Probing.webp 384w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/dc9b9/Linear_Probing.webp 768w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/e6861/Linear_Probing.webp 956w"
-              sizes="(max-width: 768px) 100vw, 768px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/8e4d6fc2954e9ff83b31a9326827e9dc/3b721/Linear_Probing.png 192w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/66595/Linear_Probing.png 384w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/fe486/Linear_Probing.png 768w,
-/static/8e4d6fc2954e9ff83b31a9326827e9dc/78204/Linear_Probing.png 956w"
-            sizes="(max-width: 768px) 100vw, 768px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/8e4d6fc2954e9ff83b31a9326827e9dc/fe486/Linear_Probing.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<img src='/images/DataStructure/Linear_Probing.png' width='100%' alt='linear probing' />
 <p><strong>선형 조사의 개념 :</strong> 충돌이 발생하면 다음 원소를 검사한다.</p>
 <p>충돌이 벌어진다면 그 다음 자리 혹은 몇 개를 건너뛰어 비어있는 원소를 찾아 데이터를 저장한다.<br>
-h(key) = i일때 해시 테이블 a[i], a[i+1], a[i+2], … , a[i+j]를 차례로 검색하여 처음으로 찾은 비어있는 원소에 키를 저장한다.
+h(key) = i일때 해시 테이블 a[i], a[i+1], a[i+2], ... , a[i+j]를 차례로 검색하여 처음으로 찾은 비어있는 원소에 키를 저장한다.
 그러나 선형 조사법은 충돌의 횟수가 증가함에 따라 클러스터 현상(군집화)이 발생하는 단점이 있다.</p>
 <h3>Quadratic Probing (제곱 탐색)</h3>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/29fc6d91ec2603ea589b759689cb797d/31459/Quadratic_Probing.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 34.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABG0lEQVQoz32RT2+CQBDF+f7HHnrrrR+jh9qksf/SiqZFLVosFUF0QUBYYeHXQJRq0vZtJm9mMu8lO6NVVUWNY27eSb3nple1eZqmyCxD7mSr0WpRWR7EnKCpMwlRfNrbw3OXjN9NxFpQ7T20osixFzOCaIUvXMJYYNlTwkSw8OesJmO8twGu94XrOziejdismLs2myRg/mk2bDsWeZGjhZHAXLxizHpMPYPB5In7/g1DW+djaaBfXvB4fkb3+ZrbXgdrOWRk9+nqHfTRHebDFYb10ngE0Rqt/rcqFEqVLZeHvA7ActaYM59kuyNOUoIwJstyojgj2u6a+aJQPzv8D1JKwiA42mEtLv6c1w4X+y1qKKVag+roIn9pvgFi5xsC+eiWZwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/29fc6d91ec2603ea589b759689cb797d/a59e9/Quadratic_Probing.webp 192w,
-/static/29fc6d91ec2603ea589b759689cb797d/0ca9f/Quadratic_Probing.webp 384w,
-/static/29fc6d91ec2603ea589b759689cb797d/dc9b9/Quadratic_Probing.webp 768w,
-/static/29fc6d91ec2603ea589b759689cb797d/8c45b/Quadratic_Probing.webp 883w"
-              sizes="(max-width: 768px) 100vw, 768px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/29fc6d91ec2603ea589b759689cb797d/3b721/Quadratic_Probing.png 192w,
-/static/29fc6d91ec2603ea589b759689cb797d/66595/Quadratic_Probing.png 384w,
-/static/29fc6d91ec2603ea589b759689cb797d/fe486/Quadratic_Probing.png 768w,
-/static/29fc6d91ec2603ea589b759689cb797d/31459/Quadratic_Probing.png 883w"
-            sizes="(max-width: 768px) 100vw, 768px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/29fc6d91ec2603ea589b759689cb797d/fe486/Quadratic_Probing.png"
-            alt="그림"
-            title="그림"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<img src='/images/DataStructure/Quadratic_Probing.png' width='100%' alt='quadratic probing' />
 <p>선형 조사법의 클러스터 현상을 극복하기 위해 고안한 방법이다.<br>
 충돌이 발생한다면 제곱만큼 위치를 건너뛰어 데이터를 저장한다.<br>
 처음 충돌이 벌어지면 1의 제곱 만큼 다음 지점을 찾고 만약 그 지점도 이미 채워져 있다면 2의 제곱만큼 이동한다.<br>
