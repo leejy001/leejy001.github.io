@@ -3,9 +3,13 @@ date: '2021-12-25'
 title: '해시 테이블 (Hash Table)'
 categories: ['Data Structure']
 summary: '해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자'
-thumbnail: './basic.png'
-showThumbnail: false
+thumbnail: './Hash_Thumnail.png'
+showThumbnail: true
 ---
+
+### 개발자가 알아야 하는 자료구조 8가지
+
+3. 해시 테이블 (Hash Table)
 
 해시 테이블을 알아보기에 앞서 테이블의 정의와 자료구조에서 테이블이 의미하는 것이 무엇인지부터 파악하자
 <br /><br />

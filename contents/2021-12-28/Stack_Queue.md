@@ -3,9 +3,14 @@ date: '2021-12-28'
 title: '스택/큐 (Stack & Queue)'
 categories: ['Data Structure']
 summary: '대표적인 선형 자료구조인 스택과 큐에 대해서 알아보자'
-thumbnail: './basic.png'
-showThumbnail: false
+thumbnail: './Stack_Queue_Thumnail.png'
+showThumbnail: true
 ---
+
+### 개발자가 알아야 하는 자료구조 8가지
+
+4. 스택 (Stack)
+5. 큐 (Queue)
 
 자료구조에는 크게 선형 자료구조와 비선형 자료구조가 있다.  
 오늘은 그 중에서 선형 자료구조의 대표적인 스택/큐에 대해서 알아보겠다.

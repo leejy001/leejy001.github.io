@@ -62,6 +62,9 @@ const ThumbnailImage = styled(GatsbyImage)`
   height: 155px;
   margin: 10px;
   border-radius: 0;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const PostItemContent = styled.div`
@@ -82,6 +85,9 @@ const Title = styled.div`
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 8px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 const Date = styled.div`
@@ -108,6 +114,7 @@ const CategoryItem = styled.div`
 `
 
 const Summary = styled.div`
+  max-width: 550px;
   display: -webkit-box;
   overflow: hidden;
   margin-top: auto;
