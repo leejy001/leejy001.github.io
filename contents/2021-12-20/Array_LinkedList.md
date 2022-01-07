@@ -3,14 +3,14 @@ date: '2021-12-20'
 title: '배열과 연결리스트 (Array & Linked List)'
 categories: ['Data Structure']
 summary: '배열과 연결리스트에 대해 알아보고 둘의 차이를 비교해보자'
-thumbnail: './array_linkedlist_thumnail.png'
+thumbnail: './array_linkedlist_thumbnail.png'
 showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지
 
-1. 배열 (Array)
-2. 연결 리스트 (Linked List)
+**1. 배열 (Array)**  
+**2. 연결 리스트 (Linked List)**
 
 배열과 연결리스트는 둘 다 데이터를 저장하는 방식의 일종이며 이 두가지의 기본적인 형태가 수많은 자료구조를 만드는 뼈대가 되며 어떻게 효율적으로 데이터를 저장하는지가 알고리즘이라 할 수 있다.
 
