@@ -71,6 +71,7 @@ const IconWrapper = styled.div`
   margin-top: 7px;
   margin-left: 30px;
   p {
+    width: 60px;
     margin-left: 3px;
     margin-top: -1px;
     font-size: 15px;
