@@ -112,7 +112,7 @@ export const getCategories = graphql`
             showThumbnail
             thumbnail {
               childImageSharp {
-                gatsbyImageData(width: 768, height: 400)
+                gatsbyImageData(width: 170, height: 155)
               }
             }
           }
