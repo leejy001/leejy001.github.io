@@ -7,6 +7,8 @@ thumbnail: './react_thumbnail.png'
 showThumbnail: true
 ---
 
+### React 그것이 알고싶다. [Component Type 편]
+
 회사에서 React + Typescript를 사용하여 개발을 진행하면서 어렵다고 생각했던 부분 중 하나가 컴포넌트의 타입을
 어떻게 지정하는가에 대한 부분이었다.  
 관련 자료를 찾아보다가 [StackOverFlow](https://stackoverflow.com/questions/58123398/when-to-use-jsx-element-vs-reactnode-vs-reactelement)에 좋은 답변이 있었고 [definitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/2034c45/types/react/index.d.ts#L203)도 확인 해볼 수 있었다.
