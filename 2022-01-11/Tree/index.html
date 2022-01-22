@@ -9,7 +9,7 @@
 이런 재귀적 특성에 의해 트리를 순회할 때도 재귀 순회가 좀 더 자연스러운 편이다.</p>
 <h3>트리의 각 명칭</h3>
 <p>다음은 이미지는 트리의 구조를 보여주고 있다.</p>
-<p align="center"><img src='/images/DataStructure/tree_structure.png' width='90%' alt='tree_structure' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_structure.png' width='90%' alt='tree_structure' /><p>
 <p>트리는 항상 <b>루트(Root)</b>에서부터 시작된다. 루트는 <b>자식(Child)</b>노드를 가지며, <b>간선(Edge)</b>으로 연결되어 있다.<br>
 자식 노드의 개수는 <b>차수(Degree)</b>라고 하며 <b>크기(Size)</b>는 자신을 포함한 모든 자식 노드의 개수다.<br>
 위의 이미지에서 B노드는 차수가 2이며 크기는 6이라고 할 수 있다.<br>
@@ -56,7 +56,7 @@
 <h3>트리의 탐색 (DFS, BFS)</h3>
 <p>트리를 이용하여 순회를 할 수 있다.</p>
 <p><strong>BFS</strong></p>
-<p align="center"><img src='/images/DataStructure/tree_bfs.png' width='90%' alt='tree_bfs' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_bfs.png' width='90%' alt='tree_bfs' /><p>
 <p>너비 우선 탐색은 root 노드에서 시작해서 한 단계씩 아래 위치로 이동하며 Node를 탐색한다.<br>
 이때 큐를 이용하는데 위 이미지 처럼 root인 A를 빼며 자식 노드인 B, C를 큐에 넣어주고 다시 B의 자식 노드인 D,E와 C의 자식노드인 F,G를 큐에 넣어주며 B와 C는 큐에서 빼준다.<br>
 따라서 BFS로 트리 탐색을 진행하면 <strong>A -> B -> C -> D -> E -> F -> G</strong> 순으로 탐색을 진행한다.</p>
@@ -89,7 +89,7 @@ tree<span class="token punctuation">.</span>root<span class="token punctuation">
 <span class="token keyword">const</span> bfs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 tree<span class="token punctuation">.</span><span class="token constant">BFS</span><span class="token punctuation">(</span><span class="token parameter">node</span> <span class="token operator">=></span> bfs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// ['A', 'B', 'C', 'D', 'E', 'F', 'G']</span></code></pre></div>
 <p><strong>DFS</strong></p>
-<p align="center"><img src='/images/DataStructure/tree_dfs.png' width='90%' alt='tree_dfs' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_dfs.png' width='90%' alt='tree_dfs' /><p>
 <p>깊이 우선 탐색은 root 노드에서 시작하여 가장 깊은 곳(리프 노드 까지)을 먼저 탐색하는 알고리즘이며
 BFS와 달리 DFS에서는 노드를 추가할 때 push()메서드가 아닌 unshift() 메서드로 앞에다 추가해준다.<br>
 root인 A노드에서 부터 부모 노드의 왼쪽 서브 트리를 먼저 탐색하고 오른쪽 서브트리를 탐색해준다.<br>
