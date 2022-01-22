@@ -14,7 +14,7 @@ showThumbnail: true
 해시 테이블을 알아보기에 앞서 테이블의 정의와 자료구조에서 테이블이 의미하는 것이 무엇인지부터 파악하자
 <br /><br />
 
-<p align="center"><img src='/images/DataStructure/Hash_Table.png' width='70%' alt='table' /></p>
+<p align="center"><img src='/images/DataStructure/Hash/Hash_Table.png' width='70%' alt='table' /></p>
 <br />
 위 그림에서 보이는 것과 같이 대부분 문서 과정 중에 한번 정도는 만들 법한 '표'이며 테이블이라 한다.  
 하지만 자료구조 관점에서는 위의 구조와 비슷한 모든 표를 테이블이라 하진 않으며 표에 저장된 데이터의 형태가 다음과 같을 때에만 테이블로 구분 짓는다.
@@ -44,7 +44,7 @@ showThumbnail: true
 입력값의 길이가 달라도 출력은 항상 고정된 길이로 반환하며 동일한 값이 입력되면 언제나 동일한 출력값을 보장한다.  
 해시 테이블은 해시 함수를 사용하여 **색인(index)** 을 **버킷(bucket)** 이나 **슬롯(slot)** 의 배열로 계산한다.
 
-<img src='/images/DataStructure/Hash_Function.png' width='100%' alt='hash function' />
+<img src='/images/DataStructure/Hash/Hash_Function.png' width='100%' alt='hash function' />
 
 이렇게 해시 함수를 활용하여 특정 해시값을 알아내고 그 해시값을 인덱스로 변환하여 key-value 데이터를 저장하는 자료구조를 **해시 테이블(Hash Table)** 이라고 한다.
 <br /><br />
@@ -79,7 +79,7 @@ key 값을 그대로 저장소의 색인으로 이용시 key의 길이만큼 정
 
 보통 체이닝 방식이라고도 하며 저장소에서 충돌이 일어나면 기존 값과 새로운 값을 연결리스트로 연결하는 방법이다.
 
-<img src='/images/DataStructure/Chaining.png' width='100%' alt='chaining' />
+<img src='/images/DataStructure/Hash/Chaining.png' width='100%' alt='chaining' />
 
 위 사진에서 **복숭아** 를 저장할 때 충돌이 일어났으며 기존에 있는 **바나나** 다음에 연결리스트 형태로 연결한다.
 
@@ -97,14 +97,14 @@ key 값을 그대로 저장소의 색인으로 이용시 key의 길이만큼 정
 충돌이 일어나면 그다음 비어있는 hash에 데이터를 저장하는 방법이다.  
 개방주소법의 해시 테이블은 hash와 value가 1:1관계를 유지한다.
 
-<img src='/images/DataStructure/Open_Addressing.png' width='100%' alt='open addressing' />
+<img src='/images/DataStructure/Hash/Open_Addressing.png' width='100%' alt='open addressing' />
 
 비어있는 해시를 찾는 과정은 동일해야한다.
 Open Addressing에는 3가지의 방법이 존재한다.
 
 ### Linear Probing (선형 탐색)
 
-<img src='/images/DataStructure/Linear_Probing.png' width='100%' alt='linear probing' />
+<img src='/images/DataStructure/Hash/Linear_Probing.png' width='100%' alt='linear probing' />
 
 **선형 조사의 개념 :** 충돌이 발생하면 다음 원소를 검사한다.
 
@@ -114,7 +114,7 @@ h(key) = i일때 해시 테이블 a[i], a[i+1], a[i+2], ... , a[i+j]를 차례�
 
 ### Quadratic Probing (제곱 탐색)
 
-<img src='/images/DataStructure/Quadratic_Probing.png' width='100%' alt='quadratic probing' />
+<img src='/images/DataStructure/Hash/Quadratic_Probing.png' width='100%' alt='quadratic probing' />
 
 선형 조사법의 클러스터 현상을 극복하기 위해 고안한 방법이다.  
 충돌이 발생한다면 제곱만큼 위치를 건너뛰어 데이터를 저장한다.  

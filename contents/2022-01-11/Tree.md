@@ -24,7 +24,7 @@ showThumbnail: true
 
 다음은 이미지는 트리의 구조를 보여주고 있다.
 
-<p align="center"><img src='/images/DataStructure/tree_structure.png' width='90%' alt='tree_structure' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_structure.png' width='90%' alt='tree_structure' /><p>
 
 트리는 항상 <b>루트(Root)</b>에서부터 시작된다. 루트는 <b>자식(Child)</b>노드를 가지며, <b>간선(Edge)</b>으로 연결되어 있다.  
 자식 노드의 개수는 <b>차수(Degree)</b>라고 하며 <b>크기(Size)</b>는 자신을 포함한 모든 자식 노드의 개수다.  
@@ -87,7 +87,7 @@ class Node {
 
 **BFS**
 
-<p align="center"><img src='/images/DataStructure/tree_bfs.png' width='90%' alt='tree_bfs' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_bfs.png' width='90%' alt='tree_bfs' /><p>
 
 너비 우선 탐색은 root 노드에서 시작해서 한 단계씩 아래 위치로 이동하며 Node를 탐색한다.  
 이때 큐를 이용하는데 위 이미지 처럼 root인 A를 빼며 자식 노드인 B, C를 큐에 넣어주고 다시 B의 자식 노드인 D,E와 C의 자식노드인 F,G를 큐에 넣어주며 B와 C는 큐에서 빼준다.  
@@ -127,7 +127,7 @@ tree.BFS(node => bfs.push(node.data)) // ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 **DFS**
 
-<p align="center"><img src='/images/DataStructure/tree_dfs.png' width='90%' alt='tree_dfs' /><p>
+<p align="center"><img src='/images/DataStructure/Tree/tree_dfs.png' width='90%' alt='tree_dfs' /><p>
 
 깊이 우선 탐색은 root 노드에서 시작하여 가장 깊은 곳(리프 노드 까지)을 먼저 탐색하는 알고리즘이며
 BFS와 달리 DFS에서는 노드를 추가할 때 push()메서드가 아닌 unshift() 메서드로 앞에다 추가해준다.  

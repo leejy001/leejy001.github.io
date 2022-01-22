@@ -23,7 +23,7 @@ showThumbnail: true
 20세기의 수학 분야에서 가장 놀라운 사건으로 위상수학의 등장을 뽑을 수 있다.  
 이러한 위상수학의 등장에 가장 큰 원인은 18세기에 벌어진 재미난 문제에서 비롯되었다.
 
-<p align="center"><img src='/images/DataStructure/Konigsberg_bridges.png' width='70%' alt='Konigsberg_bridges' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/Konigsberg_bridges.png' width='70%' alt='Konigsberg_bridges' /><p>
 
 프로이센 공국의 쾨니히스베르크에는 강 사이에 2개의 큰 섬과 그런 섬과 도시를 연결하는 7개의 다리가 있었다.  
 여기서 누군가가 "이 7개의 다리를 한 번씩만 건너서 모두 지나갈 수 있을까?"에 대한 의문을 제기했고
@@ -37,12 +37,12 @@ showThumbnail: true
 그렇다면 오일러는 어떤 방법으로 쾨니히스베르크의 다리 문제를 해결했을까?  
 오일러는 이 문제를 아래 그림과 같이 a부터 g까지 이름을 부여하고 도식화하여 1735년에 논문을 발표한다.
 
-<p align="center"><img src='/images/DataStructure/Euler_sketch.png' width='80%' alt='Euler_sketch' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/Euler_sketch.png' width='80%' alt='Euler_sketch' /><p>
 
 오일러의 스케치를 현대식 그래프의 구조에 따라 그림으로 나타내면 A부터 D까지를 <b>정점(vertex)</b>, a부터 g까지는  
 <b>간선(edge)</b>으로 구성된 그래프라는 수학적 구조를 찾아볼 수 있다.
 
-<p align="center"><img src='/images/DataStructure/Konigsberg_graph.png' width='50%' alt='Konigsberg_graph' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/Konigsberg_graph.png' width='50%' alt='Konigsberg_graph' /><p>
 
 오일러는 모든 정점이 짝수 개의 차수(degree)를 가진다면 모든 다리를 한 번씩만 건너서 도달하는 것이 성립한다고 했으며
 그로부터 거의 140년이 지난 1873년에 독일의 수학자 칼 히어홀저가 이를 수학적으로 증명하고 이를 <b>오일러의 정리</b>라 불렀다.
@@ -61,7 +61,7 @@ showThumbnail: true
 <br/><br/>
 **그래프 용어에 대해서 간단하게 정리 해봤다.**
 
-<p align="center"><img src='/images/DataStructure/undirection_graph.png' width='30%' alt='undirection_graph' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/undirection_graph.png' width='30%' alt='undirection_graph' /><p>
 
 1. <b>정점(vertex):</b> 노드(node)라고도 하며 정점에는 데이터가 저장된다. 위 그림에서는 (0, 1, 2, 3)이 정점이다.
 2. <b>간선(edge):</b> 정점간의 관계, 링크(arcs)라고도 한다.
@@ -71,7 +71,7 @@ showThumbnail: true
 4. <b>단순 경로(simple path):</b> 경로 중에서 반복되는 정점이 없는 경우
 5. <b>차수(degree):</b> 무방향 그래프에서 하나의 정점에 인접한 정점의 수, 위 그림에서 정점<b>1</b>의 차수는 <b>3개(0, 2, 3)</b>이다.
 
-<p align="center"><img src='/images/DataStructure/direction_graph.png' width='30%' alt='direction_graph' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/direction_graph.png' width='30%' alt='direction_graph' /><p>
 
 6. <b>진입 차수(in-degree):</b> 방향 그래프에서 외부에서 오는 간선의 수
 7. <b>진출 차수(out-degree):</b> 방향 그래픙에서 외부로 향하는 간선의 수  
@@ -289,7 +289,7 @@ removeEdge(from, to) {
 무방향 그래프는 간선에 방향이 없는 그래프를 말한다.
 무방향 그래프는 정점 A와 정점 B를 연결하는 간선을 (A, B)로 표현한다.
 
-<p align="center"><img src='/images/DataStructure/undirection_graph.png' width='30%' alt='undirection_graph' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/undirection_graph.png' width='30%' alt='undirection_graph' /><p>
 
 위 무방향 그래프를 정점의 집합V(G)과 간선의 집합E(G)을 사용하여 다음과 같은 표현이 가능하다.
 
@@ -302,7 +302,7 @@ removeEdge(from, to) {
 여기서 A를 꼬리라 부르고 B를 머리라고 부른다.  
 또한 방향그래프에서 <A, B>, <B, A>는 서로 다른 간선이다.
 
-<p align="center"><img src='/images/DataStructure/direction_graph.png' width='30%' alt='direction_graph' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/direction_graph.png' width='30%' alt='direction_graph' /><p>
 
 위 방향 그래프를 정점의 집합 V(G)와 간선의 집합E(G)를 사용하여 다음과 같은 표현이 가능하다.
 
@@ -316,11 +316,11 @@ removeEdge(from, to) {
 <table>
    <tr>
      <th align="center">
-       <img src='/images/DataStructure/root_graph.png' width='80%' alt='root_graph' />
+       <img src='/images/DataStructure/Graph/root_graph.png' width='80%' alt='root_graph' />
        <br>G
      </th>
      <th align="center">
-       <img src='/images/DataStructure/part_graph.png' width='80%' alt='part_graph' />
+       <img src='/images/DataStructure/Graph/part_graph.png' width='80%' alt='part_graph' />
        <br>G`
     </th>
   </tr>
@@ -331,7 +331,7 @@ removeEdge(from, to) {
 **가중치 그래프**  
 가중 그래프는 간선에 가중치를 할당한 그래프를 말하며 네트워크라고도 한다.
 
-<p align="center"><img src='/images/DataStructure/network.png' width='30%' alt='network' /><p>
+<p align="center"><img src='/images/DataStructure/Graph/network.png' width='30%' alt='network' /><p>
 
 ### 그래프 탐색
 

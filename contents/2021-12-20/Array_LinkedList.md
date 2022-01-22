@@ -19,7 +19,7 @@ showThumbnail: true
 배열은 특정 자료형이 메모리 공간상에서 연속적으로 이루어져 있는 자료구조를 의미한다.  
 그리고 이러한 연속적인 공간들은 0부터 시작하는 Index 값에 의해 즉각적으로 참조될 수 있다.
 
-<p align="center"><img src='/images/DataStructure/array.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/Array/array.png' width='80%' alt='table' /><p>
 
 ### 배열의 특징은 어떨까?
 
@@ -129,18 +129,18 @@ for (let i = 0; i < arr.length; i++) {
 배열의 한 칸의 원소와 유사하다고 생각하면 편하다. 각각의 노드들은 내부적으로 자신의 안에 포함할 데이터와 다음 노드의 위치 정보를 가지고 있다.
 이러한 노드가 연결이 되어 있는 형태가 연결리스트이고 다음과 같은 형태로 나타난다.
 
-<p align="center"><img src='/images/DataStructure/linked_list.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/Array/linked_list.png' width='80%' alt='table' /><p>
 
 ### 그렇다면 연결리스트의 시간복잡도는 어떨까?
 
-<p align="center"><img src='/images/DataStructure/linked_list_add.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/Array/linked_list_add.png' width='80%' alt='table' /><p>
 
 먼저 삽입의 경우부터 살펴보자 연결리트에 삽입할 때는 기존의 링크를 끊고 다음 추가할 위치의 이전 노드의 꼬리와 삽입할 자료를 연결한다.
 그리고 추가할 노드의 꼬리와 다음 노드를 연결해주면 된다.  
 이때 오직 앞 요소와 다음 요소를 연결시켜주는 동작만 수행되므로 시간 복잡도는 O(1)으로 표현할 수 있지만..
 현실적으로는 가장 처음의 노드를 제외하곤 나머지 노드들은 탐색을 통해 가지고 와야하기 때문에 O(n)이라 볼 수 있다.
 
-<p align="center"><img src='/images/DataStructure/linked_list_remove.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/Array/linked_list_remove.png' width='80%' alt='table' /><p>
 
 삭제의 경우에는 삭제하고자 하는 노드의 이전 노드의 꼬리를 다음 노드에 연결해주면 된다.  
 삭제하고자 하는 노드의 이전 노드와 다음 노드를 연결시키는 동작을 수행하기에 시간 복잡도는 O(1)로 표현할 수 있다.

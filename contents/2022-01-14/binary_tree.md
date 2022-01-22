@@ -21,7 +21,7 @@ showThumbnail: true
 
 이제 이진트리의 유형에 대해서 알아보도록 하자
 
-<p align="center"><img src='/images/DataStructure/tree_kinds.png' width='90%' alt='tree_kinds' /><p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/tree_kinds.png' width='90%' alt='tree_kinds' /><p>
 
 **정 이진 트리(Full Binary Tree):** 모든 노드가 0개 또는 2개의 자식 노드를 가진다.  
 **완전 이진 트리(Complete Binary Tree):** 마지막 레벨을 제외하고 모든 레벨이 완전히 채워져 있으며 마지막 레벨의 노드는 가장 왼쪽부터 채워진다.  
@@ -37,7 +37,7 @@ showThumbnail: true
 > 왼쪽 자식 노드는 루트 노드보다 작고 오른쪽 자식 노드는 루트 노드보다 크다.  
 > 왼쪽과 오른쪽 서브 트리 또한 이진 탐색 트리이다.
 
-<p align="center"><img src='/images/DataStructure/binary_tree.png' width='50%' alt='tree_kinds' /><p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/binary_tree.png' width='50%' alt='tree_kinds' /><p>
 
 위 그림 처럼 이진 트리를 유지하며 루트 키 값을 기준보다 작은 것은 <b>왼쪽 서브 트리</b>, 큰 것은 <b>오른쪽 서브 트리</b>를 유지하는 구조다.
 이진 탐색 트리에서 이진 탐색은 기본 적인 이진 탐색과 별반 다르진 않다. 다만, 고정된 배열의 이진 탐색에서의 중앙요소(mid)가 이진 탐색 트리에서는
@@ -81,7 +81,7 @@ class BinarySearchTree {
 **insert(value)**  
 새로운 노드를 생성한 후 트리가 비어있다면 이 노드를 root로 만들고 그렇지 않으면 insertNode 함수를 호출한다.
 
-<p align="center"><img src='/images/DataStructure/binary_tree_add.png' width='70%' alt='tree_kinds' /><p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/binary_tree_add.png' width='70%' alt='tree_kinds' /><p>
 
 **insertNode(node, newNode)**  
 주어진 값을 현재 노드의 데이터와 비교하며 그에 따라 왼쪽 혹은 오른쪽 서브 트리로 이동하고
@@ -111,16 +111,16 @@ root와 주어진 값을 전달하여 removeNode함수를 호출하고 함수에
 **removeNode(node, value)**  
 주어진 값이 있는 노드를 탐색하고 다음 단계를 수행한다.
 
-<p align="center"><img src='/images/DataStructure/binary_tree_delete1.png' width='50%' alt='binary_tree_delete1' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/binary_tree_delete1.png' width='50%' alt='binary_tree_delete1' /></p>
 
 **자식노드가 없는 경우:** 가장 말단 노드는 자식이 없기에 쉽게 제거할 수 있다.
 
-<p align="center"><img src='/images/DataStructure/binary_tree_delete2.png' width='50%' alt='binary_tree_delete2' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/binary_tree_delete2.png' width='50%' alt='binary_tree_delete2' /></p>
 
 **하나의 자식노드가 있는 경우:** 노드에 왼쪽 자식노드가 있다면 부모 노드에 왼쪽 자식노드를 업데이트하고 마찬가지로 오른쪽 자식 노드가 있다면
 부모 노드에 오른쪽 자식노드를 업데이트하고 기존 자식 노드는 제거한다.
 
-<p align="center"><img src='/images/DataStructure/binary_tree_delete3.png' width='60%' alt='binary_tree_delete3' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/binary_tree_delete3.png' width='60%' alt='binary_tree_delete3' /></p>
 
 **둘다 존재하는 경우:** 두개의 자식 노드가 있다면 항상 오른쪽 서브트리에서 가장 작은 최소값 노드를 찾아 해당 노드로 부모 노드를 교체하고
 해당 서브 트리에서 최솟값 노드를 삭제해준다.
@@ -183,7 +183,7 @@ root와 주어진 값을 전달하여 removeNode함수를 호출하고 함수에
 
 전위 순회는 다음과 같은 방법으로 진행한다.
 
-<p align="center"><img src='/images/DataStructure/preorder.png' width='60%' alt='binary_tree_delete3' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/preorder.png' width='60%' alt='binary_tree_delete3' /></p>
 
 **Root 노드 방문 -> 왼쪽 서브 트리 순회 -> 오른쪽 서브트리 순회**
 
@@ -204,7 +204,7 @@ preorder(node)
 
 중위 순회는 다음과 같은 방법으로 진행한다.
 
-<p align="center"><img src='/images/DataStructure/inorder.png' width='60%' alt='binary_tree_delete3' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/inorder.png' width='60%' alt='binary_tree_delete3' /></p>
 
 **왼쪽 서브 트리 순회 -> Root 노드 방문 -> 오른쪽 서브트리 순회**
 
@@ -225,7 +225,7 @@ inorder(node)
 
 후위 순회는 다음과 같은 방법으로 진행한다.
 
-<p align="center"><img src='/images/DataStructure/postorder.png' width='60%' alt='binary_tree_delete3' /></p>
+<p align="center"><img src='/images/DataStructure/BinaryTree/postorder.png' width='60%' alt='binary_tree_delete3' /></p>
 
 **왼쪽 서브 트리 순회 -> 오른쪽 서브트리 순회 -> Root 노드 방문**
 

@@ -15,7 +15,7 @@ showThumbnail: true
 <br/><br/>
 연결리스트는 기본적으로 다음과 같은 연결 구조를 가지고 있다고 했었다.
 
-<p align="center"><img src='/images/DataStructure/linked_list.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/Array/linked_list.png' width='80%' alt='table' /><p>
 
 하지만 위의 이미지는 단순 연결리스트를 보여주고 있으며 단일 연결리스트 외에도 다른 종류의 연결리스트가 있다.
 
@@ -24,7 +24,7 @@ showThumbnail: true
 연결 리스트에서 탐색을 할 때, 뒤 쪽의 원소를 검색하면 loop를 돌아야 하기 때문에 탐색 속도가 많이 느려지게 된다.  
 이 문제를 해결하기 위해 등장한 것이 이중 연결리스트 구조다.
 
-<p align="center"><img src='/images/DataStructure/doubly_linked_list.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/LinkedList/doubly_linked_list.png' width='80%' alt='table' /><p>
 
 이중 연결 리스트는 기존의 단일 연결 리스트와는 다른 **2개의 주소 칸** 을 가지고 있다.  
 추가된 주소 칸은 이전 원소의 주소를 기억하며 가장 처음 노드 뿐만 아닌 마지막 노드의 주소도 기억하고 있다.
@@ -38,7 +38,7 @@ showThumbnail: true
 이중 연결리스트 구조를 적용해도 앞, 뒤에서 부터 탐색을 수행할 수 있다.
 만약 중간에서 부터 탐색을 진행하고자 한다면 어떻게 해야할까?
 
-<p align="center"><img src='/images/DataStructure/circular_linked_list.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/LinkedList/circular_linked_list.png' width='80%' alt='table' /><p>
 
 이런 문제를 해결하기 위해 앞과 뒤가 연결되어 있고 마지막 작업한 위치를 따로 표시하는 원형연결리스트 구조가 있다.
 원형 연결리스트를 이용하면 시작 노드가 어디인지, 끝 노드가 어디인지 신경 쓸 이유가 없다.
@@ -224,9 +224,9 @@ class Node {
 이중 연결리스트의 삽입과 삭제에 대해서 알아보자  
 아래 이미지들은 순서대로 이중 연결리스트에서 삽입과 삭제를 진행하는 방식이다.
 
-<p align="center"><img src='/images/DataStructure/doubly_linked_list_add.png' width='60%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/LinkedList/doubly_linked_list_add.png' width='60%' alt='table' /><p>
 
-<p align="center"><img src='/images/DataStructure/doubly_linked_list_delete.png' width='80%' alt='table' /><p>
+<p align="center"><img src='/images/DataStructure/LinkedList/doubly_linked_list_delete.png' width='80%' alt='table' /><p>
 
 이중 연결리스트에서 노드를 삽입하거나 삭제할 땐 이전 주소와 다음 주소 모두 설정해줘야 한다는 것을 잊지말자  
 아래는 이중 연결리스트의 전체 코드이다.

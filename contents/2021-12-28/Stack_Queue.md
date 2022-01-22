@@ -21,7 +21,7 @@ showThumbnail: true
 가장 마지막에 올려진 접시가 접시들 중 가장 맨 위에 올려져 있을것이다.  
 큐는 영화관에 입장하기 위해 줄을 서는 것을 생각하면 된다. 가장 먼저 줄을 선 사람이 가장 먼저 입장한다.
 
-<img src='/images/DataStructure/Stack_Queue.png' width='100%' alt='stack queue' />
+<img src='/images/DataStructure/Stack_Queue/Stack_Queue.png' width='100%' alt='stack queue' />
 
 ### 스택은 어디에 쓰일까?
 
