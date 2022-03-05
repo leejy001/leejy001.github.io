@@ -1,7 +1,7 @@
 ---
 date: '2022-01-20'
 title: 'Heap'
-categories: ['React']
+categories: ['Data Structure']
 summary: 'Heap에 대해 알아보고 최대힙과 최소힙을 구현해보자'
 thumbnail: './heap_thumbnail.png'
 showThumbnail: true

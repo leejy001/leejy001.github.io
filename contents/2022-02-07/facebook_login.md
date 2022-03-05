@@ -1,7 +1,7 @@
 ---
 date: '2022-02-07'
 title: '페이스북 로그인 구현하기'
-categories: ['JavaScript']
+categories: ['React', 'JavaScript', 'Development']
 summary: '리액트 타입스크립트 환경에서 JavaScript SDK로 페이스북 로그인 구현해보자'
 thumbnail: './react_thumbnail.png'
 showThumbnail: true
