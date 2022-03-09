@@ -1,7 +1,7 @@
 ---
 date: '2022-03-09'
 title: 'LCS'
-categories: ['JavaScript', '최적화']
+categories: ['JavaScript', 'Algorithm']
 summary: 'Longest Common Subsequnce(최장 공통 부분 수열), Longest Common Substring(최장 공통 부분 문자열)에 대하여 알아보자'
 thumbnail: './javascript_thumbnail.png'
 ---
