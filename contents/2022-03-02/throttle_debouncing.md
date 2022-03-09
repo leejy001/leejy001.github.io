@@ -4,7 +4,6 @@ title: '쓰로틀링과 디바운싱'
 categories: ['JavaScript', '최적화']
 summary: '자바스크립트의 프로그래밍 기법인 쓰로틀링과 디바운싱을 알아보자'
 thumbnail: './javascript_thumbnail.png'
-showThumbnail: true
 ---
 
 자바스크립트 최적화 이야기

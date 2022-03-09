@@ -4,7 +4,6 @@ title: '연결리스트 (Linked List)'
 categories: ['Data Structure']
 summary: '연결리스트 종류에 대해 알아보자'
 thumbnail: './linkedlist_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 할 자료구조 8가지

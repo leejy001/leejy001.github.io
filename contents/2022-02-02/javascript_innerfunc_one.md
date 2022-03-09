@@ -4,7 +4,6 @@ title: '자바스크립트 기본 함수 1'
 categories: ['JavaScript']
 summary: '자바스크립트의 다양한 기본 함수에 대해서 알아보자'
 thumbnail: './javascript_thumbnail.png'
-showThumbnail: true
 ---
 
 오랜만에 자바스크립트에 대해 복습을 해보았다.  

@@ -4,7 +4,6 @@ title: '이진 트리 (Binary Tree)'
 categories: ['Data Structure']
 summary: '이진 트리와 이진 트리 탐색에 대해서 알아보자'
 thumbnail: './binary_tree_thumbnail.png'
-showThumbnail: true
 ---
 
 저번 자료구조 시간에 트리에 대해서 알아봤으며 이번에는 이진 트리와 이진 탐색 트리에 대해서 알아보겠다.

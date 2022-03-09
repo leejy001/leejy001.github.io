@@ -4,7 +4,6 @@ title: '커스텀 훅 어떻게 사용할까?'
 categories: ['React', 'Development']
 summary: '커스텀 훅을 왜 쓰는지에 대해 알아보고 타입스크립트 환경에서 만들어보자'
 thumbnail: './react_thumbnail.png'
-showThumbnail: true
 ---
 
 함수형 리액트로 개발을 진행하면서 hook을 사용해본 경험이 있을 것이다.  

@@ -109,7 +109,6 @@ export const getCategories = graphql`
             summary
             date(formatString: "YYYY.MM.DD.")
             categories
-            showThumbnail
             thumbnail {
               childImageSharp {
                 gatsbyImageData(width: 170, height: 155)

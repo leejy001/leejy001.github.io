@@ -4,7 +4,6 @@ title: 'React Component Types'
 categories: ['React']
 summary: 'JSX.Element, ReactElement, ReactNode에 대해 비교해보자'
 thumbnail: './react_thumbnail.png'
-showThumbnail: true
 ---
 
 ### React 그것이 알고싶다. [Component Type 편]

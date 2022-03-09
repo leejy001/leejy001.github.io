@@ -4,7 +4,6 @@ title: '해시 테이블 (Hash Table)'
 categories: ['Data Structure']
 summary: '해시 테이블의 정의와 구조에 대해 알아보고 해시 충돌이 발생할 경우 해결방법에 대해 알아보자'
 thumbnail: './Hash_Thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지

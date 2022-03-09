@@ -4,7 +4,6 @@ title: 'PropsWithChildren'
 categories: ['React', 'Development']
 summary: 'PropsWithChildren을 쓰는 방법에 대해서 알아보자'
 thumbnail: './react_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 리액트 개발일지 [PropsWithChildren]

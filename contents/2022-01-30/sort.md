@@ -4,7 +4,6 @@ title: '정렬'
 categories: ['JavaScript', 'Algorithm']
 summary: '정렬의 종류에 대해서 알아보고 구현해보자'
 thumbnail: './javascript_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 알고리즘 정리 두번째 [정렬]

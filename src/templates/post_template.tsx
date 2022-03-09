@@ -38,7 +38,6 @@ function PostTemplate({
         summary,
         date,
         categories,
-        showThumbnail,
         thumbnail: {
           childImageSharp: { gatsbyImageData },
           publicURL,
@@ -73,7 +72,6 @@ export const queryMarkdownDataBySlug = graphql`
             summary
             date(formatString: "YYYY.MM.DD.")
             categories
-            showThumbnail
             thumbnail {
               childImageSharp {
                 gatsbyImageData

@@ -4,7 +4,6 @@ title: 'useRef?'
 categories: ['React']
 summary: 'useRef? 대체 왜 쓰는걸까?'
 thumbnail: './react_thumbnail.png'
-showThumbnail: true
 ---
 
 ### React 그것이 알고싶다. [useRef 편]

@@ -4,7 +4,6 @@ title: '그래프 (Graph)'
 categories: ['Data Structure']
 summary: '비선형 자료구조인 그래프에 대해서 알아보자'
 thumbnail: './graph_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지

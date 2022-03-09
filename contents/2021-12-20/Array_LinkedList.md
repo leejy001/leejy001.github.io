@@ -4,7 +4,6 @@ title: '배열과 연결리스트 (Array & Linked List)'
 categories: ['Data Structure']
 summary: '배열과 연결리스트에 대해 알아보고 둘의 차이를 비교해보자'
 thumbnail: './array_linkedlist_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지

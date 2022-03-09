@@ -4,7 +4,6 @@ title: '자바스크립트 기본 함수 2'
 categories: ['JavaScript']
 summary: '자바스크립트의 다양한 기본 함수에 대해서 알아보자'
 thumbnail: './javascript_thumbnail.png'
-showThumbnail: true
 ---
 
 1편에 이어서 **Set, Map, String, For in/for of/forEach/ Math** 메서드에 대해서 알아보자

@@ -4,7 +4,6 @@ title: '트리 (Tree)'
 categories: ['Data Structure']
 summary: '비선형 자료구조인 트리에 대해서 알아보자'
 thumbnail: './tree_thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지

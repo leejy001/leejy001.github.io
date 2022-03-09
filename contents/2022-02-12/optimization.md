@@ -4,7 +4,6 @@ title: 'useMemo, useCallback, React.memo'
 categories: ['React', '최적화']
 summary: '최적화 3대장 useMemo, UseCallback, React.memo에 대해서 알아보자'
 thumbnail: './react_thumbnail.png'
-showThumbnail: true
 ---
 
 ### React 그것이 알고싶다. [useMemo, useCallbak, React.memo 편]

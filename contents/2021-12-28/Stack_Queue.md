@@ -4,7 +4,6 @@ title: '스택/큐 (Stack & Queue)'
 categories: ['Data Structure']
 summary: '대표적인 선형 자료구조인 스택과 큐에 대해서 알아보자'
 thumbnail: './Stack_Queue_Thumbnail.png'
-showThumbnail: true
 ---
 
 ### 개발자가 알아야 하는 자료구조 8가지
