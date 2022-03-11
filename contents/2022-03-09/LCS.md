@@ -6,7 +6,7 @@ summary: 'Longest Common Subsequnce(최장 공통 부분 수열), Longest Common
 thumbnail: './javascript_thumbnail.png'
 ---
 
-### Longest Common Subsequence
+### 알고리즘 정리 3번째[Longest Common Subsequence]
 
 Longest Common Subsequence, <b>최장 공통 부분 수열</b>이라고도 한다.  
 최장 공통 부분 수열이란 두 수열이 주어질 때, 모두의 부분 수열이 되는 수열 중 가장 긴 것을 찾는 문제다.  
