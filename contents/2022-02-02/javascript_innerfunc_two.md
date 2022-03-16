@@ -1,5 +1,5 @@
 ---
-date: '2022-02-02'
+date: '2022-02-03'
 title: '자바스크립트 기본 함수 2'
 categories: ['JavaScript']
 summary: '자바스크립트의 다양한 기본 함수에 대해서 알아보자'
