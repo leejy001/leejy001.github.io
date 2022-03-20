@@ -1,6 +1,6 @@
 ---
 date: '2022-03-18'
-title: '동기와 비동기'
+title: '동기와 비동기 1'
 categories: ['JavaScript']
 summary: 'Synchronous(동기)와 Asynchronous(비동기)에 대해 알아보고 자바스크립트에서는 비동기적인 작업을 어떻게 처리하는지 알아보자'
 thumbnail: './javascript_thumbnail.png'
