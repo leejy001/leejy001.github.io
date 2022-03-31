@@ -1,7 +1,7 @@
 ---
 date: '2022-03-28'
-title: '자바스크립트 실행 컨텍스트(Execution Context)'
-categories: ['JavaScript', 'Algorithm']
+title: '실행 컨텍스트(Execution Context)'
+categories: ['JavaScript']
 summary: '자바스크립트의 실행 컨텍스트의 정의와 유형, 자바스크립트에서 어떻게 생성하며 관리하는지 알아보자'
 thumbnail: './javascript_thumbnail.png'
 ---
