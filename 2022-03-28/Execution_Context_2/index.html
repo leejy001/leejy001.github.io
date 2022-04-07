@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.e53586a225ffdde20c86.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><meta name="generator" content="Gatsby 4.3.0"/><title data-react-helmet="true">실행 컨텍스트(Execution Context) - 생성과 구조</title><meta data-react-helmet="true" name="description" content="실행 컨텍스트의 생성과 구조에 대하여 알아보자"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="실행 컨텍스트(Execution Context) - 생성과 구조"/><meta data-react-helmet="true" property="og:description" content="실행 컨텍스트의 생성과 구조에 대하여 알아보자"/><meta data-react-helmet="true" property="og:image" content="/static/ff8baacb3b7e020448d56932a93a427d/javascript_thumbnail.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="실행 컨텍스트(Execution Context) - 생성과 구조"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="실행 컨텍스트(Execution Context) - 생성과 구조"/><meta data-react-helmet="true" name="twitter:description" content="실행 컨텍스트의 생성과 구조에 대하여 알아보자"/><meta data-react-helmet="true" name="twitter:image" content="/static/ff8baacb3b7e020448d56932a93a427d/javascript_thumbnail.png"/><meta data-react-helmet="true" name="twitter:site" content="leejy001"/><meta data-react-helmet="true" name="twitter:creator" content="leejy001"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="canonical" href="https://leejy001.github.io/2022-03-28/Execution_Context_2/" data-baseprotocol="https:" data-basehost="leejy001.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link as="script" rel="preload" href="/webpack-runtime-e93642d5cba27492b738.js"/><link as="script" rel="preload" href="/framework-a71258511df4b73cc72c.js"/><link as="script" rel="preload" href="/app-92dfcbc735e9845ae48c.js"/><link as="script" rel="preload" href="/cb1608f2-af39fb5411818d543a01.js"/><link as="script" rel="preload" href="/a9a7754c-350385c4b181f51f5292.js"/><link as="script" rel="preload" href="/c233df5d83b349c1a317d59a000beafeb05233d4-8333e7586ea2b4a75fbc.js"/><link as="script" rel="preload" href="/component---src-templates-post-template-tsx-dd4e61acddeced6e4a23.js"/><link as="fetch" rel="preload" href="/page-data/2022-03-28/Execution_Context_2/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 1w3ry3v">.css-1w3ry3v{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}.css-1w3ry3v section{padding-top:50px;}</style><main class="css-1w3ry3v e1jp4sat0"><style data-emotion="css-global 1rj6kj3">@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);*{padding:0;margin:0;box-sizing:border-box;font-family:'Spoqa Han Sans Neo','sans-serif';}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1y9hibv">.css-1y9hibv{position:fixed;background-color:white;width:100%;box-sizing:border-box;z-index:100;padding:10px 30px;font-size:20px;text-align:center;line-height:1.5;border-bottom:1px solid rgb(230, 230, 230);}</style><header class="css-1y9hibv e1ke0ojz4"><style data-emotion="css 1ykvh9j">.css-1ykvh9j{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;max-width:1024px;margin:0 auto;}@media (max-width: 1024px){.css-1ykvh9j{width:100%;}}</style><div class="css-1ykvh9j e1ke0ojz3"><style data-emotion="css 1eoy87d">.css-1eoy87d{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}</style><div class="css-1eoy87d e1ke0ojz2"><a href="/"><p>LeeBlog</p></a><a href="/categories"><style data-emotion="css 153cbu8">.css-153cbu8{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:7px;margin-left:30px;}.css-153cbu8 p{width:60px;margin-left:3px;margin-top:-1px;font-size:15px;}</style><div class="css-153cbu8 e1ke0ojz1"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bookmark" class="svg-inline--fa fa-bookmark fa-w-12 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" color="#08c1ce"><path fill="currentColor" d="M0 512V48C0 21.49 21.49 0 48 0h288c26.51 0 48 21.49 48 48v464L192 400 0 512z"></path></svg><p>카테고리</p></div></a></div><div class="css-1eoy87d e1ke0ojz2"><div class="css-0 e1ke0ojz0"><a href="https://github.com/leejy001" target="_blank" rel="noreferrer noopener"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" color="#08c1ce"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></div></div></div></header><section><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:446px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;414.99999999999994&#x27; width=&#x27;446&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABgElEQVQ4y+2UzyvDYRzH/QOWE6VY+ZGI0jdDSK2lOLDLDqjV2C+z+TUnlxHhoOSwkprbSi5OKw4OO7hSko0trclwUOIg8eWl72Pf2kG21W4cPn36PM/neT/v9/v59BRx6aAw4YSohaI/DPh5YRf5I2pHjtpF/R6x8X5uE1ndV3NODD+U5oQLkq7vtZQH7ifg1gOx38B+AFSYcT1OaKuX4JoekuMsz+jolMqY90iCaU4M1YbXMyvcefCONDE2VM9BoI+qimLOQiaMBi37gT64cSNH7HxmYyjYKTIfp5lzNjNpbuTqcJAarQarqY7t5W6eTywQd2ZnKKel7vl7SIaH8fs6MRtrhWdHOwPsrBtoqC5hcapFeJn5QD8CvinePEwJqe3NpejbylmdbSUc7Ke6UiM87ZDKWFIA73IAFJsxBy+no6x4dfjcEk/HFkiMsbthEJI3F7ryGxvRFHcKBiJUr1Lu/Mcm82YxyGlJSsjpOq/BVg+rzZkH1Do72P9vU0jAL+WuodgKRyMEAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/ff8baacb3b7e020448d56932a93a427d/5b8e6/javascript_thumbnail.webp 112w,/static/ff8baacb3b7e020448d56932a93a427d/cd3d4/javascript_thumbnail.webp 223w,/static/ff8baacb3b7e020448d56932a93a427d/48be0/javascript_thumbnail.webp 446w" sizes="(min-width: 446px) 446px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 446px) 446px, 100vw" decoding="async" loading="lazy" data-src="/static/ff8baacb3b7e020448d56932a93a427d/9b9a6/javascript_thumbnail.png" data-srcset="/static/ff8baacb3b7e020448d56932a93a427d/b78f2/javascript_thumbnail.png 112w,/static/ff8baacb3b7e020448d56932a93a427d/022a4/javascript_thumbnail.png 223w,/static/ff8baacb3b7e020448d56932a93a427d/9b9a6/javascript_thumbnail.png 446w" alt="thumnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/ff8baacb3b7e020448d56932a93a427d/5b8e6/javascript_thumbnail.webp 112w,/static/ff8baacb3b7e020448d56932a93a427d/cd3d4/javascript_thumbnail.webp 223w,/static/ff8baacb3b7e020448d56932a93a427d/48be0/javascript_thumbnail.webp 446w" sizes="(min-width: 446px) 446px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 446px) 446px, 100vw" decoding="async" loading="lazy" src="/static/ff8baacb3b7e020448d56932a93a427d/9b9a6/javascript_thumbnail.png" srcSet="/static/ff8baacb3b7e020448d56932a93a427d/b78f2/javascript_thumbnail.png 112w,/static/ff8baacb3b7e020448d56932a93a427d/022a4/javascript_thumbnail.png 223w,/static/ff8baacb3b7e020448d56932a93a427d/9b9a6/javascript_thumbnail.png 446w" alt="thumnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg></div><style data-emotion="css 1q6vph8">.css-1q6vph8{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;margin-bottom:20px;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:35px;font-weight:800;}@media (max-width: 768px){.css-1q6vph8{font-size:25px;}}</style><div class="css-1q6vph8 e1st1jau1">실행 컨텍스트(Execution Context) - 생성과 구조</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>JavaScript</div><div>2022.03.30.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><p>실행 컨텍스트와 관련되어서 첫번째로 실행 컨텍스트의 정의와 유형에 어떤것이 있는지, JavaScript엔진이 실행 컨텍스트를 어떻게 관리하는지에 대해 알아보았다.<br>
+이번에는 JavaScript엔진이 실행 컨텍스트를 어떻게 생성하며, 실행 컨텍스트는 어떤 구조를 가지고 있는지에 대하여 알아보자</p>
+<p>실행 컨텍스트를 실행하기 위해 보유하는 프로퍼티에는 다음이 있다.</p>
+<ul>
+<li>Lexical Environment</li>
+<li>Variable Environment</li>
+</ul>
+<p>ES5 이전의 Variable Object, Activition Object, Scope Chain등의 개념이 <b>Lexical Environment</b>로 변경되었다.<br>
+Lexical Environment은 자바스크립트 코드를 실행하기 위해 함수, 블록의 유효 범위 안에 있는 <b>식별자(변수이름)</b>와 결과값을 가지는 환경 간단하게 let, const, function으로 선언된 변수와 함수가 저장되는 환경이다.</p>
+<p><b>Variable Environment</b>는 var 키워드로 선언된 변수가 저장되는 환경이다.
+<br/><br/>
+<strong>실행 컨텍스트에서 “this”를 관리하는 주체</strong></p>
+<p>ES5이전에는 실행 컨텍스트가 직접 관리했지만 이후에는 Lexical Environment에서 관리한다.<br>
+this를 호출하면 Lexical Environment가 반환되어 현재 Lexical Environment에 있는 <b>GetThisBinding()</b>을 호출하여 얻는다.
+<br/><br/>
+<strong>“Scope Chian”의 변화</strong></p>
+<p>JavaScript는 Lexical Scope를 갖는 언어로써, 식별자 탐색을 위한 참조가 ES5이후에는 Lexical nesting structure, Logical nesting of Lexical Environment value로 바뀌었다.<br>
+<b>Chain(사슬)</b>의 구조보다는 <b>nesting(중첩)</b>에 의미를 강조했다.</p>
+<h3>실행 컨텍스트와 구조</h3>
+<p>실행 컨텍스트는 <b>“실행 가능한 코드를 형상화 하고 구분 하는 추상적인 개념으로 코드가 실행되고 있는 구역 또는 범위”</b>로써 각 실행 컨텍스트는 아래와 같은 모양을 가지고 있다.</p>
+<p align="center"><img src='/images/JavaScript/execution_structure.png' width='100%' alt='execution_structure' /><p>
+<h3>1. 실행 컨텍스트 (Execution Context)</h3>
+<p>최상위 개념인 실행 컨텍스트는 <b>“코드가 실행되고 있는 구역 또는 범위”</b>라는 정의에 맞게 어느 영역에서 호출 및 실행되냐에 따라 구분하며 각 컨텍스트에 따라 상위 개념 및 구조가 달라진다.</p>
+<ul>
+<li><b>전역(Global)영역</b>에서 실행되고 있으면 <b>전역 실행 컨텍스트</b></li>
+<li>전역 컨텍스트에서 호출 및 실행된 <b>함수(Function)</b>의 영역에서 실행되고 있으면 <b>함수 실행 컨텍스트</b></li>
+</ul>
+<p>그리고 모든 실행 컨텍스트는 아래와 같은 공통된 구조를 갖고 있으며 변수의 참조를 기록하는 환경이라고 할 수 있다.</p>
+<div class="gatsby-highlight" data-language="plaintext"><pre class="language-plaintext"><code class="language-plaintext">ExecutionContext = {
+  LexicalEnvironment = &lt;ref. to LexicalEnvironment in memory>,
+  VariableEnvironment = &lt;ref. to VariableEnvironment in  memory>
+}</code></pre></div>
+<p>위 두개의 프로퍼티는 초기화 시에 같은 객체를 바라보고 있으며 실행 컨텍스트가 호출 및 실행 영역에 따라 구분되는 것과 마찬가지로 각 바라보는 Linked Object가 달라진다.</p>
+<ul>
+<li>전역(Global) 실행 컨텍스트의 프로퍼티인 경우: Global Lexical Environment / Global Variable Environment</li>
+<li>일반 함수(Function) 실행 컨텍스트의 프로퍼티인 경우: Lexical Environment / Variable Environment</li>
+</ul>
+<h3>2. Lexical Environment</h3>
+<p>한글로 <b>“어휘적 환경”</b> 또는 <b>“정적 환경”</b>이라고 할 수 있으며 JavaScript 코드에서 변수 또는 함수 식별자를 <b>맵핑(identifier-variable mapping)</b>하는데 사용되는 객체로 다음과 같은 환경으로 구성되어 있다.</p>
+<p>(여기서 식별자(identifier)란 참조 대상 식별자로써 변수나 함수의 이름을 참조하여 변수는 함수 객체와 배열 객체를 포함한 실제 객체 또는 원시값에 대한 참조다.)</p>
+<ul>
+<li>Lexical Environment<br>
+Outer Environment Reference 또는 Reference to the outer Environment<br>
+Enviornment Record</li>
+</ul>
+<h3>2.1 Outer Environment Reference</h3>
+<p>식별자(identifier) 검색을 위해 외부 Lexical Envioronment를 참조하는 포인터로 중첩된 JavaScript 코드에서 스코프 탐색을 위해 사용된다.<br>
+Global Lexical Environment의 Outer Environment Reference 값은 null이다.<br>
+일반 Function 환경에서의 Lexical Environment의 Outer Environment Reference 값은 해당 실행 컨텍스트의 상위 컨텍스트의 Lexical Environment를 참조한다.</p>
+<p>아래 코드에서 outer를 활용해 식별자를 찾아보자</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> g0 <span class="token operator">=</span> <span class="token string">'g0'</span>
+
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> f0 <span class="token operator">=</span> <span class="token string">'f0'</span>
+
+  <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> b0 <span class="token operator">=</span> <span class="token string">'b0'</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>g0<span class="token punctuation">)</span> <span class="token comment">// g0</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>f0<span class="token punctuation">)</span> <span class="token comment">// f0</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b0<span class="token punctuation">)</span> <span class="token comment">// b0</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>unknown<span class="token punctuation">)</span> <span class="token comment">// Reference Error</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<p>아래는 Environment를 간단히 나타내준다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">GlobalEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token operator">:</span> <span class="token punctuation">{</span>
+    g0<span class="token operator">:</span> <span class="token string">'g0'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+fooEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token operator">:</span> <span class="token punctuation">{</span>
+    f0<span class="token operator">:</span> <span class="token string">'f0'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token operator">:</span> globalEnvironment<span class="token punctuation">,</span> <span class="token comment">// foo는 Global에서 생성</span>
+<span class="token punctuation">}</span>
+
+barEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token operator">:</span> <span class="token punctuation">{</span>
+    b0<span class="token operator">:</span> <span class="token string">'b0'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token operator">:</span> fooEnvironment<span class="token punctuation">,</span> <span class="token comment">// bar는 foo 안에서 생성</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>bar의 Environment에서는 f0이나 g0을 찾을 수 없다.<br>
+따라서 outer 참조를 통해 상위 Environment로 올라가서 식별자를 찾는다.<br>
+outer가 null임에도 불구하고 unknown 처럼 찾을 수 없는 식별자라면 Reference Error가 발생한다.</p>
+<h3>2.2 Environment Record</h3>
+<p>현재 유효범위 내의 값에 식별자들의 바인딩을 기록하는 객체로 모든 지역 변수(변수, 함수 등)를 프로퍼티로 저장하며<br>
+this와 같은 기타 정보도 여기에 저장된다.<br>
+현재 레코드 타입이 포함된 실행 컨텍스트에 따라 <b>Global Environment Record</b>와 일반 Function 환경에서의<br>
+<b>Environment Record</b>로 구분할 수 있으며 담고 있는 데이터에 대한 속성도 달라진다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">'a'</span>
+  <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// code</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>위 코드가 있을 때 bar함수의 Lexical Environment에 있는 Outer Environment Reference에는 foo의<br>
+Lexical Environment가 저장된다.<br>
+따라서 bar함수에서 a 변수를 사용하고 싶다면 Outer Environment Reference에 있는 Lexical Environment으로 이동해서 a 변수를 찾아 사용한다.</p>
+<h3>2.3 Environment Record 종류</h3>
+<p>Environment Record에는 5가지 종류가 있다.
+<br/><br/>
+<strong>2.3.1 전역 환경 레코드 (Global Environment Record)</strong></p>
+<p>맨 처음 만들어지는 환경 레코드다.<br>
+전역 환경 레코드에는 선언적 환경 레코드, 객체 환경 레코드를 복합적으로 사용하며 객체 환경 레코드의 <b>bindObject</b>에 전역 객체를 바인딩하고 있다. 모든 자바스크립트의 코드들이 공유하는 최상위 스코프를 나타낸다.<br>
+해당 Record 타입의 구조는 실행 컨텍스트의 영역을 불문하고 아래의 Record 타입을 같는다.</p>
+<ul>
+<li>Environment Record<br>
+객체 환경 레코드 (Object Environment Record)<br>
+선언적 환경 레코드 (Declarative Environment Record)</li>
+</ul>
+<p><strong>2.3.2 객체 환경 레코드 Object Environment Record</strong></p>
+<p>with 문과 같이 식별자(identifier)를 특징 객체의 속성으로 취급할 때 사용되며, 이를 위해 binding Object하는 속성으로 특정 객체를 가리킨다.
+보통은 환경 레코드를 객체로 만드는 것은 비효율 적이라 일반적으론 잘하지 않는다.<br>
+현재 레코드는 Environment Record를 상속하는 서브 클래스다.<br>
+<b>전역(Global) 실행 컨텍스트</b>와 <b>Object Environment Record</b>는 브라우저 환경의 경우 전역 객체로서 window<br>
+객체를 저장한다.<br>
+따라서 일반적인 <b>함수(Function) 실행 컨텍스트</b>와 다르게 Object, Array, Function과 같은 <b>built-in global 객체</b>와 전역 코드에서의 <b>함수/변수 선언</b>에 의해 생성된 모든 식별자 정보를 저장하며 찾을 수 있다.<br>
+(이는 함수 실행 컨텍스트의 Environment Record와는 다른 점이다.)</p>
+<br/>
+<p><strong>2.3.3 선언적 환경 레코드 Declarative Environment Record</strong></p>
+<p>이름에서 알 수 있듯이 변수 선언, 함수 선언, catch 절과 같은 <b>문법요소의 효과</b>와 같은 정보를 정의하기 위해 사용된다.<br>
+즉, <b>식별자(identifier) 정보</b>를 해당 레코드 타입에서 찾을 수 있는 이야기다.<br>
+함수 코드에 대한 Lexical Environment는 해당 레코드 타입을 포함하여 하위 레코드 타입으로는 아래와 같다.</p>
+<ul>
+<li>Declarative Environment Record<br>
+함수 환경 레코드 (Function Environment Record)<br>
+모듈 환경 레코드 (Module Environment Record)</li>
+</ul>
+<p><strong>2.3.4 함수 환경 레코드 (Function Environment Record)</strong></p>
+<p>함수 내의 최상위 스코프의 바인딩을 나타내는 <b>Declarative Environment Record</b>이다.<br>
+함수에 필요한 this, super, newTarget에 관한 필드, 메소드 동작들이 정의되어 있다.</p>
+<div class="gatsby-highlight" data-language="plaintext"><pre class="language-plaintext"><code class="language-plaintext">FunctionEnvironmentRecord = {
+	// ... Declarative Environment Record
+
+  	[[ThisValue]]: any
+  	[[ThisBindingStatus]]: lexical | initialized | uninitialized
+ 	[[FunctionObject]]: object
+	[[NewTarget]]: object | undefined
+}</code></pre></div>
+<p>여기서 일반 함수와 화살표 함수의 차이점이 있다.<br>
+화살표 함수는 [[ThisBindingStatus]]가 lexical로 설정되며, this 바인딩을 제공하지 않고<br>
+생성자 함수로도 사용할 수 없다.<br>
+[[FunctionObject]] 필드는 환경 레코드가 생성되게 한 호출된 함수를 가리킨다.<br>
+[[NewTarget]]은 new 키워드와 생성자 함수를 호출한 경우, 처음에 new 키워드가 적용된 함수 객체를 가리킨다.</p>
+<br/>
+<p><strong>2.3.5 모듈 환경 레코드 (Module Environment Record)</strong></p>
+<p>자바스크립트 모듈의 바깥 스코프를 표현하기 위한 Declarative Environment Record이며,<br>
+모듈에 있는 변수와 함수가 바인딩된다.<br>
+다른 환경 레코드에 존재하는 바인딩에 간접적으로 접근할 수 있는 불변 import 바인딩을 제공한다.<br>
+그래서 다른 모듈에 대해 import 바인딩을 생성하는 메소드가 추가된다.</p>
+<h3>3. Variable Environment</h3>
+<p>Lexical Environment 와 function, 변수 식별자가 binding 되는 점을 포함하여 동일하다.<br>
+Variable Environment 또한 Lexical Environment이다. 그러나 만들어진 변수 선언 및 함수 선언에 대해서는<br>
+바인딩을 유지한다.<br>
+Lexical Environment는 일시적으로 Lexical Environement 하위에 새로운 환경을 가리키며 이 새로운 환경은 임시 바인딩을 보유한다.
+그리고 임시 범위를 벗어나면 Variable Environment가 참조하고 있는 값으로 Lexical Environment를 복구한다.<br>
+Lexical Environment와 Variable Environment의 차이점은 전자는 함수 선언과 변수(let , const)의 바인딩을 저장하고 후자는 변수(var)만 저장한다.</p>
+<h3>4. Execution Context 구조</h3>
+<p>Execution Context 하위 구조</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">ExecutionContext <span class="token operator">=</span> <span class="token punctuation">{</span>
+  LexicalEnvironment <span class="token operator">=</span> <span class="token operator">&lt;</span>ref<span class="token punctuation">.</span> to LexicalEnvironment <span class="token keyword">in</span> memory<span class="token operator">></span><span class="token punctuation">,</span>
+  VariableEnvironment <span class="token operator">=</span> <span class="token operator">&lt;</span>ref<span class="token punctuation">.</span> to VariableEnvironment <span class="token keyword">in</span>  memory<span class="token operator">></span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Lexical Environment 구조</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">Lexical Environment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  Outer Environment Reference<span class="token punctuation">,</span>
+  Environment Record<span class="token operator">:</span> <span class="token punctuation">{</span>
+    Object Environment Record<span class="token punctuation">,</span>
+    Declarative Environment Record<span class="token operator">:</span> <span class="token punctuation">{</span>
+      Function Environment Record<span class="token punctuation">,</span>
+      Module Environment Record
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    This Binding
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Variable Environment 구조</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">EnvironmentRecord<span class="token operator">:</span> <span class="token punctuation">{</span>
+  Outer Environment Reference<span class="token punctuation">,</span>
+  Environment Record<span class="token operator">:</span> <span class="token punctuation">{</span>
+    Object Environment Record<span class="token punctuation">,</span>
+    Declarative Environment Record<span class="token punctuation">,</span>
+    This Binding
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>참조</h3>
+<p><a href="https://blog.bitsrc.io/understanding-execution-context-and-execution-stack-in-javascript-1c9ea8642dd0">Javascript의 실행 컨텍스트 및 실행 스택에 대해</a><br>
+<a href="https://iamsjy17.github.io/javascript/2019/06/10/js33_execution_context.html">Execution Context와 Lexical Environment</a><br>
+<a href="https://262.ecma-international.org/6.0/#sec-executable-code-and-execution-contexts">ECMAScript 2015</a><br>
+<a href="https://meetup.toast.com/posts/129#newfunctionenvironment">자바스크립트 함수(3) - Lexical Environment</a></p></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc eise0l80"></div></section><style data-emotion="css 1pw0cec">.css-1pw0cec{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-1pw0cec{font-size:12px;}}</style><footer class="css-1pw0cec e1oae0v80">Thank you Visiting Leeblog 😆<br/>© 2021 Developer Leejy001, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/2022-03-28/Execution_Context_2/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-635a9dfd597478a1f0fa.js"],"app":["/app-92dfcbc735e9845ae48c.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-0483d34510d6f6da0e19.js"],"component---src-pages-categories-tsx":["/component---src-pages-categories-tsx-240a92716d1b90a89842.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-dcf6a4bc580e5f232b37.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-dd4e61acddeced6e4a23.js"]};/*]]>*/</script><script src="/polyfill-635a9dfd597478a1f0fa.js" nomodule=""></script><script src="/component---src-templates-post-template-tsx-dd4e61acddeced6e4a23.js" async=""></script><script src="/c233df5d83b349c1a317d59a000beafeb05233d4-8333e7586ea2b4a75fbc.js" async=""></script><script src="/a9a7754c-350385c4b181f51f5292.js" async=""></script><script src="/cb1608f2-af39fb5411818d543a01.js" async=""></script><script src="/app-92dfcbc735e9845ae48c.js" async=""></script><script src="/framework-a71258511df4b73cc72c.js" async=""></script><script src="/webpack-runtime-e93642d5cba27492b738.js" async=""></script></body></html>
