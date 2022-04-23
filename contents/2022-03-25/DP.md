@@ -3,7 +3,7 @@ date: '2022-03-25'
 title: '동적 계획법(Dynamic programming)'
 categories: ['JavaScript', 'Algorithm']
 summary: '동적 계획법의 개념과 동적 계획법으로 문제를 푸는 방법에 대해서 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 6번째 [Dynamic programming]

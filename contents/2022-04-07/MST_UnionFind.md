@@ -3,7 +3,7 @@ date: '2022-04-07'
 title: 'Union Find'
 categories: ['JavaScript', 'Algorithm']
 summary: '대표적인 그래프 알고리즘 중 하나인 Union Find에 대해서 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 8번째 [Union-Find]

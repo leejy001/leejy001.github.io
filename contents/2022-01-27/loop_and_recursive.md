@@ -3,7 +3,7 @@ date: '2022-01-27'
 title: '반복문과 재귀'
 categories: ['JavaScript', 'Algorithm']
 summary: '알고리즘에서 가장 많이 사용하는 반복문과 재귀에 대해서 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 첫번째 [재귀와 반복문]

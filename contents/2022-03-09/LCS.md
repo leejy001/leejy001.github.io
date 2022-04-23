@@ -3,7 +3,7 @@ date: '2022-03-09'
 title: 'LCS'
 categories: ['JavaScript', 'Algorithm']
 summary: 'Longest Common Subsequnce(최장 공통 부분 수열), Longest Common Substring(최장 공통 부분 문자열)에 대하여 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 3번째[Longest Common Subsequence]

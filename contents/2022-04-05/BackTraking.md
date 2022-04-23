@@ -3,7 +3,7 @@ date: '2022-04-05'
 title: '백트래킹(Backtraking)'
 categories: ['JavaScript', 'Algorithm']
 summary: 'DFS 기반의 백트래킹(Backtraking) 알고리즘에 대해서 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 7번째 [Backtraking]

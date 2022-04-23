@@ -3,7 +3,7 @@ date: '2022-03-11'
 title: 'DFS와 BFS'
 categories: ['JavaScript', 'Algorithm']
 summary: 'DFS와 BFS이 무엇인지 어떻게 구현하는지 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 4번째 [DFS/BFS]

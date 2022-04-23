@@ -3,7 +3,7 @@ date: '2022-04-10'
 title: 'MST - Kruskal'
 categories: ['JavaScript', 'Algorithm']
 summary: '대표적인 최소 신장 트리 알고리즘(MST) 중 하나인 Kruskal Algorithm에 대해서 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 9번째 [Kruskal Algorithm]

@@ -3,7 +3,7 @@ date: '2022-03-22'
 title: '순열과 조합'
 categories: ['JavaScript', 'Algorithm']
 summary: '순열과 조합 그리고 중복 순열을 구하는 방법에 대해 알아보자'
-thumbnail: './javascript_thumbnail.png'
+thumbnail: './algorithm.png'
 ---
 
 ### 알고리즘 정리 5번째 [순열, 조합]
