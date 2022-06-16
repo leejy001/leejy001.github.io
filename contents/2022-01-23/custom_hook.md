@@ -193,7 +193,7 @@ export function useCheckPhone(): { handleCheckPhone: returnType } {
 ```
 
 여기서 커스텀 훅의 리턴 타입에 어떤 타입을 지정해 줘야 할지가 난관일 것이다.  
-이때 반환 타입으로 <b>Promise</b>를 사용하면된다.  
+이때 반환 타입으로 <b>Promise</b>를 사용하면된다.
 예를 들어 handleCheckPhone에서 어떤 인자를 서버로 보내서 어떤 결과 값을 받아올 때 다음과 같이 하면 된다.
 
 ```typescript
@@ -213,6 +213,10 @@ export function useCheckPhone(): { handleCheckPhone: (variable: variableType, re
   return {handleCheckPhone}
 }
 ```
+
+Promise는 TypeScript 내부적으로 타입이 정의되어 있다.  
+그리고 Promise를 리턴하기 위해 위 예제의 Promise<resultType>과 같이 제네릭 선언을 해주자  
+그리고 Axios는 Promise를 반환하기 때문에 해당 타입의 선언을 알아둘 필요가 있다.
 
 지금 까지 커스텀 훅에 대해서 그리고 타입스크립트를 이용한 커스텀 훅 제작에 대해서 알아봤다.  
 커스텀 훅을 만들어서 사용하면 컴포넌트의 로직을 분리시켜 필요 할 때 쉽게 재사용 할 수 있다.

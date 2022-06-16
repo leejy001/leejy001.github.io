@@ -67,11 +67,11 @@ const Inner = styled.div`
 `
 
 const IconWrapper = styled.div`
+  width: 80px;
   display: flex;
   margin-top: 7px;
   margin-left: 30px;
   p {
-    width: 60px;
     margin-left: 3px;
     margin-top: -1px;
     font-size: 15px;
