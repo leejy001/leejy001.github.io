@@ -186,6 +186,5 @@ Flux에 대해 더 자세히 알고 싶다면 해당 게시물에서 재미있�
 
 ### reference
 
-flux 공식 사이트: [https://facebook.github.io/flux/docs/in-depth-overview](https://facebook.github.io/flux/docs/in-depth-overview)
-
-'데이터가 폭포수처럼 흘러내려' React의 flux 패턴: [https://www.huskyhoochu.com/flux-architecture/](https://www.huskyhoochu.com/flux-architecture/)
+[flux 공식 사이트](https://facebook.github.io/flux/docs/in-depth-overview)  
+['데이터가 폭포수처럼 흘러내려' React의 flux 패턴](https://www.huskyhoochu.com/flux-architecture/)
